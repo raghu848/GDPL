@@ -1,65 +1,145 @@
-import Image from "next/image";
+"use client";
+
+import Hero from "@/components/ui/Hero";
+import ShutterReveal from "@/components/ui/ShutterReveal";
+import PropertyCard from "@/components/ui/PropertyCard";
+import ContactMap from "@/components/shared/ContactMap";
+import { ArrowRight, Mail, Phone, Instagram, Facebook, Youtube, MessageSquare } from "lucide-react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function Home() {
+  const featuredProjects = [
+    {
+      name: "Regal Heights",
+      specs: "3 & 4 BHK Luxury Apartments",
+      location: "Sector 91, Mohali",
+      image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      name: "Regal Residencia",
+      specs: "Premium Independent Floors",
+      location: "Sector 91, Mohali",
+      image: "https://images.unsplash.com/photo-1628624747186-a941c476b7ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      name: "GLC Cooperative Homez",
+      specs: "Spacious 3 BHK Residencies",
+      location: "Zirakpur",
+      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      name: "Foothills",
+      specs: "Ultra-Luxury Estates",
+      location: "New Chandigarh",
+      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    }
+  ];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
+      {/* 1. Hero Section */}
+      <Hero />
+
+      {/* 2. Intro Section (Sid Style Numbers) */}
+      <section className="py-40 bg-black border-b border-white/5">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-end">
+            <div className="max-w-xl">
+              <h2 className="text-[10px] font-black tracking-[0.4em] uppercase text-muted mb-8">About GDPL</h2>
+              <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9] mb-12">
+                WE ARE COMPANY OF THE FUTURE THAT COVERS TRICITY PROPERTY MARKET 360°
+              </h3>
+              <p className="text-muted text-lg font-light leading-relaxed">
+                We don&apos;t just build, but also manage, consult, train market participants and create educational content for investors and property buyers.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-12">
+              <div className="space-y-4">
+                <div className="text-5xl font-black tracking-tighter">10+</div>
+                <div className="text-[10px] uppercase tracking-[0.3em] text-muted font-bold">Years of Legacy</div>
+              </div>
+              <div className="space-y-4">
+                <div className="text-5xl font-black tracking-tighter">500+</div>
+                <div className="text-[10px] uppercase tracking-[0.3em] text-muted font-bold">Units Delivered</div>
+              </div>
+              <div className="space-y-4">
+                <div className="text-5xl font-black tracking-tighter">100%</div>
+                <div className="text-[10px] uppercase tracking-[0.3em] text-muted font-bold">Transparency</div>
+              </div>
+              <div className="space-y-4">
+                <div className="text-5xl font-black tracking-tighter">08</div>
+                <div className="text-[10px] uppercase tracking-[0.3em] text-muted font-bold">Active Projects</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* 3. Projects Showcase (Shutter Reveals) */}
+      <section className="py-40 bg-black">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
+            <h2 className="text-h2 tracking-tighter">Featured Projects</h2>
+            <Link href="/projects" className="group flex items-center gap-4 text-[10px] uppercase tracking-[0.3em] font-bold">
+              Go to all projects <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-32">
+            {featuredProjects.map((project, idx) => (
+              <motion.div
+                key={idx}
+                className={idx % 2 !== 0 ? "md:mt-40" : ""}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <Link href={`/projects/${idx}`} className="group cursor-pointer block">
+                  <ShutterReveal direction="up" className="aspect-[16/10] rounded-3xl overflow-hidden mb-8">
+                    <img
+                      src={project.image}
+                      alt={project.name}
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 grayscale group-hover:grayscale-0"
+                    />
+                  </ShutterReveal>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h3 className="text-2xl font-black uppercase tracking-tighter mb-2">{project.name}</h3>
+                      <p className="text-muted text-[10px] uppercase tracking-[0.2em]">{project.specs}</p>
+                    </div>
+                    <span className="text-[10px] font-bold text-muted uppercase tracking-widest">{project.location}</span>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* 4. Map Section */}
+      <ContactMap />
+
+      {/* 5. Contact / Vision Callout */}
+      <section className="bg-white text-black py-40">
+        <div className="container mx-auto px-6 text-center">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-16">
+              LET&apos;S IMAGINE YOUR FUTURE IN MOHALI
+            </h2>
+            <Link
+              href="https://wa.me/917710380077"
+              target="_blank"
+              className="inline-flex items-center gap-4 py-6 px-12 border-2 border-black rounded-full text-xs font-black uppercase tracking-[0.4em] hover:bg-black hover:text-white transition-all duration-500 group"
+            >
+              <MessageSquare className="w-5 h-5 group-hover:scale-110 transition-transform" />
+              Connect with us
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

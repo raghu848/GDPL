@@ -1,26 +1,72 @@
 @import "tailwindcss";
 
+@theme {
+  --color-obsidian: #000000;
+  --color-obsidian-light: #0A0A0A;
+  --color-alabaster: #FFFFFF;
+  --color-silver: #A0A0A0;
+  --color-gold: #D4AF37;
+  --color-gold-dark: #B38F36;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Playfair Display', serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: var(--color-obsidian);
+  --foreground: var(--color-alabaster);
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Sid Thailand Inspired Utilities */
+@layer utilities {
+  .text-h1 {
+    @apply text-[12vw] md:text-[8rem] lg:text-[140px] font-black uppercase tracking-tight leading-[0.85];
+  }
+
+  .text-h2 {
+    @apply text-4xl md:text-6xl font-bold uppercase tracking-tight;
+  }
+
+  .shutter-reveal {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shutter-reveal::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-obsidian);
+    transform-origin: center;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .shutter-reveal.active::after {
+    transform: scaleY(0);
+  }
+
+  .glass-pill {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .bg-dot-pattern {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .text-muted {
+    color: var(--color-silver);
+  }
 }
