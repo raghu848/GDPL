@@ -35,7 +35,7 @@ export default function ContactPage() {
                         <img
                             src="/images/herosection.png"
                             alt="Contact Hero"
-                            className="w-full h-auto object-contain grayscale hover:grayscale-0 transition-all duration-1000 max-h-[500px]"
+                            className="w-full h-auto object-contain md:grayscale hover:grayscale-0 transition-all duration-1000 max-h-[500px]"
                         />
                     </motion.div>
                 </div>
@@ -80,7 +80,7 @@ export default function ContactPage() {
                                         </div>
                                         <div>
                                             <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 mb-1">Call Us</p>
-                                            <p className="text-lg font-medium">+91 77103 80077</p>
+                                            <p className="text-lg font-medium">+91 77890 00077</p>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-6 group">
@@ -154,7 +154,7 @@ export default function ContactPage() {
                                 WE ARE<br />HERE TO HELP.
                             </h2>
                             <div className="flex flex-wrap gap-8">
-                                <a href="https://wa.me/917710380077" target="_blank" className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.3em] text-muted hover:text-white transition-all">
+                                <a href="https://wa.me/917789000077" target="_blank" className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-[0.3em] text-muted hover:text-white transition-all">
                                     <MessageSquare className="w-4 h-4" />
                                     WhatsApp
                                 </a>

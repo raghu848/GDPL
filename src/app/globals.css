@@ -1,6 +1,13 @@
 @import "tailwindcss";
 
 @theme {
+  --color-noir: #121212;
+  --color-stone: #E8E6E1;
+  --color-text-primary-dark: #FAFAFA;
+  --color-text-secondary-dark: #D1D1D1;
+  --color-text-primary-light: #1A1A1A;
+  --color-bronze: #8E795E;
+
   --color-obsidian: #000000;
   --color-obsidian-light: #0A0A0A;
   --color-alabaster: #FFFFFF;
@@ -8,13 +15,24 @@
   --color-gold: #D4AF37;
   --color-gold-dark: #B38F36;
 
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-serif: 'Playfair Display', serif;
+  --font-sans: var(--font-sans), 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-serif: var(--font-serif), 'Cormorant Garamond', serif;
 }
 
 :root {
-  --background: var(--color-obsidian);
-  --foreground: var(--color-alabaster);
+  --background-dark: var(--color-noir);
+  --text-primary-dark: var(--color-text-primary-dark);
+  --text-secondary-dark: var(--color-text-secondary-dark);
+
+  --background-light: var(--color-stone);
+  --text-primary-light: var(--color-text-primary-light);
+
+  --background: var(--background-dark);
+  --foreground: var(--text-primary-dark);
+}
+
+* {
+  border-radius: 0px !important;
 }
 
 body {
@@ -29,11 +47,33 @@ body {
 /* Sid Thailand Inspired Utilities */
 @layer utilities {
   .text-h1 {
-    @apply text-[12vw] md:text-[8rem] lg:text-[140px] font-black uppercase tracking-tight leading-[0.85];
+    @apply font-serif text-[12vw] md:text-[8rem] lg:text-[140px] font-semibold uppercase tracking-[0.03em] leading-[0.85];
   }
 
   .text-h2 {
-    @apply text-4xl md:text-6xl font-bold uppercase tracking-tight;
+    @apply font-serif text-4xl md:text-6xl font-semibold uppercase tracking-[0.03em];
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif font-semibold tracking-[0.03em];
+  }
+
+  .btn-dark {
+    @apply border border-[#FAFAFA] text-[#FAFAFA] bg-transparent hover:bg-[#FAFAFA] hover:text-[#121212] transition-colors duration-300 px-6 py-3 cursor-pointer;
+  }
+
+  .btn-light {
+    @apply border border-[#1A1A1A] bg-[#1A1A1A] text-[#FAFAFA] hover:bg-transparent hover:text-[#1A1A1A] transition-colors duration-300 px-6 py-3 cursor-pointer;
+  }
+
+  .action-text,
+  .icon-bronze {
+    @apply text-[var(--color-bronze)];
   }
 
   .shutter-reveal {
@@ -67,6 +107,6 @@ body {
   }
 
   .text-muted {
-    color: var(--color-silver);
+    color: var(--text-secondary-dark);
   }
 }

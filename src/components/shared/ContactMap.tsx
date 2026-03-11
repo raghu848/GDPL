@@ -12,7 +12,7 @@ export default function ContactMap() {
     const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3431.144415840488!2d76.68339127632644!3d30.686214987747754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390feffd886ec457%3A0xe1f893f4e1f7c0a9!2sRegal%20Heights!5e0!3m2!1sen!2sin!4v1709971234567!5m2!1sen!2sin";
 
     return (
-        <section className="py-40 bg-[#303030] overflow-hidden">
+        <section className="py-40 bg-noir overflow-hidden">
             <div className="container mx-auto px-6">
                 <div className="flex flex-col lg:flex-row gap-20 items-center">
                     {/* Left Side: Address & Details */}
@@ -35,8 +35,8 @@ export default function ContactMap() {
 
                         <div className="space-y-8">
                             <div className="flex items-start gap-4">
-                                <div className="p-3 bg-white/5 rounded-full border border-white/10 mt-1">
-                                    <MapPin className="w-5 h-5 text-white" />
+                                <div className="p-3 bg-text-primary-dark/5 rounded-full border border-text-primary-dark/10 mt-1">
+                                    <MapPin className="w-5 h-5 text-text-primary-dark icon-bronze" />
                                 </div>
                                 <div className="space-y-2">
                                     <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-muted">Address</p>
@@ -52,7 +52,7 @@ export default function ContactMap() {
                         <Link
                             href={googleMapsUrl}
                             target="_blank"
-                            className="group flex items-center gap-4 bg-white text-black py-5 px-8 rounded-full text-[10px] font-black uppercase tracking-[0.4em] hover:bg-white/90 transition-all w-fit"
+                            className="group flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] w-fit btn-dark"
                         >
                             Get Directions
                             <Navigation className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -69,17 +69,18 @@ export default function ContactMap() {
                     >
                         <iframe
                             src={mapEmbedUrl}
-                            className="w-full h-full border-0 grayscale invert contrast-125 opacity-70 group-hover:grayscale-0 group-hover:invert-0 group-hover:opacity-100 transition-all duration-1000"
+                            className="w-full h-full border-0 md:grayscale md:invert contrast-125 opacity-70 group-hover:grayscale-0 group-hover:invert-0 group-hover:opacity-100 transition-all duration-1000"
                             allowFullScreen
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"
+                            suppressHydrationWarning
                         ></iframe>
 
                         {/* Interactive Overlay Elements */}
-                        <div className="absolute inset-0 pointer-events-none border border-white/5 rounded-3xl" />
-                        <div className="absolute top-6 right-6 p-4 bg-black/80 backdrop-blur-md rounded-2xl border border-white/10 hidden md:block">
-                            <p className="text-[8px] font-black uppercase tracking-[0.3em] text-white/50 mb-1">Status</p>
-                            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white flex items-center gap-2">
+                        <div className="absolute inset-0 pointer-events-none border border-text-primary-dark/10 rounded-3xl" />
+                        <div className="absolute top-6 right-6 p-4 bg-noir/80 backdrop-blur-md rounded-2xl border border-text-primary-dark/10 hidden md:block">
+                            <p className="text-[8px] font-black uppercase tracking-[0.3em] text-text-primary-dark/50 mb-1">Status</p>
+                            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-text-primary-dark flex items-center gap-2">
                                 <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
                                 Open for Visitation
                             </p>

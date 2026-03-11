@@ -6,30 +6,63 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 export default function ProjectsPage() {
+    const residenciaImages = [
+        "/regal_rersidencia/Regal Residencia Sector 114 Mohali _page-0006.jpg",
+        "/regal_rersidencia/Regal Residencia Sector 114 Mohali _page-0007.jpg",
+        "/regal_rersidencia/Regal Residencia Sector 114 Mohali _page-0009.jpg",
+        "/regal_rersidencia/Regal Residencia Sector 114 Mohali _page-0010.jpg",
+        "/regal_rersidencia/Regal Residencia Sector 114 Mohali _page-0011.jpg",
+        "/regal_rersidencia/Regal Residencia Sector 114 Mohali _page-0012.jpg",
+        "/regal_rersidencia/Regal Residencia Sector 114 Mohali _page-0013.jpg",
+        "/regal_rersidencia/Regal Residencia Sector 114 Mohali _page-0014.jpg",
+    ];
+
+    const empirusImages = [
+        "/regal_empirus/BOOKET_REGAL EMPIRUS CTC_page-0006.jpg",
+        "/regal_empirus/BOOKET_REGAL EMPIRUS CTC_page-0007.jpg",
+        "/regal_empirus/BOOKET_REGAL EMPIRUS CTC_page-0009.jpg",
+        "/regal_empirus/BOOKET_REGAL EMPIRUS CTC_page-0010.jpg",
+        "/regal_empirus/BOOKET_REGAL EMPIRUS CTC_page-0011.jpg",
+        "/regal_empirus/BOOKET_REGAL EMPIRUS CTC_page-0012.jpg",
+        "/regal_empirus/BOOKET_REGAL EMPIRUS CTC_page-0013.jpg",
+    ];
+
+    const heightsImages = [
+        "/regal_heights/img4.jpg",
+        "/regal_heights/img5.jpg",
+        "/regal_heights/img7.jpg",
+        "/regal_heights/img11.jpg",
+        "/regal_heights/img13.jpg",
+        "/regal_heights/img14.jpg",
+        "/regal_heights/img15.jpg",
+        "/regal_heights/img19.jpg",
+        "/regal_heights/img27.jpg",
+    ];
+
     const allProjects = [
         {
             name: "Regal Heights",
             specs: "3 & 4 BHK Luxury Apartments",
             location: "Sector 91, Mohali",
-            image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            image: "/regal_heights/gemini.jpeg",
         },
         {
             name: "Regal Residencia",
             specs: "Premium Independent Floors",
             location: "Sector 91, Mohali",
-            image: "https://images.unsplash.com/photo-1628624747186-a941c476b7ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            image: "/regal_heights/img15.jpg",
         },
         {
             name: "GLC Cooperative Homez",
             specs: "Spacious 3 BHK Residencies",
             location: "Zirakpur",
-            image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            image: "/regal_rersidencia/WhatsApp Image 2026-03-10 at 1.09.02 PM (1).jpeg",
         },
         {
             name: "Foothills",
             specs: "Ultra-Luxury Estates",
             location: "New Chandigarh",
-            image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+            image: "/regal_rersidencia/WhatsApp Image 2026-03-10 at 1.09.02 PM.jpeg",
         }
     ];
 
@@ -103,7 +136,7 @@ export default function ProjectsPage() {
                                     <img
                                         src={project.image}
                                         alt={project.name}
-                                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-100 group-hover:scale-105"
+                                        className="w-full h-full object-cover md:grayscale group-hover:grayscale-0 transition-all duration-1000 scale-100 group-hover:scale-105"
                                     />
                                 </ShutterReveal>
                                 <div className="flex justify-between items-start">
@@ -116,6 +149,215 @@ export default function ProjectsPage() {
                             </Link>
                         </motion.div>
                     ))}
+                </div>
+
+                {/* Detailed Property Sections */}
+                <div className="mt-40 space-y-40">
+                    {/* REGAL RESIDENCIA */}
+                    <section className="pt-20 border-t border-white/10">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 max-w-[1400px] mx-auto">
+
+                            {/* Sticky Content */}
+                            <div className="lg:col-span-5 lg:sticky lg:top-32 h-fit mb-12 lg:mb-0">
+                                <div className="mb-10">
+                                    <p className="text-muted text-[10px] tracking-[0.4em] uppercase font-bold mb-4">Sector 114, Mohali</p>
+                                    <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white leading-none mb-6">Regal<br />Residencia</h2>
+                                    <div className="inline-block bg-white/10 px-4 py-2 rounded-full text-xs font-mono tracking-widest uppercase">
+                                        Demand - ₹6,900/sq.ft.
+                                    </div>
+                                </div>
+
+                                <div className="space-y-10">
+                                    <div>
+                                        <h4 className="text-[10px] text-muted uppercase tracking-[0.3em] font-black mb-4">Configurations</h4>
+                                        <ul className="space-y-3">
+                                            <li className="flex justify-between border-b border-white/10 pb-2">
+                                                <span className="text-white/80 font-light">3 BHK</span>
+                                                <span className="font-mono text-sm">1800 sq.ft.</span>
+                                            </li>
+                                            <li className="flex justify-between border-b border-white/10 pb-2">
+                                                <span className="text-white/80 font-light">3+1 BHK</span>
+                                                <span className="font-mono text-sm">2150 sq.ft.</span>
+                                            </li>
+                                            <li className="flex justify-between border-b border-white/10 pb-2">
+                                                <span className="text-white/80 font-light">4+1 BHK</span>
+                                                <span className="font-mono text-sm">3200 sq.ft.</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="text-[10px] text-muted uppercase tracking-[0.3em] font-black mb-4">World-Class Lifestyle</h4>
+                                        <div className="flex flex-wrap gap-2">
+                                            {[
+                                                "Iconic Sky Walk", "Resort-style Pool", "Spa & Sauna",
+                                                "Mini Theatre", "Premium Indoor Golf", "Signature Club",
+                                                "Library & Café", "Skating Rink", "Crèche Facility", "Barbeque Zone"
+                                            ].map((amenity, i) => (
+                                                <span key={i} className="text-xs border border-white/20 px-3 py-1.5 rounded-full text-white/70">
+                                                    {amenity}
+                                                </span>
+                                            ))}
+                                            <div className="mt-4 text-xs text-muted w-full">
+                                                + over 20 more premium lifestyle amenities including dedicated kids zones, outdoor loungers, and expansive open-to-sky lawns.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Scrolling Images */}
+                            <div className="lg:col-span-7 flex flex-col gap-8">
+                                <div className="rounded-3xl overflow-hidden border border-white/10 group">
+                                    <img src="/images/Regal Residencia Sector 114 Mohali _page-0001.jpg" alt="Regal Residencia Overview" className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" />
+                                </div>
+                                {residenciaImages.map((src, idx) => (
+                                    <div key={idx} className="rounded-3xl overflow-hidden border border-white/10 group">
+                                        <img src={src} alt={`Regal Residencia Detail ${idx + 1}`} className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" />
+                                    </div>
+                                ))}
+                                <div className="rounded-3xl overflow-hidden border border-white/10 group">
+                                    <img src="/images/Regal Residencia Sector 114 Mohali _page-0015.jpg" alt="Regal Residencia Feature" className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* REGAL EMPIRUS */}
+                    <section className="pt-32 border-t border-white/10">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 max-w-[1400px] mx-auto">
+
+                            {/* Sticky Content */}
+                            <div className="lg:col-span-5 lg:sticky lg:top-32 h-fit mb-12 lg:mb-0">
+                                <div className="mb-10">
+                                    <p className="text-muted text-[10px] tracking-[0.4em] uppercase font-bold mb-4">Sector 91, Mohali</p>
+                                    <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white leading-none mb-6">Regal<br />Empirus</h2>
+                                    <div className="inline-block bg-white/10 px-4 py-2 rounded-full text-xs font-mono tracking-widest uppercase mb-2">
+                                        Demand - ₹8,600/sq.ft.
+                                    </div>
+                                    <p className="text-white/60 text-sm mt-4 leading-relaxed">
+                                        A luxurious living experience offering modern amenities and plenty of green space. 5.37 acres of total land area featuring a massive 2-acre lush green podium park inside a 3-side open site.
+                                    </p>
+                                </div>
+
+                                <div className="space-y-10">
+                                    <div>
+                                        <h4 className="text-[10px] text-muted uppercase tracking-[0.3em] font-black mb-4">Configurations</h4>
+                                        <ul className="space-y-3">
+                                            <li className="flex justify-between border-b border-white/10 pb-2">
+                                                <span className="text-white/80 font-light">3+1 BHK</span>
+                                                <span className="font-mono text-sm">2200 sq.ft.</span>
+                                            </li>
+                                            <li className="flex justify-between border-b border-white/10 pb-2">
+                                                <span className="text-white/80 font-light">4+1 BHK</span>
+                                                <span className="font-mono text-sm">3200 sq.ft.</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="text-[10px] text-muted uppercase tracking-[0.3em] font-black mb-4">Amenities & Features</h4>
+                                        <ul className="text-sm text-white/70 space-y-3 font-light">
+                                            <li className="flex gap-4 items-start"><span className="text-white shrink-0">❖</span> <div>Five-Star Club House & Banquet Hall</div></li>
+                                            <li className="flex gap-4 items-start"><span className="text-white shrink-0">❖</span> <div>Swimming Pool with Kids&apos; Splash Pool</div></li>
+                                            <li className="flex gap-4 items-start"><span className="text-white shrink-0">❖</span> <div>Sun-facing apartments for natural light and ventilation</div></li>
+                                            <li className="flex gap-4 items-start"><span className="text-white shrink-0">❖</span> <div>Multi-level Parking (Basement, Stilt, Surface)</div></li>
+                                            <li className="flex gap-4 items-start"><span className="text-white shrink-0">❖</span> <div>Fully Equipped Gym, Library, and Cafeteria</div></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Scrolling Images */}
+                            <div className="lg:col-span-7 flex flex-col gap-8">
+                                <div className="rounded-3xl overflow-hidden border border-white/10 group">
+                                    <img src="/images/Regal Residencia Sector 114 Mohali _page-0001.jpg" alt="Regal Empirus Overview" className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" />
+                                </div>
+                                {empirusImages.map((src, idx) => (
+                                    <div key={idx} className="rounded-3xl overflow-hidden border border-white/10 group">
+                                        <img src={src} alt={`Regal Empirus Detail ${idx + 1}`} className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" />
+                                    </div>
+                                ))}
+                                <div className="rounded-3xl overflow-hidden border border-white/10 group">
+                                    <img src="/images/Regal Residencia Sector 114 Mohali _page-0015.jpg" alt="Regal Empirus Feature" className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* REGAL HEIGHTS */}
+                    <section className="pt-32 border-t border-white/10">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 max-w-[1400px] mx-auto">
+
+                            {/* Sticky Content */}
+                            <div className="lg:col-span-5 lg:sticky lg:top-32 h-fit mb-12 lg:mb-0">
+                                <div className="mb-10">
+                                    <p className="text-muted text-[10px] tracking-[0.4em] uppercase font-bold mb-4">Mohali</p>
+                                    <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white leading-none mb-6">Regal<br />Heights</h2>
+                                    <div className="flex flex-wrap gap-2">
+                                        <div className="inline-block bg-white/10 px-4 py-2 rounded-full text-xs font-mono tracking-widest uppercase">
+                                            BSP - ₹8,600/sq.ft.
+                                        </div>
+                                    </div>
+                                    <p className="text-white/60 text-sm mt-4 leading-relaxed">
+                                        Luxurious high-rise living offering 25+ premium amenities. Spread across 5.37 acres, featuring a 2-acre podium park in a 3-side open site.
+                                    </p>
+                                </div>
+
+                                <div className="space-y-8">
+                                    <div>
+                                        <h4 className="text-[10px] text-muted uppercase tracking-[0.3em] font-black mb-4">Configurations</h4>
+                                        <ul className="space-y-3">
+                                            <li className="flex justify-between border-b border-white/10 pb-2">
+                                                <span className="text-white/80 font-light">3+1 BHK <span className="text-white/40 text-xs ml-2 tracking-widest">(BOOKING 30L)</span></span>
+                                                <span className="font-mono text-sm">2200 sq.ft.</span>
+                                            </li>
+                                            <li className="flex justify-between border-b border-white/10 pb-2">
+                                                <span className="text-white/80 font-light">4+1 BHK <span className="text-white/40 text-xs ml-2 tracking-widest">(BOOKING 50L)</span></span>
+                                                <span className="font-mono text-sm">3200 sq.ft.</span>
+                                            </li>
+                                            <li className="flex justify-between border-b border-white/10 pb-2">
+                                                <span className="text-white font-light">Earthvilla&apos;s & Skyvilla&apos;s</span>
+                                                <span className="font-mono text-sm">5000-6000 sq.ft.</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="text-[10px] text-muted uppercase tracking-[0.3em] font-black mb-4">Amenities & Features</h4>
+                                        <div className="flex flex-wrap gap-2">
+                                            {[
+                                                "25,000 sq.ft Club House", "Sports Arena", "Sun-facing Layout",
+                                                "Splash Pool", "2 Acres Podium Park"
+                                            ].map((amenity, i) => (
+                                                <span key={i} className="text-xs border border-white/20 px-3 py-1.5 rounded-full text-white/70">
+                                                    {amenity}
+                                                </span>
+                                            ))}
+                                            <span className="text-xs border border-transparent px-3 py-1.5 rounded-full text-muted">
+                                                + over 20 more luxury amenities spanning wellness, sports, & entertainment
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Scrolling Images */}
+                            <div className="lg:col-span-7 flex flex-col gap-8">
+                                <div className="rounded-3xl overflow-hidden border border-white/10 group">
+                                    <img src="/images/Regal Residencia Sector 114 Mohali _page-0001.jpg" alt="Regal Heights Overview" className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" />
+                                </div>
+                                {heightsImages.map((src, idx) => (
+                                    <div key={idx} className="rounded-3xl overflow-hidden border border-white/10 group">
+                                        <img src={src} alt={`Regal Heights Detail ${idx + 1}`} className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" />
+                                    </div>
+                                ))}
+                                <div className="rounded-3xl overflow-hidden border border-white/10 group">
+                                    <img src="/images/Regal Residencia Sector 114 Mohali _page-0015.jpg" alt="Regal Heights Feature" className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </main>

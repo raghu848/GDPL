@@ -14,25 +14,25 @@ export default function Home() {
       name: "Regal Heights",
       specs: "3 & 4 BHK Luxury Apartments",
       location: "Sector 91, Mohali",
-      image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      image: "/regal_heights/gemini.jpeg",
     },
     {
       name: "Regal Residencia",
       specs: "Premium Independent Floors",
       location: "Sector 91, Mohali",
-      image: "https://images.unsplash.com/photo-1628624747186-a941c476b7ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      image: "/regal_heights/img15.jpg",
     },
     {
       name: "GLC Cooperative Homez",
       specs: "Spacious 3 BHK Residencies",
       location: "Zirakpur",
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      image: "/regal_rersidencia/WhatsApp Image 2026-03-10 at 1.09.02 PM (1).jpeg",
     },
     {
       name: "Foothills",
       specs: "Ultra-Luxury Estates",
       location: "New Chandigarh",
-      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      image: "/regal_rersidencia/WhatsApp Image 2026-03-10 at 1.09.02 PM.jpeg",
     }
   ];
 
@@ -102,7 +102,7 @@ export default function Home() {
                     <img
                       src={project.image}
                       alt={project.name}
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 grayscale group-hover:grayscale-0"
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 md:grayscale group-hover:grayscale-0"
                     />
                   </ShutterReveal>
                   <div className="flex justify-between items-start">
