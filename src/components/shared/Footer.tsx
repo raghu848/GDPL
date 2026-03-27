@@ -5,7 +5,10 @@ import { Instagram, Facebook, Youtube, Mail, Phone } from "lucide-react";
 
 export default function Footer() {
     return (
-        <footer className="bg-noir py-16 border-t border-text-primary-dark/10">
+        <footer className="bg-transparent py-16 border-t border-gold/10 relative overflow-hidden">
+            {/* Subtle gold gradient line at top */}
+            <div className="absolute top-0 left-0 w-full h-[1px]" style={{ background: "linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent)" }} />
+
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
                     <div className="space-y-6">
@@ -17,44 +20,49 @@ export default function Footer() {
 
                     <div className="space-y-8">
                         <div>
-                            <h4 className="text-[10px] font-black tracking-[0.3em] uppercase text-muted mb-4">Contact Info</h4>
+                            <h4 className="section-label mb-4">Contact Info</h4>
                             <div className="space-y-1">
-                                <a href="mailto:info@gdplmohali.in" className="block text-lg font-bold hover:text-muted transition-colors action-text">info@gdplmohali.in</a>
-                                <a href="tel:+917789000077" className="block text-lg font-bold hover:text-muted transition-colors action-text">+91 77890 00077</a>
+                                <a href="mailto:info@gdplmohali.in" className="block text-lg font-bold hover:text-gold transition-colors text-gold/80">info@gdplmohali.in</a>
+                                <a href="tel:+917789000077" className="block text-lg font-bold hover:text-gold transition-colors text-gold/80">+91 77890 00077</a>
                             </div>
                         </div>
                         <div className="flex gap-4 items-center">
-                            <Link href="#" className="p-2 border border-text-primary-dark/10 rounded-full hover:bg-text-primary-dark hover:text-noir transition-all">
-                                <Instagram className="w-3.5 h-3.5 icon-bronze" />
+                            <Link href="#" className="p-2 border border-gold/15 rounded-full hover:bg-gold hover:text-noir hover:border-gold transition-all group">
+                                <Instagram className="w-3.5 h-3.5 text-gold/60 group-hover:text-noir transition-colors" />
                             </Link>
-                            <Link href="#" className="p-2 border border-text-primary-dark/10 rounded-full hover:bg-text-primary-dark hover:text-noir transition-all">
-                                <Facebook className="w-3.5 h-3.5 icon-bronze" />
+                            <Link href="#" className="p-2 border border-gold/15 rounded-full hover:bg-gold hover:text-noir hover:border-gold transition-all group">
+                                <Facebook className="w-3.5 h-3.5 text-gold/60 group-hover:text-noir transition-colors" />
                             </Link>
-                            <Link href="#" className="p-2 border border-text-primary-dark/10 rounded-full hover:bg-text-primary-dark hover:text-noir transition-all">
-                                <Youtube className="w-3.5 h-3.5 icon-bronze" />
+                            <Link href="#" className="p-2 border border-gold/15 rounded-full hover:bg-gold hover:text-noir hover:border-gold transition-all group">
+                                <Youtube className="w-3.5 h-3.5 text-gold/60 group-hover:text-noir transition-colors" />
                             </Link>
                         </div>
                     </div>
 
                     <nav className="grid grid-cols-2 gap-8">
                         <div className="space-y-3">
-                            <Link href="/" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-muted transition-colors">Main</Link>
-                            <Link href="/projects" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-muted transition-colors">Projects</Link>
-                            <Link href="/about" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-muted transition-colors">About</Link>
+                            <Link href="/" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-gold transition-colors gold-underline w-fit">Main</Link>
+                            <Link href="/projects" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-gold transition-colors gold-underline w-fit">Projects</Link>
+                            <Link href="/about" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-gold transition-colors gold-underline w-fit">About</Link>
                         </div>
                         <div className="space-y-3">
-                            <Link href="#" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-muted transition-colors">Consulting</Link>
-                            <Link href="#" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-muted transition-colors">News</Link>
-                            <Link href="/contact" className="block text-[10px] font-black tracking-[0.4em] uppercase hover:text-muted transition-colors">Contact</Link>
+                            <Link href="#" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-gold transition-colors gold-underline w-fit">Consulting</Link>
+                            <Link href="#" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-gold transition-colors gold-underline w-fit">News</Link>
+                            <Link href="/contact" className="block text-[10px] font-black tracking-[0.4em] uppercase hover:text-gold transition-colors gold-underline w-fit">Contact</Link>
                         </div>
                     </nav>
                 </div>
 
-                <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-text-primary-dark/10 text-[10px] font-black tracking-[0.3em] uppercase text-muted">
+                {/* Gold divider */}
+                <div className="gold-divider w-full mb-8" />
+
+                <div className="flex flex-col md:flex-row justify-between items-center text-[10px] font-black tracking-[0.3em] uppercase text-muted">
                     <p>&copy; {new Date().getFullYear()} GDPL Mohali. All Rights Reserved.</p>
                     <div className="flex gap-8 mt-4 md:mt-0">
-                        <Link href="#" className="hover:text-text-primary-dark transition-colors text-[10px]">Privacy Policy</Link>
-                        <Link href="https://growdient.com/" className="hover:text-text-primary-dark transition-colors text-[10px]">Made by Growdient</Link>
+                        <Link href="#" className="hover:text-gold transition-colors text-[10px]">Privacy Policy</Link>
+                        <Link href="https://growdient.com/" className="hover:text-gold transition-colors text-[10px] group relative overflow-hidden">
+                            Made by Growdient
+                        </Link>
                     </div>
                 </div>
             </div>

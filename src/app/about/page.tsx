@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Users, Globe, Heart, ShieldCheck } from "lucide-react";
+import { Globe, Heart, ShieldCheck } from "lucide-react";
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
 
 export default function AboutPage() {
     const leaders = [
@@ -20,12 +21,11 @@ export default function AboutPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-obsidian text-white font-sans pb-24 selection:bg-white selection:text-black">
+        <main className="min-h-screen bg-transparent text-white font-sans pb-24 selection:bg-gold selection:text-black grain-overlay">
             {/* Hero Section */}
             <section className="relative h-screen w-full mb-32 overflow-hidden">
-                {/* Video Background */}
                 <div className="absolute inset-0 z-0">
-                    <div className="absolute inset-0 bg-black/30 z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/70 z-10" />
                     <video
                         autoPlay
                         muted
@@ -39,10 +39,10 @@ export default function AboutPage() {
             </section>
 
             {/* Main Content - Who We Are */}
-            <section className="container mx-auto px-6 mb-40">
+            <section className="container mx-auto px-6 mb-40 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
                     <div>
-                        <h2 className="text-h2 mb-12 border-l-4 border-white pl-6 uppercase tracking-tighter">Who We Are</h2>
+                        <h2 className="text-h2 mb-12 border-l-4 border-gold pl-6 uppercase tracking-tighter">Who We Are</h2>
                         <div className="space-y-8 text-muted text-lg leading-relaxed font-light">
                             <p>
                                 GDPL is a distinguished entity in the real estate sector, celebrated for
@@ -58,26 +58,19 @@ export default function AboutPage() {
                         </div>
                     </div>
 
-                    {/* Stats Grid - Sid Style */}
-                    <div className="grid grid-cols-2 gap-8 border-t border-white/10 pt-12">
-                        <div>
-                            <div className="text-5xl font-black mb-2 tracking-tighter">10+</div>
-                            <div className="text-[10px] uppercase tracking-[0.3em] text-muted font-bold">Years of Legacy</div>
-                        </div>
-                        <div>
-                            <div className="text-5xl font-black mb-2 tracking-tighter">500+</div>
-                            <div className="text-[10px] uppercase tracking-[0.3em] text-muted font-bold">Families Served</div>
-                        </div>
-                        <div className="col-span-2 pt-8 border-t border-white/5 mt-4">
-                            <div className="text-7xl font-black mb-2 tracking-tighter">100%</div>
-                            <div className="text-[10px] uppercase tracking-[0.3em] text-muted font-bold">Transparency & Trust</div>
+                    {/* Stats Grid with Animated Counters */}
+                    <div className="grid grid-cols-2 gap-8 border-t border-gold/10 pt-12">
+                        <AnimatedCounter target={10} suffix="+" label="Years of Legacy" gold />
+                        <AnimatedCounter target={500} suffix="+" label="Families Served" gold />
+                        <div className="col-span-2 pt-8 border-t border-gold/5 mt-4">
+                            <AnimatedCounter target={100} suffix="%" label="Transparency & Trust" gold className="text-7xl" />
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Our Journey Section */}
-            <section className="container mx-auto px-6 mb-40">
+            {/* Our Journey Section with Timeline */}
+            <section className="container mx-auto px-6 mb-40 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
@@ -85,7 +78,9 @@ export default function AboutPage() {
                         viewport={{ once: false }}
                         transition={{ duration: 1 }}
                     >
-                        <h2 className="text-[10px] uppercase tracking-[0.4em] text-muted mb-8 font-black">Evolution</h2>
+                        <h2 className="section-label mb-8">Evolution</h2>
+                        {/* Gold accent line */}
+                        <div className="w-12 h-[2px] mb-8" style={{ background: "linear-gradient(90deg, #D4AF37, transparent)" }} />
                         <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-12">
                             Our<br />Journey
                         </h2>
@@ -95,31 +90,53 @@ export default function AboutPage() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: false }}
                         transition={{ duration: 1, delay: 0.2 }}
-                        className="space-y-8 text-muted text-lg leading-relaxed font-light"
+                        className="space-y-8 relative"
                     >
-                        <p>
-                            From our humble beginnings to becoming a trusted name in real estate, GDPL’s journey is a testament to perseverance, innovation, and a customer-centric approach.
-                        </p>
-                        <p>
-                            Over the years, we have expanded our horizons, delivering landmark projects and setting new benchmarks in the industry. Our growth is fueled by the trust of our clients and our passion for excellence.
-                        </p>
+                        {/* Timeline vertical line */}
+                        <div className="absolute left-0 top-0 bottom-0 w-[2px] hidden lg:block" style={{ background: "linear-gradient(to bottom, #D4AF37, transparent)" }} />
+
+                        <div className="lg:pl-8 relative">
+                            <div className="absolute left-[-4px] top-2 gold-dot hidden lg:block" />
+                            <p className="text-muted text-lg leading-relaxed font-light">
+                                From our humble beginnings to becoming a trusted name in real estate, GDPL&apos;s journey is a testament to perseverance, innovation, and a customer-centric approach.
+                            </p>
+                        </div>
+                        <div className="lg:pl-8 relative">
+                            <div className="absolute left-[-4px] top-2 gold-dot hidden lg:block" />
+                            <p className="text-muted text-lg leading-relaxed font-light">
+                                Over the years, we have expanded our horizons, delivering landmark projects and setting new benchmarks in the industry. Our growth is fueled by the trust of our clients and our passion for excellence.
+                            </p>
+                        </div>
                     </motion.div>
                 </div>
             </section>
 
-            {/* Our Leadership - New Section */}
-            <section className="container mx-auto px-6 mb-20">
-                <h2 className="text-h2 mb-20 text-center uppercase tracking-tighter">Our Leadership</h2>
+            {/* Our Leadership */}
+            <section className="container mx-auto px-6 mb-20 relative z-10">
+                <div className="text-center mb-20">
+                    <h2 className="section-label mb-4">The Visionaries</h2>
+                    <h3 className="text-h2 uppercase tracking-tighter">Our Leadership</h3>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32">
-                    {leaders.map((leader, index) => (
-                        <div key={leader.name} className="space-y-10 group max-w-md mx-auto text-center">
-                            <div className="relative aspect-[3/4] rounded-[2rem] overflow-hidden border border-white/10 mx-auto w-full">
+                    {leaders.map((leader) => (
+                        <motion.div
+                            key={leader.name}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: false }}
+                            transition={{ duration: 1 }}
+                            className="space-y-10 group max-w-md mx-auto text-center"
+                        >
+                            <div className="relative aspect-[3/4] rounded-[2rem] overflow-hidden border border-gold/10 mx-auto w-full group-hover:border-gold/30 transition-all duration-700">
                                 <img
                                     src={leader.image}
                                     alt={leader.name}
                                     className="w-full h-full object-cover md:grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
+                                {/* Gold corner accents on hover */}
+                                <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-gold/0 group-hover:border-gold/50 transition-all duration-700" />
+                                <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-gold/0 group-hover:border-gold/50 transition-all duration-700" />
                             </div>
                             <div className="space-y-4">
                                 <h3 className="text-3xl font-bold tracking-tight uppercase">{leader.name}</h3>
@@ -128,13 +145,13 @@ export default function AboutPage() {
                                     &quot;{leader.bio}&quot;
                                 </p>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </section>
 
-            {/* Our Team (The People) Section */}
-            <section className="py-24 bg-white/5 border-y border-white/5 mb-32">
+            {/* Our Team */}
+            <section className="py-24 bg-white/5 border-y border-gold/5 mb-32 relative z-10">
                 <div className="container mx-auto px-6">
                     <div className="max-w-4xl mx-auto text-center">
                         <motion.div
@@ -143,12 +160,12 @@ export default function AboutPage() {
                             viewport={{ once: false }}
                             transition={{ duration: 1 }}
                         >
-                            <h2 className="text-[10px] uppercase tracking-[0.4em] text-muted mb-12 font-black">The Backbone</h2>
+                            <h2 className="section-label mb-12">The Backbone</h2>
                             <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-16">
                                 OUR TEAM
                             </h2>
                             <p className="text-muted text-xl md:text-2xl font-light leading-relaxed mb-12">
-                                Behind GDPL’s success lies a team of dedicated professionals who bring expertise, creativity, and passion to every project.
+                                Behind GDPL&apos;s success lies a team of dedicated professionals who bring expertise, creativity, and passion to every project.
                             </p>
                             <p className="text-muted text-lg font-light leading-relaxed max-w-2xl mx-auto opacity-70">
                                 Our team members, from architects to customer relations specialists, work collaboratively to ensure that our projects are nothing short of excellence. We are united by a common goal: building spaces that inspire.
@@ -158,11 +175,12 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* CSR Section */}
-            <section className="container mx-auto px-6 mb-40">
+            {/* CSR Section with Gold Icon Glow */}
+            <section className="container mx-auto px-6 mb-40 relative z-10">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
                     <div className="max-w-xl">
-                        <h2 className="text-[10px] uppercase tracking-[0.4em] text-muted mb-8 font-black">Responsibility</h2>
+                        <h2 className="section-label mb-8">Responsibility</h2>
+                        <div className="w-12 h-[2px] mb-8" style={{ background: "linear-gradient(90deg, #D4AF37, transparent)" }} />
                         <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
                             Corporate Social<br />Responsibility
                         </h2>
@@ -186,12 +204,12 @@ export default function AboutPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: false }}
                             transition={{ duration: 0.8, delay: idx * 0.2 }}
-                            className="p-12 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/[0.08] transition-colors"
+                            className="glass-premium p-12 rounded-3xl group"
                         >
-                            <div className="mb-8 p-4 bg-white/10 w-fit rounded-2xl text-white">
+                            <div className="mb-8 p-4 bg-gold/10 w-fit rounded-2xl text-gold group-hover:bg-gold group-hover:text-black transition-all duration-500 border border-gold/15">
                                 {item.icon}
                             </div>
-                            <h3 className="text-2xl font-black uppercase tracking-tighter mb-4">{item.title}</h3>
+                            <h3 className="text-2xl font-black uppercase tracking-tighter mb-4 group-hover:text-gold transition-colors">{item.title}</h3>
                             <p className="text-muted text-sm font-light leading-relaxed">{item.text}</p>
                         </motion.div>
                     ))}
@@ -199,12 +217,21 @@ export default function AboutPage() {
             </section>
 
             {/* Vision Callout */}
-            <section className="bg-white text-black py-40">
-                <div className="container mx-auto px-6 text-center">
+            <section className="relative py-40 overflow-hidden" style={{ background: "linear-gradient(135deg, #FFFFFF 0%, #F8F4E8 50%, #FFFFFF 100%)" }}>
+                <div className="absolute top-0 left-0 w-full h-[1px]" style={{ background: "linear-gradient(90deg, transparent, #D4AF37, transparent)" }} />
+                <div className="container mx-auto px-6 text-center relative z-10">
                     <div className="max-w-4xl mx-auto">
-                        <div className="text-[10px] uppercase tracking-[0.5em] mb-12 font-bold opacity-30">Our Fundamental Vision</div>
-                        <h2 className="text-4xl md:text-6xl font-black leading-tight uppercase tracking-tighter">
-                            To be the region&apos;s most trusted real estate developer, where quality meets transparency.
+                        <div className="text-[10px] uppercase tracking-[0.5em] mb-12 font-bold text-gold/50">Our Fundamental Vision</div>
+                        <h2 className="text-4xl md:text-6xl font-black leading-tight uppercase tracking-tighter text-black">
+                            To be the region&apos;s most trusted real estate developer, where{" "}
+                            <span style={{
+                                background: "linear-gradient(135deg, #B38F36 0%, #D4AF37 50%, #E8C55A 100%)",
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                                backgroundClip: "text",
+                            }}>
+                                quality meets transparency.
+                            </span>
                         </h2>
                     </div>
                 </div>

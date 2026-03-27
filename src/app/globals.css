@@ -14,6 +14,7 @@
   --color-silver: #A0A0A0;
   --color-gold: #D4AF37;
   --color-gold-dark: #B38F36;
+  --color-gold-light: #E8C55A;
 
   --font-sans: var(--font-sans), 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-serif: var(--font-serif), 'Cormorant Garamond', serif;
@@ -42,9 +43,205 @@ body {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
 }
 
-/* Sid Thailand Inspired Utilities */
+/* ===== LUXURY ANIMATED BACKGROUND ===== */
+
+/* Floating aurora gold orbs */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 600px 600px at 15% 20%, rgba(212, 175, 55, 0.07), transparent),
+    radial-gradient(ellipse 500px 500px at 85% 30%, rgba(179, 143, 54, 0.06), transparent),
+    radial-gradient(ellipse 700px 700px at 50% 70%, rgba(212, 175, 55, 0.055), transparent),
+    radial-gradient(ellipse 400px 400px at 10% 80%, rgba(232, 197, 90, 0.05), transparent),
+    radial-gradient(ellipse 450px 450px at 90% 85%, rgba(179, 143, 54, 0.06), transparent);
+  animation: auroraMove 20s ease-in-out infinite alternate;
+}
+
+/* Animated mesh gradient overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle 300px at 20% 50%, rgba(212, 175, 55, 0.05), transparent),
+    radial-gradient(circle 250px at 80% 20%, rgba(232, 197, 90, 0.04), transparent),
+    radial-gradient(circle 350px at 60% 80%, rgba(179, 143, 54, 0.045), transparent);
+  animation: auroraMove2 25s ease-in-out infinite alternate;
+}
+
+@keyframes auroraMove {
+  0% {
+    background-position: 0% 0%, 100% 0%, 50% 50%, 0% 100%, 100% 100%;
+    filter: blur(60px);
+  }
+
+  25% {
+    filter: blur(80px);
+  }
+
+  50% {
+    background-position: 30% 30%, 70% 10%, 45% 60%, 20% 90%, 80% 70%;
+    filter: blur(70px);
+  }
+
+  75% {
+    filter: blur(90px);
+  }
+
+  100% {
+    background-position: 15% 40%, 90% 50%, 60% 30%, 5% 60%, 95% 90%;
+    filter: blur(60px);
+  }
+}
+
+@keyframes auroraMove2 {
+  0% {
+    background-position: 20% 50%, 80% 20%, 60% 80%;
+    opacity: 0.6;
+    filter: blur(50px);
+  }
+
+  50% {
+    background-position: 40% 30%, 60% 40%, 30% 60%;
+    opacity: 1;
+    filter: blur(70px);
+  }
+
+  100% {
+    background-position: 10% 60%, 90% 10%, 50% 90%;
+    opacity: 0.7;
+    filter: blur(60px);
+  }
+}
+
+/* ===== PREMIUM KEYFRAMES ===== */
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes goldPulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes gentleFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes grainShift {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  10% {
+    transform: translate(-5%, -10%);
+  }
+
+  20% {
+    transform: translate(-15%, 5%);
+  }
+
+  30% {
+    transform: translate(7%, -25%);
+  }
+
+  40% {
+    transform: translate(-5%, 25%);
+  }
+
+  50% {
+    transform: translate(-15%, 10%);
+  }
+
+  60% {
+    transform: translate(15%, 0%);
+  }
+
+  70% {
+    transform: translate(0%, 15%);
+  }
+
+  80% {
+    transform: translate(3%, 35%);
+  }
+
+  90% {
+    transform: translate(-10%, 10%);
+  }
+}
+
+@keyframes bounceDown {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0) translateX(-50%);
+  }
+
+  40% {
+    transform: translateY(8px) translateX(-50%);
+  }
+
+  60% {
+    transform: translateY(4px) translateX(-50%);
+  }
+}
+
+@keyframes borderGlow {
+
+  0%,
+  100% {
+    border-color: rgba(212, 175, 55, 0.1);
+  }
+
+  50% {
+    border-color: rgba(212, 175, 55, 0.4);
+  }
+}
+
+/* ===== SID THAILAND INSPIRED UTILITIES ===== */
+
 @layer utilities {
   .text-h1 {
     @apply font-serif text-[12vw] md:text-[8rem] lg:text-[140px] font-semibold uppercase tracking-[0.03em] leading-[0.85];
@@ -108,5 +305,204 @@ body {
 
   .text-muted {
     color: var(--text-secondary-dark);
+  }
+
+  /* ===== PREMIUM UTILITIES ===== */
+
+  /* Gold gradient text */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 45%, var(--color-gold-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Gold shimmer text — animated */
+  .text-gold-shimmer {
+    background: linear-gradient(90deg,
+        var(--color-gold-dark) 0%,
+        var(--color-gold-light) 25%,
+        var(--color-gold) 50%,
+        var(--color-gold-light) 75%,
+        var(--color-gold-dark) 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s ease-in-out infinite;
+  }
+
+  /* Gold glow border */
+  .glow-gold {
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.05), inset 0 0 20px rgba(212, 175, 55, 0.02);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glow-gold:hover {
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.12), inset 0 0 30px rgba(212, 175, 55, 0.04);
+  }
+
+  /* Animated border glow */
+  .border-glow-gold {
+    animation: borderGlow 3s ease-in-out infinite;
+  }
+
+  /* Gold accent line — horizontal divider */
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+    border: none;
+    opacity: 0.4;
+  }
+
+  /* Gold accent dot */
+  .gold-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50% !important;
+    background: var(--color-gold);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  }
+
+  /* Gold underline animated */
+  .gold-underline {
+    position: relative;
+  }
+
+  .gold-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light));
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .gold-underline:hover::after,
+  .gold-underline.active::after {
+    width: 100%;
+  }
+
+  /* Film grain overlay */
+  .grain-overlay {
+    position: relative;
+  }
+
+  .grain-overlay::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+    animation: grainShift 8s steps(10) infinite;
+  }
+
+  /* Premium glassmorphism card */
+  .glass-premium {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .glass-premium:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(212, 175, 55, 0.2);
+  }
+
+  /* Bounce chevron scroll indicator */
+  .bounce-indicator {
+    animation: bounceDown 2s infinite;
+  }
+
+  /* Float animation */
+  .float-animation {
+    animation: gentleFloat 3s ease-in-out infinite;
+  }
+
+  /* Gold gradient button */
+  .btn-gold {
+    background: linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold) 50%, var(--color-gold-light) 100%);
+    color: #000;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-gold::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .btn-gold:hover::before {
+    left: 100%;
+  }
+
+  .btn-gold:hover {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+    transform: translateY(-1px);
+  }
+
+  /* Gold icon glow */
+  .icon-gold-glow {
+    transition: all 0.4s ease;
+  }
+
+  .icon-gold-glow:hover {
+    color: var(--color-gold);
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
+  }
+
+  /* Section label with gold accent */
+  .section-label {
+    @apply text-[10px] font-black tracking-[0.4em] uppercase;
+    color: var(--color-gold);
+  }
+
+  /* Premium search input */
+  .search-premium {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .search-premium:focus {
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.08);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  /* Gold focus ring for form inputs */
+  .input-premium {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .input-premium:focus {
+    border-color: rgba(212, 175, 55, 0.5) !important;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1), 0 0 20px rgba(212, 175, 55, 0.05);
+    outline: none;
   }
 }

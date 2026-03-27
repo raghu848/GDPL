@@ -12,7 +12,10 @@ export default function ContactMap() {
     const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3431.144415840488!2d76.68339127632644!3d30.686214987747754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390feffd886ec457%3A0xe1f893f4e1f7c0a9!2sRegal%20Heights!5e0!3m2!1sen!2sin!4v1709971234567!5m2!1sen!2sin";
 
     return (
-        <section className="py-40 bg-noir overflow-hidden">
+        <section className="py-40 bg-transparent overflow-hidden relative">
+            {/* Subtle gold accent lines */}
+            <div className="absolute top-0 left-0 w-full h-[1px]" style={{ background: "linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent)" }} />
+
             <div className="container mx-auto px-6">
                 <div className="flex flex-col lg:flex-row gap-20 items-center">
                     {/* Left Side: Address & Details */}
@@ -24,7 +27,7 @@ export default function ContactMap() {
                         className="lg:w-1/3 space-y-12"
                     >
                         <div>
-                            <h2 className="text-[10px] font-black tracking-[0.4em] uppercase text-muted mb-8">Visit Us</h2>
+                            <h2 className="section-label mb-8">Visit Us</h2>
                             <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9] mb-8">
                                 OUR<br />LOCATION
                             </h3>
@@ -35,11 +38,11 @@ export default function ContactMap() {
 
                         <div className="space-y-8">
                             <div className="flex items-start gap-4">
-                                <div className="p-3 bg-text-primary-dark/5 rounded-full border border-text-primary-dark/10 mt-1">
-                                    <MapPin className="w-5 h-5 text-text-primary-dark icon-bronze" />
+                                <div className="p-3 bg-gold/5 rounded-full border border-gold/15 mt-1">
+                                    <MapPin className="w-5 h-5 text-gold" />
                                 </div>
                                 <div className="space-y-2">
-                                    <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-muted">Address</p>
+                                    <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-gold/60">Address</p>
                                     <p className="text-sm font-medium leading-relaxed pr-8">
                                         Regal Heights, GH-11D, Sector 91,<br />
                                         Sahibzada Ajit Singh Nagar,<br />
@@ -52,7 +55,7 @@ export default function ContactMap() {
                         <Link
                             href={googleMapsUrl}
                             target="_blank"
-                            className="group flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] w-fit btn-dark"
+                            className="group flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] w-fit btn-gold px-8 py-4"
                         >
                             Get Directions
                             <Navigation className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -65,7 +68,7 @@ export default function ContactMap() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: false }}
                         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                        className="lg:w-2/3 w-full aspect-[16/9] relative rounded-3xl overflow-hidden border border-white/10 group"
+                        className="lg:w-2/3 w-full aspect-[16/9] relative rounded-3xl overflow-hidden glow-gold group"
                     >
                         <iframe
                             src={mapEmbedUrl}
@@ -77,11 +80,11 @@ export default function ContactMap() {
                         ></iframe>
 
                         {/* Interactive Overlay Elements */}
-                        <div className="absolute inset-0 pointer-events-none border border-text-primary-dark/10 rounded-3xl" />
-                        <div className="absolute top-6 right-6 p-4 bg-noir/80 backdrop-blur-md rounded-2xl border border-text-primary-dark/10 hidden md:block">
-                            <p className="text-[8px] font-black uppercase tracking-[0.3em] text-text-primary-dark/50 mb-1">Status</p>
+                        <div className="absolute inset-0 pointer-events-none border border-gold/10 rounded-3xl" />
+                        <div className="absolute top-6 right-6 p-4 bg-noir/80 backdrop-blur-md rounded-2xl border border-gold/15 hidden md:block">
+                            <p className="text-[8px] font-black uppercase tracking-[0.3em] text-gold/40 mb-1">Status</p>
                             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-text-primary-dark flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                                <span className="w-1.5 h-1.5 bg-gold rounded-full animate-pulse" style={{ boxShadow: "0 0 8px rgba(212, 175, 55, 0.6)" }} />
                                 Open for Visitation
                             </p>
                         </div>

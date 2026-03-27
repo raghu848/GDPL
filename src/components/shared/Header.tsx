@@ -32,17 +32,26 @@ export default function Header() {
             <motion.header
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className={cn(
                     "fixed top-0 left-0 w-full z-50 transition-all duration-700 font-sans",
-                    isScrolled ? "bg-noir/80 backdrop-blur-md py-4 border-b border-text-primary-dark/10" : "bg-transparent py-8"
+                    isScrolled
+                        ? "bg-noir/80 backdrop-blur-md py-4 border-b border-gold/10"
+                        : "bg-transparent py-8"
                 )}
             >
                 <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
                     {/* Left: Phone Link */}
                     <div className="flex items-center gap-4">
-                        <a href="tel:+917789000077" className="cursor-pointer transition-colors flex items-center group/phone" aria-label="Call Us">
-                            <Phone className="w-5 h-5 text-white group-hover/phone:text-text-primary-dark transition-colors" />
-                        </a>
+                        <motion.a
+                            href="tel:+917789000077"
+                            className="cursor-pointer transition-all flex items-center group/phone icon-gold-glow"
+                            aria-label="Call Us"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <Phone className="w-5 h-5 text-white group-hover/phone:text-gold transition-colors" />
+                        </motion.a>
                     </div>
 
                     {/* Center: Logo */}
@@ -60,16 +69,25 @@ export default function Header() {
                             onClick={() => setIsMobileMenuOpen(true)}
                             className="flex items-center gap-4 group"
                         >
-                            <span className="hidden md:block text-[10px] font-black tracking-[0.3em] uppercase group-hover:text-text-primary-dark transition-colors">
+                            <span className="hidden md:block text-[10px] font-black tracking-[0.3em] uppercase group-hover:text-gold transition-colors">
                                 Menu
                             </span>
                             <div className="w-8 h-[2px] bg-text-primary-dark relative">
-                                <div className="absolute top-[-6px] right-0 w-8 h-[2px] bg-text-primary-dark group-hover:w-6 transition-all" />
-                                <div className="absolute top-[6px] right-0 w-8 h-[2px] bg-text-primary-dark group-hover:w-4 transition-all" />
+                                <div className="absolute top-[-6px] right-0 w-8 h-[2px] bg-text-primary-dark group-hover:w-6 group-hover:bg-gold transition-all" />
+                                <div className="absolute top-[6px] right-0 w-8 h-[2px] bg-text-primary-dark group-hover:w-4 group-hover:bg-gold transition-all" />
                             </div>
                         </button>
                     </div>
                 </div>
+
+                {/* Gold accent line at bottom when scrolled */}
+                <motion.div
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: isScrolled ? 1 : 0 }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute bottom-0 left-0 w-full h-[1px] origin-left"
+                    style={{ background: "linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent)" }}
+                />
             </motion.header>
 
             {/* Sidebar Menu */}
@@ -91,13 +109,13 @@ export default function Header() {
                             animate={{ x: 0 }}
                             exit={{ x: "100%" }}
                             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                            className="fixed top-0 right-0 h-full w-full md:w-[400px] lg:w-[30%] z-[60] bg-noir border-l border-text-primary-dark/10 flex flex-col p-12"
+                            className="fixed top-0 right-0 h-full w-full md:w-[400px] lg:w-[30%] z-[60] bg-noir border-l border-gold/10 flex flex-col p-12"
                         >
                             <button
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 className="self-end text-text-primary-dark p-2 group mb-20"
                             >
-                                <X className="w-8 h-8 transition-transform duration-500 group-hover:rotate-90" />
+                                <X className="w-8 h-8 transition-transform duration-500 group-hover:rotate-90 group-hover:text-gold" />
                             </button>
 
                             <nav className="flex flex-col gap-6">
@@ -112,35 +130,41 @@ export default function Header() {
                                             href={link.path}
                                             onClick={() => setIsMobileMenuOpen(false)}
                                             className={cn(
-                                                "text-xl md:text-2xl font-black uppercase tracking-tighter hover:text-text-primary-dark transition-colors block",
+                                                "text-xl md:text-2xl font-black uppercase tracking-tighter hover:text-gold transition-colors block relative",
                                                 pathname === link.path ? "text-text-primary-dark" : "text-muted"
                                             )}
                                         >
-                                            {link.name}
+                                            <span className="flex items-center gap-4">
+                                                {pathname === link.path && (
+                                                    <span className="gold-dot shrink-0" />
+                                                )}
+                                                {link.name}
+                                            </span>
                                         </Link>
                                     </motion.div>
                                 ))}
                             </nav>
 
                             <div className="mt-auto flex flex-col gap-8">
-                                <div className="h-px w-full bg-text-primary-dark/10" />
+                                {/* Gold divider */}
+                                <div className="gold-divider w-full" />
                                 <div className="space-y-6">
-                                    <div className="text-[8px] font-black uppercase tracking-[0.4em] text-text-primary-dark/30">Location</div>
+                                    <div className="text-[8px] font-black uppercase tracking-[0.4em] text-gold/40">Location</div>
                                     <a
                                         href="https://www.google.com/maps/dir/?api=1&destination=Regal%20Heights%2C%20PM2H%2B8GV%2C%20GH-11D%2C%20Sector%2091%2C%20Sahibzada%20Ajit%20Singh%20Nagar%2C%20Punjab%20140307"
                                         target="_blank"
-                                        className="text-[10px] font-black tracking-[0.3em] uppercase hover:text-text-primary-dark transition-colors flex items-center gap-3 group/dir action-text"
+                                        className="text-[10px] font-black tracking-[0.3em] uppercase hover:text-gold transition-colors flex items-center gap-3 group/dir text-gold/70"
                                     >
                                         Get Directions
-                                        <div className="w-4 h-4 rounded-full border border-text-primary-dark/20 flex items-center justify-center group-hover/dir:border-text-primary-dark transition-colors">
-                                            <div className="w-1 h-1 bg-text-primary-dark rounded-full" />
+                                        <div className="w-4 h-4 rounded-full border border-gold/30 flex items-center justify-center group-hover/dir:border-gold transition-colors">
+                                            <div className="w-1 h-1 bg-gold rounded-full" />
                                         </div>
                                     </a>
                                 </div>
                                 <div className="flex gap-8 text-muted text-[10px] font-black tracking-[0.4em] uppercase">
-                                    <Link href="#" className="hover:text-text-primary-dark">IG</Link>
-                                    <Link href="#" className="hover:text-text-primary-dark">YT</Link>
-                                    <Link href="#" className="hover:text-text-primary-dark">FB</Link>
+                                    <Link href="#" className="hover:text-gold transition-colors">IG</Link>
+                                    <Link href="#" className="hover:text-gold transition-colors">YT</Link>
+                                    <Link href="#" className="hover:text-gold transition-colors">FB</Link>
                                 </div>
                             </div>
                         </motion.div>

@@ -23,7 +23,8 @@ export default function Hero() {
                 style={{ y: y1, scale }}
                 className="absolute inset-0 z-0 h-full w-full"
             >
-                <div className="absolute inset-0 bg-black/20 z-10" />
+                {/* Gradient overlay — cinematic top & bottom fade */}
+                <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/60 via-black/10 to-black/80" />
                 <video
                     autoPlay
                     muted
@@ -42,6 +43,18 @@ export default function Hero() {
                         />
                     </picture>
                 </video>
+            </motion.div>
+
+            {/* Scroll Down Indicator */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.5 }}
+                style={{ opacity }}
+                className="absolute bottom-10 left-1/2 z-20 bounce-indicator flex flex-col items-center gap-2"
+            >
+                <span className="text-[8px] uppercase tracking-[0.4em] text-gold font-bold">Scroll</span>
+                <ChevronDown className="w-4 h-4 text-gold" />
             </motion.div>
         </section>
     );
