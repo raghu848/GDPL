@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Globe, Heart, ShieldCheck } from "lucide-react";
-import AnimatedCounter from "@/components/ui/AnimatedCounter";
 
 export default function AboutPage() {
     const leaders = [
@@ -58,13 +57,19 @@ export default function AboutPage() {
                         </div>
                     </div>
 
-                    {/* Stats Grid with Animated Counters */}
-                    {/* Stats Grid with Animated Counters */}
+                    {/* Stats Grid with Static High-End Typography */}
                     <div className="grid grid-cols-2 gap-8 border-t border-black/10 pt-12">
-                        <AnimatedCounter target={10} suffix="+" label="Years of Legacy" />
-                        <AnimatedCounter target={500} suffix="+" label="Families Served" />
-                        <div className="col-span-2 pt-8 border-t border-black/5 mt-4">
-                            <AnimatedCounter target={100} suffix="%" label="Transparency & Trust" className="text-7xl" />
+                        <div className="flex flex-col items-center text-center">
+                            <span className="text-4xl md:text-5xl font-black text-noir tracking-tighter">10+</span>
+                            <span className="text-[9px] uppercase tracking-[0.3em] text-noir/40 font-bold mt-2">Years of Legacy</span>
+                        </div>
+                        <div className="flex flex-col items-center text-center">
+                            <span className="text-4xl md:text-5xl font-black text-noir tracking-tighter">500+</span>
+                            <span className="text-[9px] uppercase tracking-[0.3em] text-noir/40 font-bold mt-2">Families Served</span>
+                        </div>
+                        <div className="col-span-2 pt-8 border-t border-black/5 mt-4 text-center">
+                            <span className="text-6xl md:text-7xl font-black text-noir tracking-tighter block mb-2">100%</span>
+                            <span className="text-[10px] uppercase tracking-[0.4em] text-noir/40 font-bold">Transparency & Trust</span>
                         </div>
                     </div>
                 </div>

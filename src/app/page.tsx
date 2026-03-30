@@ -2,7 +2,6 @@
 
 import Hero from "@/components/ui/Hero";
 import ShutterReveal from "@/components/ui/ShutterReveal";
-import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import ContactMap from "@/components/shared/ContactMap";
 import { projects } from "@/lib/projectsData";
 import {
@@ -225,7 +224,9 @@ export default function Home() {
                 className="flex-1 text-center px-8 md:px-12"
               >
                 <div className="flex items-baseline justify-center gap-1 group">
-                  <AnimatedCounter target={stat.value} suffix={stat.suffix} label="" className="text-white" />
+                  <span className="text-4xl md:text-6xl font-black text-white tracking-tighter">
+                    {stat.value}{stat.suffix}
+                  </span>
                 </div>
                 <p className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-white/40 font-bold mt-2">{stat.label}</p>
               </motion.div>
