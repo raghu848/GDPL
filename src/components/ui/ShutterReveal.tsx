@@ -13,7 +13,7 @@ interface ShutterRevealProps {
 
 export default function ShutterReveal({ children, className, direction = "up", delay = 0 }: ShutterRevealProps) {
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: false, amount: 0.2 });
+    const isInView = useInView(ref, { once: true, amount: 0.2 });
 
     const variants: Variants = {
         hidden: {
@@ -34,6 +34,7 @@ export default function ShutterReveal({ children, className, direction = "up", d
                 variants={variants}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
+                className="h-full w-full"
             >
                 {children}
             </motion.div>

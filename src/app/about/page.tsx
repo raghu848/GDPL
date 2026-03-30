@@ -21,7 +21,7 @@ export default function AboutPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-transparent text-white font-sans pb-24 selection:bg-gold selection:text-black grain-overlay">
+        <main className="min-h-screen bg-transparent text-noir font-sans pb-24 selection:bg-noir selection:text-white grain-overlay">
             {/* Hero Section */}
             <section className="relative h-screen w-full mb-32 overflow-hidden">
                 <div className="absolute inset-0 z-0">
@@ -59,11 +59,12 @@ export default function AboutPage() {
                     </div>
 
                     {/* Stats Grid with Animated Counters */}
-                    <div className="grid grid-cols-2 gap-8 border-t border-gold/10 pt-12">
-                        <AnimatedCounter target={10} suffix="+" label="Years of Legacy" gold />
-                        <AnimatedCounter target={500} suffix="+" label="Families Served" gold />
-                        <div className="col-span-2 pt-8 border-t border-gold/5 mt-4">
-                            <AnimatedCounter target={100} suffix="%" label="Transparency & Trust" gold className="text-7xl" />
+                    {/* Stats Grid with Animated Counters */}
+                    <div className="grid grid-cols-2 gap-8 border-t border-black/10 pt-12">
+                        <AnimatedCounter target={10} suffix="+" label="Years of Legacy" />
+                        <AnimatedCounter target={500} suffix="+" label="Families Served" />
+                        <div className="col-span-2 pt-8 border-t border-black/5 mt-4">
+                            <AnimatedCounter target={100} suffix="%" label="Transparency & Trust" className="text-7xl" />
                         </div>
                     </div>
                 </div>
@@ -79,9 +80,9 @@ export default function AboutPage() {
                         transition={{ duration: 1 }}
                     >
                         <h2 className="section-label mb-8">Evolution</h2>
-                        {/* Gold accent line */}
-                        <div className="w-12 h-[2px] mb-8" style={{ background: "linear-gradient(90deg, #D4AF37, transparent)" }} />
-                        <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-12">
+                        {/* Architectural accent line */}
+                        <div className="w-12 h-[2px] mb-8 bg-black/10" />
+                        <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-12 text-noir">
                             Our<br />Journey
                         </h2>
                     </motion.div>
@@ -93,10 +94,10 @@ export default function AboutPage() {
                         className="space-y-8 relative"
                     >
                         {/* Timeline vertical line */}
-                        <div className="absolute left-0 top-0 bottom-0 w-[2px] hidden lg:block" style={{ background: "linear-gradient(to bottom, #D4AF37, transparent)" }} />
+                        <div className="absolute left-0 top-0 bottom-0 w-[1px] hidden lg:block bg-black/10" />
 
                         <div className="lg:pl-8 relative">
-                            <div className="absolute left-[-4px] top-2 gold-dot hidden lg:block" />
+                            <div className="absolute left-[-3.5px] top-2 w-2 h-2 rounded-full bg-noir hidden lg:block" />
                             <p className="text-muted text-lg leading-relaxed font-light">
                                 From our humble beginnings to becoming a trusted name in real estate, GDPL&apos;s journey is a testament to perseverance, innovation, and a customer-centric approach.
                             </p>
@@ -139,8 +140,8 @@ export default function AboutPage() {
                                 <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-gold/0 group-hover:border-gold/50 transition-all duration-700" />
                             </div>
                             <div className="space-y-4">
-                                <h3 className="text-3xl font-bold tracking-tight uppercase">{leader.name}</h3>
-                                <div className="text-gold uppercase tracking-[0.15em] text-[10px] font-bold">{leader.role}</div>
+                                <h3 className="text-3xl font-bold tracking-tight uppercase text-noir">{leader.name}</h3>
+                                <div className="text-black/40 uppercase tracking-[0.15em] text-[10px] font-bold">{leader.role}</div>
                                 <p className="text-muted leading-relaxed font-light mt-6 italic text-sm md:text-base">
                                     &quot;{leader.bio}&quot;
                                 </p>
@@ -150,8 +151,8 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* Our Team */}
-            <section className="py-24 bg-white/5 border-y border-gold/5 mb-32 relative z-10">
+            {/* Our Team (High-Contrast Noir Section) */}
+            <section className="py-24 bg-noir text-white mb-32 relative z-10">
                 <div className="container mx-auto px-6">
                     <div className="max-w-4xl mx-auto text-center">
                         <motion.div
@@ -160,14 +161,14 @@ export default function AboutPage() {
                             viewport={{ once: false }}
                             transition={{ duration: 1 }}
                         >
-                            <h2 className="section-label mb-12">The Backbone</h2>
-                            <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-16">
+                             <h2 className="section-label mb-12 !text-white/40">The Backbone</h2>
+                            <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-16 text-white">
                                 OUR TEAM
                             </h2>
-                            <p className="text-muted text-xl md:text-2xl font-light leading-relaxed mb-12">
+                            <p className="text-white/60 text-xl md:text-2xl font-light leading-relaxed mb-12">
                                 Behind GDPL&apos;s success lies a team of dedicated professionals who bring expertise, creativity, and passion to every project.
                             </p>
-                            <p className="text-muted text-lg font-light leading-relaxed max-w-2xl mx-auto opacity-70">
+                            <p className="text-white/40 text-lg font-light leading-relaxed max-w-2xl mx-auto">
                                 Our team members, from architects to customer relations specialists, work collaboratively to ensure that our projects are nothing short of excellence. We are united by a common goal: building spaces that inspire.
                             </p>
                         </motion.div>
@@ -180,8 +181,8 @@ export default function AboutPage() {
                 <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
                     <div className="max-w-xl">
                         <h2 className="section-label mb-8">Responsibility</h2>
-                        <div className="w-12 h-[2px] mb-8" style={{ background: "linear-gradient(90deg, #D4AF37, transparent)" }} />
-                        <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
+                        <div className="w-12 h-[2px] mb-8 bg-black/10" />
+                        <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none text-noir">
                             Corporate Social<br />Responsibility
                         </h2>
                     </div>
@@ -204,32 +205,27 @@ export default function AboutPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: false }}
                             transition={{ duration: 0.8, delay: idx * 0.2 }}
-                            className="glass-premium p-12 rounded-3xl group"
+                            className="glass-premium p-12 rounded-3xl group border-black/5 hover:bg-white transition-all duration-700"
                         >
-                            <div className="mb-8 p-4 bg-gold/10 w-fit rounded-2xl text-gold group-hover:bg-gold group-hover:text-black transition-all duration-500 border border-gold/15">
+                            <div className="mb-8 p-4 bg-black/5 w-fit rounded-2xl text-noir group-hover:bg-noir group-hover:text-white transition-all duration-500 border border-black/5">
                                 {item.icon}
                             </div>
-                            <h3 className="text-2xl font-black uppercase tracking-tighter mb-4 group-hover:text-gold transition-colors">{item.title}</h3>
-                            <p className="text-muted text-sm font-light leading-relaxed">{item.text}</p>
+                            <h3 className="text-2xl font-black uppercase tracking-tighter mb-4 group-hover:text-noir transition-colors text-noir">{item.title}</h3>
+                            <p className="text-noir/60 text-sm font-light leading-relaxed">{item.text}</p>
                         </motion.div>
                     ))}
                 </div>
             </section>
 
-            {/* Vision Callout */}
-            <section className="relative py-40 overflow-hidden" style={{ background: "linear-gradient(135deg, #FFFFFF 0%, #F8F4E8 50%, #FFFFFF 100%)" }}>
-                <div className="absolute top-0 left-0 w-full h-[1px]" style={{ background: "linear-gradient(90deg, transparent, #D4AF37, transparent)" }} />
+            {/* Vision Callout (Noir Contrast) */}
+            <section className="relative py-40 overflow-hidden bg-noir">
+                <div className="absolute top-0 left-0 w-full h-[1px] bg-white/10" />
                 <div className="container mx-auto px-6 text-center relative z-10">
                     <div className="max-w-4xl mx-auto">
-                        <div className="text-[10px] uppercase tracking-[0.5em] mb-12 font-bold text-gold/50">Our Fundamental Vision</div>
-                        <h2 className="text-4xl md:text-6xl font-black leading-tight uppercase tracking-tighter text-black">
-                            To be the region&apos;s most trusted real estate developer, where{" "}
-                            <span style={{
-                                background: "linear-gradient(135deg, #B38F36 0%, #D4AF37 50%, #E8C55A 100%)",
-                                WebkitBackgroundClip: "text",
-                                WebkitTextFillColor: "transparent",
-                                backgroundClip: "text",
-                            }}>
+                        <div className="text-[10px] uppercase tracking-[0.5em] mb-12 font-bold text-white/40">Our Fundamental Vision</div>
+                        <h2 className="text-4xl md:text-5xl lg:text-7xl font-black leading-tight uppercase tracking-tighter text-white">
+                            To be the region&apos;s most trusted developer, where{" "}
+                            <span className="text-white/40">
                                 quality meets transparency.
                             </span>
                         </h2>

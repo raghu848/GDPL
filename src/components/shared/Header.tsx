@@ -36,7 +36,7 @@ export default function Header() {
                 className={cn(
                     "fixed top-0 left-0 w-full z-50 transition-all duration-700 font-sans",
                     isScrolled
-                        ? "bg-noir/80 backdrop-blur-md py-4 border-b border-gold/10"
+                        ? "bg-stone/90 backdrop-blur-md py-4 border-b border-black/5"
                         : "bg-transparent py-8"
                 )}
             >
@@ -45,12 +45,12 @@ export default function Header() {
                     <div className="flex items-center gap-4">
                         <motion.a
                             href="tel:+917789000077"
-                            className="cursor-pointer transition-all flex items-center group/phone icon-gold-glow"
+                            className="cursor-pointer transition-all flex items-center group/phone"
                             aria-label="Call Us"
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            <Phone className="w-5 h-5 text-white group-hover/phone:text-gold transition-colors" />
+                            <Phone className="w-5 h-5 text-noir transition-colors" />
                         </motion.a>
                     </div>
 
@@ -59,7 +59,7 @@ export default function Header() {
                         <img
                             src="/images/GDPL_Logo_white.png"
                             alt="GDPL Logo"
-                            className="h-8 md:h-12 w-auto object-contain transition-transform duration-700 group-hover:scale-110"
+                            className="h-8 md:h-12 w-auto object-contain transition-transform duration-700 group-hover:scale-110 invert"
                         />
                     </Link>
 
@@ -69,12 +69,12 @@ export default function Header() {
                             onClick={() => setIsMobileMenuOpen(true)}
                             className="flex items-center gap-4 group"
                         >
-                            <span className="hidden md:block text-[10px] font-black tracking-[0.3em] uppercase group-hover:text-gold transition-colors">
+                            <span className="hidden md:block text-[10px] font-black tracking-[0.3em] uppercase group-hover:text-black transition-colors">
                                 Menu
                             </span>
-                            <div className="w-8 h-[2px] bg-text-primary-dark relative">
-                                <div className="absolute top-[-6px] right-0 w-8 h-[2px] bg-text-primary-dark group-hover:w-6 group-hover:bg-gold transition-all" />
-                                <div className="absolute top-[6px] right-0 w-8 h-[2px] bg-text-primary-dark group-hover:w-4 group-hover:bg-gold transition-all" />
+                            <div className="w-8 h-[1px] bg-noir relative">
+                                <div className="absolute top-[-4px] right-0 w-8 h-[1px] bg-noir group-hover:w-6 transition-all" />
+                                <div className="absolute top-[4px] right-0 w-8 h-[1px] bg-noir group-hover:w-4 transition-all" />
                             </div>
                         </button>
                     </div>
@@ -85,8 +85,7 @@ export default function Header() {
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: isScrolled ? 1 : 0 }}
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute bottom-0 left-0 w-full h-[1px] origin-left"
-                    style={{ background: "linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent)" }}
+                    className="absolute bottom-0 left-0 w-full h-[1px] origin-left bg-black/5"
                 />
             </motion.header>
 
@@ -109,7 +108,7 @@ export default function Header() {
                             animate={{ x: 0 }}
                             exit={{ x: "100%" }}
                             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                            className="fixed top-0 right-0 h-full w-full md:w-[400px] lg:w-[30%] z-[60] bg-noir border-l border-gold/10 flex flex-col p-12"
+                            className="fixed top-0 right-0 h-full w-full md:w-[400px] lg:w-[30%] z-[60] bg-stone border-l border-black/5 flex flex-col p-12 shadow-2xl"
                         >
                             <button
                                 onClick={() => setIsMobileMenuOpen(false)}
@@ -130,13 +129,13 @@ export default function Header() {
                                             href={link.path}
                                             onClick={() => setIsMobileMenuOpen(false)}
                                             className={cn(
-                                                "text-xl md:text-2xl font-black uppercase tracking-tighter hover:text-gold transition-colors block relative",
-                                                pathname === link.path ? "text-text-primary-dark" : "text-muted"
+                                                "text-xl md:text-2xl font-black uppercase tracking-tighter hover:text-black transition-colors block relative",
+                                                pathname === link.path ? "text-noir" : "text-neutral-400"
                                             )}
                                         >
                                             <span className="flex items-center gap-4">
                                                 {pathname === link.path && (
-                                                    <span className="gold-dot shrink-0" />
+                                                    <span className="w-2 h-2 rounded-full bg-black shrink-0" />
                                                 )}
                                                 {link.name}
                                             </span>

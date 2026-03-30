@@ -1,4 +1,5 @@
 import DragCarousel from "./DragCarousel";
+import Image from "next/image";
 
 interface PropertySectionProps {
     title: string;
@@ -14,8 +15,8 @@ export default function PropertySection({ title, topImage, bottomImage, carousel
                 <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-12 text-center">{title}</h2>
 
                 {/* Top Image */}
-                <div className="w-full aspect-[21/9] md:aspect-[3/1] overflow-hidden rounded-3xl mb-16 shadow-2xl">
-                    <img src={topImage} alt={`${title} Top Overview`} className="w-full h-full object-cover" />
+                <div className="w-full aspect-[21/9] md:aspect-[3/1] overflow-hidden rounded-3xl mb-16 shadow-2xl relative">
+                    <Image src={topImage} alt={`${title} Top Overview`} fill className="object-cover" />
                 </div>
             </div>
 
@@ -29,8 +30,8 @@ export default function PropertySection({ title, topImage, bottomImage, carousel
 
             {/* Bottom Image / Data Placeholder */}
             <div className="container mx-auto px-6 mt-16">
-                <div className="w-full aspect-[21/9] md:aspect-[3/1] overflow-hidden rounded-3xl shadow-2xl">
-                    <img src={bottomImage} alt={`${title} Bottom Details`} className="w-full h-full object-cover" />
+                <div className="w-full aspect-[21/9] md:aspect-[3/1] overflow-hidden rounded-3xl shadow-2xl relative">
+                    <Image src={bottomImage} alt={`${title} Bottom Details`} fill className="object-cover" />
                 </div>
 
                 {/* Content Placeholder for user to provide */}

@@ -25,7 +25,7 @@ export default function AnimatedCounter({
     gold = false,
 }: AnimatedCounterProps) {
     const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: false, amount: 0.5 });
+    const isInView = useInView(ref, { once: true, amount: 0.5 });
     const [count, setCount] = useState(0);
     const [hasAnimated, setHasAnimated] = useState(false);
 

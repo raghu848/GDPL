@@ -41,10 +41,12 @@ export default function DragCarousel({ images }: DragCarouselProps) {
                         key={idx}
                         className="relative h-[400px] md:h-[600px] w-[300px] md:w-[450px] shrink-0 overflow-hidden rounded-2xl group"
                     >
-                        <img
+                        <Image
                             src={img}
                             alt={`Carousel image ${idx + 1}`}
-                            className="w-full h-full object-cover pointer-events-none group-hover:scale-105 transition-transform duration-700"
+                            fill
+                            className="object-cover pointer-events-none group-hover:scale-105 transition-transform duration-700"
+                            sizes="(max-width: 768px) 300px, 450px"
                         />
                     </motion.div>
                 ))}
