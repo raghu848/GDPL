@@ -49,21 +49,6 @@ export default function ProjectsPage() {
                     </video>
                 </div>
 
-                <div className="container mx-auto px-6 relative z-20">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1 }}
-                    >
-                        <p className="section-label mb-4">Our Portfolio</p>
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none mb-6">
-                            Signature Projects
-                        </h1>
-                        <p className="text-muted text-lg max-w-xl font-light">
-                            Explore our collection of premium residential landmarks across Mohali, each crafted with GDPL&apos;s hallmark of transparency and luxury.
-                        </p>
-                    </motion.div>
-                </div>
             </section>
 
             <div className="container mx-auto px-6">
@@ -139,7 +124,7 @@ export default function ProjectsPage() {
                                             </div>
 
                                             <div className="flex items-center gap-2 mb-3">
-                                                <MapPin className="w-3 h-3 text-noir" />
+                                                <MapPin className="w-3 h-3 text-ruby" />
                                                 <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-noir/40">{project.location}</span>
                                             </div>
 
@@ -171,7 +156,7 @@ export default function ProjectsPage() {
                                                 </div>
                                             </div>
 
-                                            <div className="flex items-center gap-3 mt-6 text-noir text-[10px] uppercase tracking-[0.3em] font-black group-hover:gap-5 transition-all">
+                                            <div className="flex items-center gap-3 mt-6 text-ruby text-[10px] uppercase tracking-[0.3em] font-black group-hover:gap-5 transition-all">
                                                 Explore Project <ArrowRight className="w-4 h-4" />
                                             </div>
                                         </div>

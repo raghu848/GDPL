@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
+import LuxuryBackground from "@/components/ui/LuxuryBackground";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -27,7 +28,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${plusJakartaSans.variable} ${cormorantGaramond.variable} font-sans antialiased text-text-primary-dark bg-background-dark`}>
+      <body suppressHydrationWarning className={`${plusJakartaSans.variable} ${cormorantGaramond.variable} font-sans antialiased text-text-primary-dark`}>
+        <LuxuryBackground />
         <Header />
         {children}
         <Footer />

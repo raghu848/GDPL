@@ -50,8 +50,11 @@ export default function Header() {
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            <Phone className="w-5 h-5 text-noir transition-colors" />
+                            <Phone className="w-5 h-5 text-ruby transition-colors" />
                         </motion.a>
+                        <p className="hidden lg:block text-ruby font-black tracking-tighter text-xs">
+                            +91 77890 00077
+                        </p>
                     </div>
 
                     {/* Center: Logo */}

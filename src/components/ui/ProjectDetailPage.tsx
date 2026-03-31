@@ -30,11 +30,11 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
     return (
         <main className="min-h-screen bg-transparent text-noir grain-overlay">
             {/* ═══════ 1. HERO ═══════ */}
-            <section 
+            <section
                 ref={heroRef}
                 className="relative h-screen w-full flex items-center overflow-hidden bg-stone-100"
             >
-                <motion.div 
+                <motion.div
                     style={{ y: backgroundY }}
                     className="absolute inset-0 z-0"
                 >
@@ -66,14 +66,14 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                                 </div>
                                 <div className="h-[1px] w-12 bg-black/10" />
                                 <div className="flex items-center gap-2">
-                                    <MapPin className="w-4 h-4 text-noir/40" />
+                                    <MapPin className="w-4 h-4 text-ruby" />
                                     <span className="text-[10px] font-black uppercase tracking-[0.3em] text-noir/40">{project.location}</span>
                                 </div>
                             </div>
                         </motion.div>
 
                         <div className="relative">
-                            <motion.h1 
+                            <motion.h1
                                 initial={{ opacity: 0, clipPath: "inset(0 100% 0 0)" }}
                                 animate={{ opacity: 1, clipPath: "inset(0 0% 0 0)" }}
                                 transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
@@ -100,7 +100,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
 
                 {/* Floating Bottom Stats Bar */}
                 <div className="absolute bottom-10 left-0 w-full z-20 px-6">
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 1.2 }}
@@ -126,7 +126,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                                 </div>
                             </div>
 
-                            <a 
+                            <a
                                 href="#overview"
                                 className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-noir text-white flex items-center justify-center group transition-all duration-500 hover:scale-110"
                             >
@@ -137,7 +137,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                 </div>
 
                 {/* Scroll hint */}
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 2, duration: 2 }}
@@ -213,7 +213,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                     >
                         <p className="section-label mb-4">Floor Plans</p>
                         <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-noir">
-                            Available Configurations
+                            AVAILABLE <span className="text-ruby">CONFIGURATIONS</span>
                         </h2>
                     </motion.div>
 
@@ -254,12 +254,12 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                     >
                         <p className="section-label mb-4">Visual Tour</p>
                         <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-noir">
-                            Project Gallery
+                            PROJECT <span className="text-ruby">GALLERY</span>
                         </h2>
                     </motion.div>
 
                     {/* Staggered Masonry Grid */}
-                    <motion.div 
+                    <motion.div
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.05 }}
@@ -280,15 +280,15 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                                 key={idx}
                                 variants={{
                                     hidden: { opacity: 0, y: 40, scale: 0.95, filter: "blur(10px)" },
-                                    visible: { 
-                                        opacity: 1, 
-                                        y: 0, 
-                                        scale: 1, 
+                                    visible: {
+                                        opacity: 1,
+                                        y: 0,
+                                        scale: 1,
                                         filter: "blur(0px)",
-                                        transition: { 
-                                            duration: 1.2, 
-                                            ease: [0.16, 1, 0.3, 1] 
-                                        } 
+                                        transition: {
+                                            duration: 1.2,
+                                            ease: [0.16, 1, 0.3, 1]
+                                        }
                                     }
                                 }}
                                 className="break-inside-avoid group cursor-pointer"
@@ -346,7 +346,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                     >
                         <p className="section-label mb-4">Lifestyle</p>
                         <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-noir">
-                            Premium Amenities
+                            PREMIUM <span className="text-ruby">AMENITIES</span>
                         </h2>
                     </motion.div>
 

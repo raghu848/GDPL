@@ -20,11 +20,10 @@ export default function AboutPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-transparent text-noir font-sans pb-24 selection:bg-noir selection:text-white grain-overlay">
+        <main className="min-h-screen bg-transparent text-noir font-sans pb-24 selection:bg-noir selection:text-white">
             {/* Hero Section */}
-            <section className="relative h-screen w-full mb-32 overflow-hidden">
+            <section className="relative h-[80vh] w-full mb-32 overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/70 z-10" />
                     <video
                         autoPlay
                         muted
@@ -145,9 +144,9 @@ export default function AboutPage() {
                                 <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-gold/0 group-hover:border-gold/50 transition-all duration-700" />
                             </div>
                             <div className="space-y-4">
-                                <h3 className="text-3xl font-bold tracking-tight uppercase text-noir">{leader.name}</h3>
-                                <div className="text-black/40 uppercase tracking-[0.15em] text-[10px] font-bold">{leader.role}</div>
-                                <p className="text-muted leading-relaxed font-light mt-6 italic text-sm md:text-base">
+                                <h3 className="text-3xl font-black tracking-tight uppercase text-noir">{leader.name}</h3>
+                                <div className="text-noir uppercase tracking-[0.15em] text-[11px] font-black">{leader.role}</div>
+                                <p className="text-noir leading-relaxed font-normal mt-6 italic text-base md:text-lg">
                                     &quot;{leader.bio}&quot;
                                 </p>
                             </div>
@@ -166,7 +165,7 @@ export default function AboutPage() {
                             viewport={{ once: false }}
                             transition={{ duration: 1 }}
                         >
-                             <h2 className="section-label mb-12 !text-white/40">The Backbone</h2>
+                            <h2 className="section-label mb-12 !text-white/40">The Backbone</h2>
                             <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-16 text-white">
                                 OUR TEAM
                             </h2>
@@ -188,11 +187,11 @@ export default function AboutPage() {
                         <h2 className="section-label mb-8">Responsibility</h2>
                         <div className="w-12 h-[2px] mb-8 bg-black/10" />
                         <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none text-noir">
-                            Corporate Social<br />Responsibility
+                            CORPORATE SOCIAL<br /><span className="text-ruby">RESPONSIBILITY</span>
                         </h2>
                     </div>
                     <div className="md:w-1/3">
-                        <p className="text-muted text-sm font-light leading-relaxed">
+                        <p className="text-noir text-base font-normal leading-relaxed">
                             At GDPL, we believe in giving back to the community. Our CSR initiatives focus on education, environment, and social welfare.
                         </p>
                     </div>
@@ -216,7 +215,7 @@ export default function AboutPage() {
                                 {item.icon}
                             </div>
                             <h3 className="text-2xl font-black uppercase tracking-tighter mb-4 group-hover:text-noir transition-colors text-noir">{item.title}</h3>
-                            <p className="text-noir/60 text-sm font-light leading-relaxed">{item.text}</p>
+                            <p className="text-noir text-base font-normal leading-relaxed">{item.text}</p>
                         </motion.div>
                     ))}
                 </div>

@@ -17,7 +17,7 @@ export default function Hero() {
     return (
         <section
             ref={containerRef}
-            className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-stone"
+            className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-transparent"
         >
             {/* Video scaling layer */}
             <motion.div
@@ -25,7 +25,7 @@ export default function Hero() {
                 className="absolute inset-0 z-0 h-full w-full"
             >
                 {/* Subtle gradient overlay */}
-                <div className="absolute inset-0 z-10 bg-gradient-to-b from-stone/20 via-transparent to-stone/40" />
+                <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
                 <video
                     autoPlay
                     muted
@@ -49,17 +49,6 @@ export default function Hero() {
                 </video>
             </motion.div>
 
-            {/* Scroll Down Indicator */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5 }}
-                style={{ opacity }}
-                className="absolute bottom-10 left-1/2 z-20 bounce-indicator flex flex-col items-center gap-2"
-            >
-                <span className="text-[8px] uppercase tracking-[0.4em] text-noir font-bold">Scroll</span>
-                <ChevronDown className="w-4 h-4 text-noir" />
-            </motion.div>
         </section>
     );
 }

@@ -50,14 +50,12 @@ export default function LuxuryBackground() {
                 this.opacityDir = Math.random() > 0.5 ? 1 : -1;
                 this.pulseSpeed = Math.random() * 0.003 + 0.001;
 
-                // Gold-biased color palette
+                // Premium palette (Beige, Gold, Cream)
                 const colors = [
                     "212, 175, 55",   // gold
-                    "232, 197, 90",   // light gold
-                    "179, 143, 54",   // dark gold
-                    "255, 255, 255",  // white (rare sparkle)
-                    "212, 175, 55",   // gold again (more weight)
-                    "180, 160, 120",  // warm silver
+                    "245, 242, 237",  // cream
+                    "237, 230, 220",  // sand
+                    "212, 175, 55",   // gold again
                 ];
                 this.color = colors[Math.floor(Math.random() * colors.length)];
             }
@@ -112,7 +110,7 @@ export default function LuxuryBackground() {
         let time = 0;
 
         const drawConnections = (ctx: CanvasRenderingContext2D) => {
-            const connectionDistance = 120;
+            const connectionDistance = 150;
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
@@ -120,12 +118,12 @@ export default function LuxuryBackground() {
                     const dist = Math.sqrt(dx * dx + dy * dy);
 
                     if (dist < connectionDistance) {
-                        const opacity = (1 - dist / connectionDistance) * 0.08;
+                        const opacity = (1 - dist / connectionDistance) * 0.05;
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
                         ctx.strokeStyle = `rgba(212, 175, 55, ${opacity})`;
-                        ctx.lineWidth = 0.5;
+                        ctx.lineWidth = 0.3;
                         ctx.stroke();
                     }
                 }
@@ -190,7 +188,7 @@ export default function LuxuryBackground() {
         <canvas
             ref={canvasRef}
             className="fixed inset-0 z-0 pointer-events-none"
-            style={{ opacity: 0.6 }}
+            style={{ opacity: 0.35 }}
         />
     );
 }

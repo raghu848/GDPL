@@ -23,7 +23,7 @@ export default function SignaturePortfolio() {
     const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
     return (
-        <section 
+        <section
             ref={containerRef}
             className="py-20 md:py-32 bg-transparent relative overflow-hidden"
         >
@@ -32,7 +32,7 @@ export default function SignaturePortfolio() {
                 <motion.div style={{ x: translateX, opacity }}>
                     <p className="section-label mb-4">Our Portfolio</p>
                     <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9] text-noir">
-                        Signature<br />Projects
+                        <span className="text-ruby">Signature</span><br />Projects
                     </h2>
                 </motion.div>
             </div>
@@ -42,7 +42,7 @@ export default function SignaturePortfolio() {
                     {/* Left Side: Project List */}
                     <div className="flex flex-col lg:col-span-5 lg:pr-12 lg:sticky lg:top-[12.5vh] lg:h-[75vh] lg:justify-between lg:py-4">
                         {projects.map((project, idx) => (
-                            <ProjectItem 
+                            <ProjectItem
                                 key={project.slug}
                                 project={project}
                                 index={idx}
@@ -53,8 +53,8 @@ export default function SignaturePortfolio() {
 
                         {/* All Projects Link */}
                         <div className="mt-8 flex justify-start">
-                            <Link 
-                                href="/projects" 
+                            <Link
+                                href="/projects"
                                 className="group flex items-center gap-4 text-xs font-black uppercase tracking-[0.4em] text-noir/40 hover:text-noir transition-colors"
                             >
                                 Full Portfolio
@@ -107,20 +107,20 @@ export default function SignaturePortfolio() {
     );
 }
 
-function ProjectItem({ 
-    project, 
-    index, 
-    isActive, 
-    onHover 
-}: { 
-    project: Project; 
-    index: number; 
-    isActive: boolean; 
+function ProjectItem({
+    project,
+    index,
+    isActive,
+    onHover
+}: {
+    project: Project;
+    index: number;
+    isActive: boolean;
     onHover: () => void;
 }) {
     return (
         <div className="relative border-b border-black/5 group">
-            <Link 
+            <Link
                 href={`/projects/${project.slug}`}
                 onMouseEnter={onHover}
                 className={cn(
@@ -155,8 +155,8 @@ function ProjectItem({
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                     <div className="absolute bottom-4 left-4 p-2">
-                         <p className="text-[8px] font-black uppercase tracking-[0.2em] text-white/60 mb-1">{project.location}</p>
-                         <h4 className="text-white font-black uppercase tracking-tighter text-xl">{project.name}</h4>
+                        <p className="text-[8px] font-black uppercase tracking-[0.2em] text-white/60 mb-1">{project.location}</p>
+                        <h4 className="text-white font-black uppercase tracking-tighter text-xl">{project.name}</h4>
                     </div>
                 </div>
             </Link>

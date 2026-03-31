@@ -158,7 +158,7 @@ export default function Home() {
               <p className="section-label mb-6">About GDPL</p>
               <div className="w-12 h-[2px] mb-8 bg-black/10" />
               <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-[0.9] mb-10 text-noir">
-                With {new Date().getFullYear() - 2015}+ Years of Trust, GDPL Creates Spaces Where Dreams Grow & Legacies Begin
+                With {new Date().getFullYear() - 2015}+ Years of <span className="text-ruby">Trust</span>, GDPL Creates Spaces Where Dreams Grow & Legacies Begin
               </h3>
               <p className="text-muted text-lg font-light leading-relaxed mb-6">
                 GDPL has grown massively with its notable lineage of iconic properties — Regal Heights, Regal Residencia, Regal Empirus, and the upcoming Regal Luxuria. We are committed to expand our fine craftsmanship with trustworthy timely deliveries.
@@ -179,8 +179,6 @@ export default function Home() {
               {[
                 { label: "Residential", count: "4 Projects", desc: "Luxury apartments & independent floors" },
                 { label: "Commercial", count: "Coming Soon", desc: "Premium office & retail spaces" },
-                { label: "Consulting", count: "360° Coverage", desc: "Expert real estate advisory" },
-                { label: "Education", count: "1000+ Hours", desc: "Investor training & content" },
               ].map((cat, idx) => (
                 <motion.div
                   key={idx}
@@ -224,7 +222,7 @@ export default function Home() {
                 className="flex-1 text-center px-8 md:px-12"
               >
                 <div className="flex items-baseline justify-center gap-1 group">
-                  <span className="text-4xl md:text-6xl font-black text-white tracking-tighter">
+                  <span className={`text-4xl md:text-6xl font-black tracking-tighter ${idx === 0 ? "text-ruby" : "text-white"}`}>
                     {stat.value}{stat.suffix}
                   </span>
                 </div>
@@ -290,7 +288,7 @@ export default function Home() {
                 transition={{ duration: 1, delay: line.delay, ease: [0.16, 1, 0.3, 1] }}
               >
                 <h2 className={`text-4xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-[1.1] ${line.gold ? "" : "opacity-80"}`}>
-                  {line.text}
+                  {line.text === "Shape Skylines." ? <>Shape <span className="text-ruby">Skylines.</span></> : line.text}
                 </h2>
               </motion.div>
             ))}
@@ -599,8 +597,8 @@ export default function Home() {
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             >
               <p className="text-[10px] uppercase tracking-[0.5em] mb-8 font-bold text-white/40">Luxury Isn&apos;t Complete Without Responsibility</p>
-              <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-16 text-white">
-                LET&apos;S IMAGINE YOUR FUTURE IN <span className="opacity-30 text-white">MOHALI</span>
+              <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-16 text-white text-balance">
+                LET&apos;S IMAGINE YOUR FUTURE IN <span className="text-ruby">MOHALI</span>
               </h2>
               <Link
                 href="https://wa.me/917710380077"

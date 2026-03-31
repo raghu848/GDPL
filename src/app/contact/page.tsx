@@ -22,10 +22,10 @@ export default function ContactPage() {
                         {/* Architectural accent line */}
                         <div className="w-12 h-[2px] mb-8 bg-black/10" />
                         <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-12 text-noir">
-                            LET&apos;S<br />CONNECT
+                            LET&apos;S<br /><span className="text-ruby">CONNECT</span>
                         </h1>
                         <p className="text-muted text-xl md:text-2xl max-w-lg font-light leading-relaxed">
-                            Whether you&apos;re looking for a new home, a strategic investment, or expert consulting, our team is here to guide you.
+                            Whether you&apos;re looking for a new home or a strategic investment, our team is here to guide you.
                         </p>
                     </motion.div>
 
@@ -74,7 +74,7 @@ export default function ContactPage() {
                             viewport={{ once: true }}
                             transition={{ duration: 1 }}
                         >
-                         <div className="space-y-16">
+                            <div className="space-y-16">
                                 <div>
                                     <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 text-white">SAY HELLO</h2>
                                     <p className="text-white/60 text-lg font-light leading-relaxed max-w-md">
@@ -117,28 +117,28 @@ export default function ContactPage() {
                             <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-gold/20" />
 
                             <form className="space-y-8">
-                                 <div className="space-y-4">
-                                    <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40">Full Name</label>
+                                <div className="space-y-4">
+                                    <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-noir/40">Full Name</label>
                                     <input
                                         type="text"
                                         placeholder="John Doe"
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none input-premium text-white placeholder-white/30"
+                                        className="w-full bg-black/5 border border-black/10 rounded-xl px-6 py-4 outline-none input-premium text-noir placeholder-noir/30"
                                     />
                                 </div>
                                 <div className="space-y-4">
-                                    <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40">Email Address</label>
+                                    <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-noir/40">Email Address</label>
                                     <input
                                         type="email"
                                         placeholder="john@example.com"
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none input-premium text-white placeholder-white/30"
+                                        className="w-full bg-black/5 border border-black/10 rounded-xl px-6 py-4 outline-none input-premium text-noir placeholder-noir/30"
                                     />
                                 </div>
                                 <div className="space-y-4">
-                                    <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/40">Message</label>
+                                    <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-noir/40">Message</label>
                                     <textarea
                                         rows={4}
                                         placeholder="Tell us about your requirements..."
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none input-premium resize-none text-white placeholder-white/30"
+                                        className="w-full bg-black/5 border border-black/10 rounded-xl px-6 py-4 outline-none input-premium resize-none text-noir placeholder-noir/30"
                                     />
                                 </div>
                                 <button className="w-full py-6 rounded-xl text-[10px] flex items-center justify-center gap-4 group mt-12 btn-gold">

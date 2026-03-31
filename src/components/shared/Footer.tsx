@@ -44,12 +44,8 @@ export default function Footer() {
                         <div className="space-y-3">
                             <Link href="/" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-gold transition-colors gold-underline w-fit">Main</Link>
                             <Link href="/projects" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-gold transition-colors gold-underline w-fit">Projects</Link>
-                            <Link href="/about" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-gold transition-colors gold-underline w-fit">About</Link>
-                        </div>
-                        <div className="space-y-3">
-                            <Link href="#" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-gold transition-colors gold-underline w-fit">Consulting</Link>
-                            <Link href="#" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-gold transition-colors gold-underline w-fit">News</Link>
-                            <Link href="/contact" className="block text-[10px] font-black tracking-[0.4em] uppercase hover:text-gold transition-colors gold-underline w-fit">Contact</Link>
+                            <Link href="/about" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-gold transition-colors gold-underline w-fit">About Us</Link>
+                            <Link href="/contact" className="block text-[10px] font-black tracking-[0.4em] uppercase hover:text-gold transition-colors gold-underline w-fit text-gold font-black">Contact Us</Link>
                         </div>
                     </nav>
                 </div>
