@@ -67,39 +67,45 @@ export default function SignaturePortfolio() {
 
                     {/* Right Side: High-End Sticky Image Gallery (Desktop) */}
                     <div className="hidden lg:block lg:col-span-7 sticky top-[12.5vh] h-[75vh] w-full rounded-[2rem] overflow-hidden bg-black/5 border border-black/5 shadow-2xl">
-                        <AnimatePresence mode="wait">
+                        {projects.map((project, idx) => (
                             <motion.div
-                                key={activeIndex}
-                                initial={{ opacity: 0, scale: 1.05 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 1.02 }}
-                                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                key={project.slug}
+                                initial={false}
+                                animate={{
+                                    opacity: activeIndex === idx ? 1 : 0,
+                                    scale: activeIndex === idx ? 1 : 1.05,
+                                    zIndex: activeIndex === idx ? 10 : 0
+                                }}
+                                transition={{
+                                    duration: 0.5,
+                                    ease: [0.16, 1, 0.3, 1]
+                                }}
                                 className="absolute inset-0"
                             >
                                 <Image
-                                    src={projects[activeIndex ?? 0].heroImage}
-                                    alt={projects[activeIndex ?? 0].name}
+                                    src={project.heroImage}
+                                    alt={project.name}
                                     fill
                                     className="object-cover"
-                                    priority
+                                    priority={idx === 0}
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                                 <div className="absolute bottom-12 left-12 right-12">
                                     <div className="flex items-center gap-3 mb-4">
                                         <div className="w-8 h-[1px] bg-white/40" />
                                         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/80">
-                                            {projects[activeIndex ?? 0].location}
+                                            {project.location}
                                         </span>
                                     </div>
                                     <h4 className="text-5xl font-black text-white uppercase tracking-tighter leading-none mb-4">
-                                        {projects[activeIndex ?? 0].name}
+                                        {project.name}
                                     </h4>
                                     <p className="text-white/40 text-[10px] font-black uppercase tracking-[0.3em]">
-                                        {projects[activeIndex ?? 0].status}
+                                        {project.status}
                                     </p>
                                 </div>
                             </motion.div>
-                        </AnimatePresence>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -124,13 +130,13 @@ function ProjectItem({
                 href={`/projects/${project.slug}`}
                 onMouseEnter={onHover}
                 className={cn(
-                    "flex flex-col py-6 md:py-4 transition-all duration-700",
-                    !isActive ? "lg:opacity-10 lg:blur-[2px]" : "opacity-100 blur-0"
+                    "flex flex-col py-6 md:py-4 transition-all duration-300",
+                    !isActive ? "lg:opacity-10 lg:blur-[1px]" : "opacity-100 blur-0"
                 )}
             >
                 <h3 className="text-3xl md:text-5xl lg:text-4xl xl:text-5xl font-black uppercase tracking-tighter leading-none flex items-center gap-4 mb-4">
                     {project.name}
-                    <ArrowUpRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-all duration-500 hidden md:block text-noir/20" />
+                    <ArrowUpRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-all duration-300 hidden md:block text-noir/20" />
                 </h3>
 
                 {/* Mobile Tagline Reveal */}
@@ -139,7 +145,7 @@ function ProjectItem({
                 </p>
 
                 <p className={cn(
-                    "hidden lg:block text-sm font-medium leading-relaxed max-w-xl transition-all duration-700 line-clamp-2",
+                    "hidden lg:block text-sm font-medium leading-relaxed max-w-xl transition-all duration-500 line-clamp-2",
                     isActive ? "text-noir/60" : "text-noir/0"
                 )}>
                     {project.tagline}

@@ -3,7 +3,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ChevronDown } from "lucide-react";
-import Image from "next/image";
 
 export default function Hero() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -31,21 +30,10 @@ export default function Hero() {
                     muted
                     loop
                     playsInline
-                    poster="/images/herosection.png"
                     className="w-full h-full object-cover"
                 >
                     <source src="/images/GDPL 1st (1080p No Audio).mp4" type="video/mp4" />
-                    {/* Fallback to optimized images if video fails */}
-                    <div className="relative w-full h-full">
-                        <Image
-                            src="/images/herosection.png"
-                            alt="GDPL Mohali Architecture"
-                            fill
-                            priority
-                            className="object-cover"
-                            sizes="100vw"
-                        />
-                    </div>
+
                 </video>
             </motion.div>
 

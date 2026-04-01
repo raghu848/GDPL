@@ -15,8 +15,8 @@ import {
   Fingerprint, UserCheck, BellRing, Smartphone, Music
 } from "lucide-react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import SignaturePortfolio from "@/components/ui/SignaturePortfolio";
 
@@ -37,7 +37,6 @@ export default function Home() {
         { name: "Table Tennis", icon: <Tablets className="w-4 h-4" /> },
         { name: "Billiards Room", icon: <Gamepad2 className="w-4 h-4" /> },
         { name: "Premium Indoor Golf", icon: <Target className="w-4 h-4" /> },
-        // { name: "Amphitheatre", icon: <Music className="w-4 h-4" /> }
       ]
     },
     {
@@ -140,13 +139,35 @@ export default function Home() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeTimelineStep, setActiveTimelineStep] = useState(0);
 
+  const philosophyRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: philosophyRef,
+    offset: ["start start", "end end"]
+  });
+
+  // Smooth Linear Mapping: 'OUR' slowly travels down between lines as the user scrolls.
+  // No staircase holding—it directly correlates position to the page scroll depth.
+  const ourYRaw = useTransform(
+    scrollYProgress,
+    [0.1, 0.4, 0.7, 0.95],
+    [0, 100, 200, 300]
+  );
+  // Extremely smooth spring to act as a shock absorber for the mouse wheel
+  const smoothOurYRaw = useSpring(ourYRaw, { stiffness: 80, damping: 20, restDelta: 0.001 });
+  // Convert the smoothed number back into a CSS percentage string
+  // Add a strict clamp so the label NEVER scrolls above 'Vision' (0%) or below 'Legacy' (300%)
+  const smoothOurY = useTransform(smoothOurYRaw, (y) => {
+    const clampedY = Math.max(0, Math.min(300, y));
+    return `${clampedY}%`;
+  });
+
   return (
     <main className="min-h-screen bg-transparent text-noir selection:bg-noir selection:text-white grain-overlay">
       {/* ═══════════════ 1. HERO ═══════════════ */}
       <Hero />
 
       {/* ═══════════════ 2. ABOUT GDPL ═══════════════ */}
-      <section className="py-20 bg-transparent relative">
+      <section className="pt-12 pb-24 bg-transparent relative">
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <motion.div
@@ -157,28 +178,29 @@ export default function Home() {
             >
               <p className="section-label mb-6">About GDPL</p>
               <div className="w-12 h-[2px] mb-8 bg-black/10" />
-              <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-[0.9] mb-10 text-noir">
-                With {new Date().getFullYear() - 2015}+ Years of <span className="text-ruby">Trust</span>, GDPL Creates Spaces Where Dreams Grow & Legacies Begin
+              <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-tight mb-8 text-noir">
+                A Legacy of <span className="text-ruby">Trust.</span> A Standard of <span className="text-ruby">Royal Living.</span>
               </h3>
-              <p className="text-muted text-lg font-light leading-relaxed mb-6">
-                GDPL has grown massively with its notable lineage of iconic properties — Regal Heights, Regal Residencia, Regal Empirus, and the upcoming Regal Luxuria. We are committed to expand our fine craftsmanship with trustworthy timely deliveries.
+              <p className="text-noir text-xl font-bold leading-tight mb-8">
+                At GDPL, every development is a bespoke creation—meticulously designed to reflect prestige, comfort, and timeless elegance.
               </p>
-              <p className="text-muted text-base font-light leading-relaxed">
-                We don&apos;t just build — we manage, consult, train market participants, and create educational content for investors and property buyers across the Tricity region.
+              <p className="text-muted text-lg font-light leading-relaxed">
+                From panoramic surroundings to thoughtfully curated spaces, we create sanctuaries that embody the pinnacle of modern living. With an unwavering commitment to quality and trust, we deliver not just homes, but powerful investments for a secure and elevated future.
               </p>
             </motion.div>
 
-            {/* Homeland-style category cards */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="grid grid-cols-2 gap-6"
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
             >
               {[
-                { label: "Residential", count: "4 Projects", desc: "Luxury apartments & independent floors" },
-                { label: "Commercial", count: "Coming Soon", desc: "Premium office & retail spaces" },
+                { label: "Portfolio", count: "4 Signature Projects", desc: "Across prime sectors of Mohali" },
+                { label: "Legacy", count: "11+ Years", desc: "Of trust and consistent delivery" },
+                { label: "Delivered", count: "500+ Homes", desc: "Built with consistency and care" },
+                { label: "Land Portfolio", count: "25+ Acres", desc: "Spanning across signature GDPL developments" },
               ].map((cat, idx) => (
                 <motion.div
                   key={idx}
@@ -186,13 +208,13 @@ export default function Home() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  className="glass-premium p-8 group border border-black/5 transition-all duration-500 relative overflow-hidden"
+                  className="glass-premium p-8 group border border-black/5 transition-all duration-500 relative overflow-hidden h-full flex flex-col justify-center"
                 >
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-black/5" />
                   <div className="relative z-10">
-                    <p className="text-noir/40 text-[10px] font-black uppercase tracking-[0.3em] mb-4">{cat.label}</p>
-                    <p className="text-2xl font-black mb-2 tracking-tight group-hover:text-noir transition-colors">{cat.count}</p>
-                    <p className="text-noir/40 text-[11px] font-light leading-relaxed">{cat.desc}</p>
+                    <p className="text-noir/40 text-[10px] font-black uppercase tracking-[0.3em] mb-3">{cat.label}</p>
+                    <p className="text-xl md:text-2xl font-black mb-2 tracking-tight group-hover:text-noir transition-colors leading-tight uppercase">{cat.count}</p>
+                    <p className="text-noir/60 text-xs md:text-sm font-light leading-relaxed">{cat.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -201,141 +223,95 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════ 3. ELAN-STYLE BIG STAT BAND ═══════════════ */}
-      <section className="py-12 relative overflow-hidden bg-noir">
-        <div className="absolute top-0 left-0 w-full h-[1px] bg-white/10" />
-        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-white/10" />
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-0 md:divide-x md:divide-white/10">
-            {[
-              { value: 10, suffix: "+", label: "Years of Trust" },
-              { value: 500, suffix: "+", label: "Happy Families" },
-              { value: 4, suffix: "", label: "Signature Projects" },
-              { value: 8, suffix: "+", label: "Active Developments" },
-            ].map((stat, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: idx * 0.15 }}
-                className="flex-1 text-center px-8 md:px-12"
-              >
-                <div className="flex items-baseline justify-center gap-1 group">
-                  <span className={`text-4xl md:text-6xl font-black tracking-tighter ${idx === 0 ? "text-ruby" : "text-white"}`}>
-                    {stat.value}{stat.suffix}
-                  </span>
-                </div>
-                <p className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-white/40 font-bold mt-2">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════ 3B. OUR PHILOSOPHY ═══════════════ */}
-      <section className="py-16 md:py-20 bg-transparent relative overflow-hidden">
-        {/* Decorative accent lines */}
-        <div className="absolute top-0 left-0 w-full h-[1px] bg-black/5" />
-        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-black/5" />
-
-        {/* Left decorative vertical line */}
-        <motion.div
-          className="absolute left-[8%] top-[15%] bottom-[15%] w-[1px] hidden lg:block"
-          initial={{ scaleY: 0 }}
-          whileInView={{ scaleY: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          style={{ background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.05), transparent)", transformOrigin: "top" }}
-        />
-        {/* Right decorative vertical line */}
-        <motion.div
-          className="absolute right-[8%] top-[15%] bottom-[15%] w-[1px] hidden lg:block"
-          initial={{ scaleY: 0 }}
-          whileInView={{ scaleY: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-          style={{ background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.05), transparent)", transformOrigin: "bottom" }}
-        />
-
-        <div className="container mx-auto px-6 relative z-10">
-          {/* Section Label with ornamental line */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="flex items-center justify-center gap-6 mb-16"
-          >
-            <div className="h-[1px] w-16 md:w-24 bg-black/10" />
-            <p className="section-label !text-noir/40">Our Philosophy</p>
-            <div className="h-[1px] w-16 md:w-24 bg-black/10" />
-          </motion.div>
-
-          {/* Main tagline — staggered reveal */}
-          <div className="max-w-6xl mx-auto text-center">
-            {[
-              { text: "Shape Skylines.", gold: true, delay: 0 },
-              { text: "Value Legacy.", gold: false, delay: 0.15 },
-              { text: "Create Communities.", gold: false, delay: 0.3 },
-              { text: "Craft Luxury.", gold: true, delay: 0.45 },
-            ].map((line, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: line.delay, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <h2 className={`text-4xl md:text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-[1.1] ${line.gold ? "" : "opacity-80"}`}>
-                  {line.text === "Shape Skylines." ? <>Shape <span className="text-ruby">Skylines.</span></> : line.text}
-                </h2>
-              </motion.div>
-            ))}
+      {/* ═══════════════ 3B. OUR PHILOSOPHY (Smooth Linear Sticky Scroll) ═══════════════ */}
+      <div
+        ref={philosophyRef}
+        className="h-[160vh] relative z-20"
+      >
+        <section className="sticky top-[10vh] md:top-[12vh] flex flex-col items-center overflow-hidden w-full bg-[#06110d] text-white py-12 px-4 md:px-6 rounded-none z-10 shadow-3xl">
+          
+          {/* 🖼 Background Images Layer */}
+          <div className="absolute inset-0 pointer-events-none z-0">
+            {/* Desktop Background (hidden on mobile) */}
+            <img 
+              src="/images/regal-luxuria/WhatsApp%20Image%202026-04-01%20at%205.43.10%20PM.jpeg" 
+              alt="" 
+              className="hidden md:block w-full h-full object-cover opacity-30 object-center" 
+            />
+            {/* Mobile Background (visible only on mobile) */}
+            <img 
+              src="/images/regal-luxuria/WhatsApp%20Image%202026-04-01%20at%205.43.56%20PM.jpeg" 
+              alt="" 
+              className="block md:hidden w-full h-full object-cover opacity-30 object-center" 
+            />
+            {/* Overlay Gradient to dim the images and keep text readable */}
+            <div className="absolute inset-0 bg-[#06110d]/20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#06110d] via-transparent to-[#06110d]" />
+            {/* Subtle Ruby glow */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(212,175,55,0.05)_0%,transparent_60%)]" />
           </div>
 
-          {/* Ornamental diamond divider */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex items-center justify-center gap-4 my-16"
-          >
-            <div className="h-[1px] w-20 bg-black/5" />
-            <div className="w-1.5 h-1.5 rotate-45 bg-black" />
-            <div className="h-[1px] w-20 bg-black/5" />
-          </motion.div>
+          <div className="container mx-auto relative z-10 flex flex-col items-center">
+            {/* Header Safety Zone */}
+            <div className="w-full text-left mb-6 md:absolute md:top-0 md:left-0 md:mb-0">
+              <span className="text-[10px] md:text-[11px] font-black uppercase tracking-[0.6em] text-white/50 whitespace-nowrap">
+                OUR PHILOSOPHY
+              </span>
+            </div>
 
-          {/* Description in a glassmorphic card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.7 }}
-            className="max-w-4xl mx-auto relative"
-          >
-            <div className="glass-premium p-12 md:p-16 text-center relative overflow-hidden group border border-black/5 transition-all duration-700">
-              <p className="text-noir/80 text-lg md:text-2xl font-light leading-relaxed italic relative z-10 font-serif">
-                &ldquo;We&apos;re fueled by curiosity and creativity. We seek to improve the quality of the
-                built environment with subtle, yet confident designs characterised by clean lines
-                and forms linked inextricably with function.&rdquo;
-              </p>
-              <div className="mt-10 flex items-center justify-center gap-4 relative z-10">
-                <div className="w-12 h-[1px] bg-black/10" />
-                <span className="text-noir text-xs font-black uppercase tracking-[0.5em]">GDPL Mohali</span>
-                <div className="w-12 h-[1px] bg-black/10" />
+            {/* Main content grid - Side-by-Side with wrapping support */}
+            <div className="flex flex-row items-start justify-center w-full max-w-5xl mx-auto relative px-2">
+              {/* Traveling OUR label track */}
+              <div className="relative w-[25%] md:w-[30%] flex justify-end pr-3">
+                <motion.div
+                  style={{ y: smoothOurY }}
+                  className="h-[8vh] md:h-[12vh] flex items-center justify-end"
+                >
+                  <h2 className="text-xl md:text-5xl lg:text-6xl font-black text-ruby tracking-[0.1em] uppercase leading-none">
+                    OUR
+                  </h2>
+                </motion.div>
+              </div>
+
+              {/* Tagline rows - Full content with wrapping enabled on mobile */}
+              <div className="w-[75%] md:w-[70%] flex flex-col">
+                {[
+                  { head: "Vision", body: "Shapes Skylines." },
+                  { head: "Craft", body: "Builds Sanctuaries." },
+                  { head: "Design", body: "Defines Distinction." },
+                  { head: "Legacy", body: "Commands Trust." },
+                ].map((line, i) => (
+                  <motion.div
+                    key={i}
+                    className="h-[8vh] md:h-[12vh] flex items-center"
+                  >
+                    <h2 className="text-lg md:text-3xl lg:text-4xl font-black uppercase tracking-tighter leading-tight text-white whitespace-normal md:whitespace-nowrap overflow-visible">
+                      <span>
+                        {line.head}{" "}
+                        <span className="text-white opacity-40 ml-1 md:ml-2">
+                          {line.body}
+                        </span>
+                      </span>
+                    </h2>
+                  </motion.div>
+                ))}
               </div>
             </div>
-          </motion.div>
-        </div>
-      </section>
 
+            {/* Description Fixed Visibility */}
+            <div className="mt-6 md:absolute md:-bottom-2 md:right-0 max-w-sm text-center md:text-right hidden lg:block">
+              <p className="text-[10px] text-white/50 leading-relaxed font-light uppercase tracking-[0.2em]">
+                Built on Regal legacy, GDPL crafts iconic spaces while guiding Tricity with trusted real estate expertise
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
 
-      {/* ═══════════════ 4. SIGNATURE PROJECTS (Interactive Portfolio) ═══════════════ */}
+      {/* ═══════════════ 4. SIGNATURE PROJECTS ═══════════════ */}
       <SignaturePortfolio />
 
-      {/* ═══════════════ 5. AMENITIES TABBED SECTION ═══════════════ */}
+      {/* ═══════════════ 5. AMENITIES ═══════════════ */}
       <section className="py-32 bg-transparent relative">
         <div className="absolute top-0 left-0 w-full h-[1px]" style={{ background: "linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent)" }} />
         <div className="container mx-auto px-6 relative z-10">
@@ -355,7 +331,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Tabs - Scrollable on Mobile */}
+          {/* Tabs */}
           <div className="flex xl:justify-center gap-3 mb-16 overflow-x-auto pb-4 no-scrollbar -mx-6 px-6 snap-x snap-mandatory">
             {amenityCategories.map((cat, idx) => (
               <button
@@ -372,7 +348,6 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Tab Content */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeAmenityTab}
@@ -500,7 +475,6 @@ export default function Home() {
                     ? "bg-noir scale-125"
                     : "bg-black/10 hover:bg-black/20"
                     }`}
-                  style={activeTestimonial === idx ? { boxShadow: "0 0 10px rgba(212,175,55,0.5)" } : {}}
                 />
               ))}
             </div>
@@ -511,7 +485,7 @@ export default function Home() {
       {/* ═══════════════ 8. TIMELINE (Sticky Split-Screen) ═══════════════ */}
       <section className="relative bg-transparent">
         <div className="flex flex-col md:flex-row">
-          {/* Left Side: Sticky Year/Title (Black) */}
+          {/* Left Side: Sticky Year */}
           <div className="hidden md:block w-1/2 h-screen sticky top-0 bg-noir overflow-hidden z-10">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.05)_0%,transparent_70%)]" />
             <div className="h-full flex items-center justify-center p-20 relative">
@@ -536,13 +510,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Mobile Year Header */}
           <div className="md:hidden bg-noir py-10 px-6 text-center">
             <p className="text-white/40 text-[10px] font-black uppercase tracking-[0.5em] mb-4">Our Journey</p>
             <h2 className="text-5xl font-black text-white uppercase tracking-tighter">Legacy of Trust</h2>
           </div>
 
-          {/* Right Side: Scrolling Content (Beach) */}
+          {/* Right Side: Content */}
           <div className="w-full md:w-1/2 bg-transparent">
             {timeline.map((item, idx) => (
               <div
