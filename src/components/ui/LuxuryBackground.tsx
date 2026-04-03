@@ -50,12 +50,12 @@ export default function LuxuryBackground() {
                 this.opacityDir = Math.random() > 0.5 ? 1 : -1;
                 this.pulseSpeed = Math.random() * 0.003 + 0.001;
 
-                // Premium palette (Beige, Gold, Cream)
+                // Deep Maroon & Beige palette
                 const colors = [
-                    "212, 175, 55",   // gold
-                    "245, 242, 237",  // cream
-                    "237, 230, 220",  // sand
-                    "212, 175, 55",   // gold again
+                    "243, 217, 180",  // beige
+                    "252, 246, 238",  // offwhite
+                    "82, 19, 30",     // base maroon
+                    "243, 217, 180",  // beige again
                 ];
                 this.color = colors[Math.floor(Math.random() * colors.length)];
             }
@@ -98,13 +98,13 @@ export default function LuxuryBackground() {
             particles.push(new Particle(canvas.width, canvas.height));
         }
 
-        // Floating aurora orbs
+        // Floating aurora orbs - deep maroon shades
         const orbs = [
-            { x: 0.2, y: 0.3, radius: 300, color: "212, 175, 55", speed: 0.0003, phase: 0 },
-            { x: 0.8, y: 0.15, radius: 250, color: "179, 143, 54", speed: 0.0004, phase: 2 },
-            { x: 0.5, y: 0.6, radius: 350, color: "212, 175, 55", speed: 0.00025, phase: 4 },
-            { x: 0.15, y: 0.8, radius: 200, color: "232, 197, 90", speed: 0.00035, phase: 1 },
-            { x: 0.85, y: 0.7, radius: 280, color: "179, 143, 54", speed: 0.0003, phase: 3 },
+            { x: 0.2, y: 0.3, radius: 300, color: "82, 19, 30", speed: 0.0003, phase: 0 },
+            { x: 0.8, y: 0.15, radius: 250, color: "66, 14, 24", speed: 0.0004, phase: 2 },
+            { x: 0.5, y: 0.6, radius: 350, color: "53, 10, 18", speed: 0.00025, phase: 4 },
+            { x: 0.15, y: 0.8, radius: 200, color: "82, 19, 30", speed: 0.00035, phase: 1 },
+            { x: 0.85, y: 0.7, radius: 280, color: "66, 14, 24", speed: 0.0003, phase: 3 },
         ];
 
         let time = 0;
@@ -122,7 +122,7 @@ export default function LuxuryBackground() {
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(212, 175, 55, ${opacity})`;
+                        ctx.strokeStyle = `rgba(243, 217, 180, ${opacity})`;
                         ctx.lineWidth = 0.3;
                         ctx.stroke();
                     }

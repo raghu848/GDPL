@@ -73,7 +73,7 @@
 //                 initial={{ opacity: 0 }}
 //                 animate={isInView ? { opacity: 1 } : { opacity: 0 }}
 //                 transition={{ duration: 0.8, delay: 0.3 }}
-//                 className={`text-[10px] uppercase tracking-[0.3em] text-muted font-bold ${labelClassName}`}
+//                 className={`text-[14px] capitalize tracking-[0.3em] text-muted font-bold ${labelClassName}`}
 //             >
 //                 {label}
 //             </motion.div>

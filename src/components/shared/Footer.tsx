@@ -13,7 +13,7 @@ export default function Footer() {
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
                     <div className="space-y-6">
-                        <Image src="/images/GDPL_Logo_white.png" alt="GDPL Logo" width={160} height={40} className="h-10 w-auto" />
+                        <Image src="/images/GDPL_Logo_white2.png?v=2" alt="GDPL Logo" width={160} height={40} className="h-10 w-auto" />
                         <p className="text-muted text-xs font-light max-w-xs leading-relaxed">
                             We know everything you need about Mohali property market. Building trust since a decade.
                         </p>
@@ -28,24 +28,24 @@ export default function Footer() {
                             </div>
                         </div>
                         <div className="flex gap-4 items-center">
-                            <Link href="#" className="p-2 border border-gold/15 rounded-full hover:bg-gold hover:text-noir hover:border-gold transition-all group">
-                                <Instagram className="w-3.5 h-3.5 text-gold/60 group-hover:text-noir transition-colors" />
+                            <Link href="#" className="p-2 border border-gold/15 rounded-full hover:bg-gold hover:text-white hover:border-gold transition-all group">
+                                <Instagram className="w-3.5 h-3.5 text-gold/60 group-hover:text-white transition-colors" />
                             </Link>
-                            <Link href="#" className="p-2 border border-gold/15 rounded-full hover:bg-gold hover:text-noir hover:border-gold transition-all group">
-                                <Facebook className="w-3.5 h-3.5 text-gold/60 group-hover:text-noir transition-colors" />
+                            <Link href="#" className="p-2 border border-gold/15 rounded-full hover:bg-gold hover:text-white hover:border-gold transition-all group">
+                                <Facebook className="w-3.5 h-3.5 text-gold/60 group-hover:text-white transition-colors" />
                             </Link>
-                            <Link href="#" className="p-2 border border-gold/15 rounded-full hover:bg-gold hover:text-noir hover:border-gold transition-all group">
-                                <Youtube className="w-3.5 h-3.5 text-gold/60 group-hover:text-noir transition-colors" />
+                            <Link href="#" className="p-2 border border-gold/15 rounded-full hover:bg-gold hover:text-white hover:border-gold transition-all group">
+                                <Youtube className="w-3.5 h-3.5 text-gold/60 group-hover:text-white transition-colors" />
                             </Link>
                         </div>
                     </div>
 
                     <nav className="grid grid-cols-2 gap-8">
                         <div className="space-y-3">
-                            <Link href="/" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-gold transition-colors gold-underline w-fit">Main</Link>
-                            <Link href="/projects" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-gold transition-colors gold-underline w-fit">Projects</Link>
-                            <Link href="/about" className="block text-[10px] font-black tracking-[0.3em] uppercase hover:text-gold transition-colors gold-underline w-fit">About Us</Link>
-                            <Link href="/contact" className="block text-[10px] font-black tracking-[0.4em] uppercase hover:text-gold transition-colors gold-underline w-fit text-gold font-black">Contact Us</Link>
+                            <Link href="/" className="block text-[14px] font-normal tracking-[0.3em] capitalize hover:text-gold transition-colors gold-underline w-fit font-serif">Main</Link>
+                            <Link href="/projects" className="block text-[14px] font-normal tracking-[0.3em] capitalize hover:text-gold transition-colors gold-underline w-fit font-serif">Projects</Link>
+                            <Link href="/about" className="block text-[14px] font-normal tracking-[0.3em] capitalize hover:text-gold transition-colors gold-underline w-fit font-serif">About Us</Link>
+                            <Link href="/contact" className="block text-[14px] font-normal tracking-[0.4em] capitalize hover:text-gold transition-colors gold-underline w-fit text-gold font-normal font-serif">Contact Us</Link>
                         </div>
                     </nav>
                 </div>
@@ -53,11 +53,11 @@ export default function Footer() {
                 {/* Gold divider */}
                 <div className="gold-divider w-full mb-8" />
 
-                <div className="flex flex-col md:flex-row justify-between items-center text-[10px] font-black tracking-[0.3em] uppercase text-muted">
-                    <p>&copy; {new Date().getFullYear()} GDPL Mohali. All Rights Reserved.</p>
+                <div className="flex flex-col md:flex-row justify-between items-center text-[14px] font-normal tracking-[0.3em] capitalize text-muted font-serif">
+                    <p>&copy; {new Date().getFullYear()} Gdpl Mohali. All Rights Reserved.</p>
                     <div className="flex gap-8 mt-4 md:mt-0">
-                        <Link href="#" className="hover:text-gold transition-colors text-[10px]">Privacy Policy</Link>
-                        <Link href="https://growdient.com/" className="hover:text-gold transition-colors text-[10px] group relative overflow-hidden">
+                        <Link href="#" className="hover:text-gold transition-colors text-[14px] font-serif">Privacy Policy</Link>
+                        <Link href="https://growdient.com/" className="hover:text-gold transition-colors text-[14px] group relative overflow-hidden font-serif">
                             Made by Growdient
                         </Link>
                     </div>

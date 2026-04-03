@@ -28,8 +28,8 @@ export default function ContactMap() {
                     >
                         <div>
                             <h2 className="section-label mb-8">Visit Us</h2>
-                            <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9] mb-8">
-                                OUR<br />LOCATION
+                            <h3 className="text-4xl md:text-6xl font-normal capitalize tracking-normal leading-[0.9] mb-8 font-serif">
+                                Our Location
                             </h3>
                             <p className="text-muted text-lg font-light leading-relaxed max-w-sm">
                                 Experience luxury firsthand at our flagship site in the heart of Mohali.
@@ -42,7 +42,7 @@ export default function ContactMap() {
                                     <MapPin className="w-5 h-5 text-gold" />
                                 </div>
                                 <div className="space-y-2">
-                                    <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-gold/60">Address</p>
+                                    <p className="text-[14px] capitalize tracking-[0.3em] font-normal text-gold/60 font-serif">Address</p>
                                     <p className="text-sm font-medium leading-relaxed pr-8">
                                         Regal Heights, GH-11D, Sector 91,<br />
                                         Sahibzada Ajit Singh Nagar,<br />
@@ -55,7 +55,7 @@ export default function ContactMap() {
                         <Link
                             href={googleMapsUrl}
                             target="_blank"
-                            className="group flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] w-fit btn-gold px-8 py-4"
+                            className="group flex items-center gap-4 text-[14px] font-normal capitalize tracking-[0.4em] w-fit btn-gold px-8 py-4 font-serif"
                         >
                             Get Directions
                             <Navigation className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -82,8 +82,8 @@ export default function ContactMap() {
                         {/* Interactive Overlay Elements */}
                         <div className="absolute inset-0 pointer-events-none border border-gold/10 rounded-3xl" />
                         <div className="absolute top-6 right-6 p-4 bg-noir/80 backdrop-blur-md rounded-2xl border border-gold/15 hidden md:block">
-                            <p className="text-[8px] font-black uppercase tracking-[0.3em] text-gold/40 mb-1">Status</p>
-                            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-text-primary-dark flex items-center gap-2">
+                            <p className="text-[8px] font-normal capitalize tracking-[0.3em] text-gold/40 mb-1 font-serif">Status</p>
+                            <p className="text-[14px] font-normal capitalize tracking-[0.2em] text-text-primary-dark flex items-center gap-2 font-serif">
                                 <span className="w-1.5 h-1.5 bg-gold rounded-full animate-pulse" style={{ boxShadow: "0 0 8px rgba(212, 175, 55, 0.6)" }} />
                                 Open for Visitation
                             </p>

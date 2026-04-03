@@ -9,18 +9,18 @@ export default function AboutPage() {
             name: "Mr. B.S. Gill",
             role: "Visionary Leader and Mentor",
             image: "/images/mr bs gill.jpg",
-            bio: "As a company, GDPL has always prioritized quality, innovation, and a deep-rooted commitment to community building. Our vision is to create developments that not only meet expectations but exceed them, leaving a lasting impact on the lives of our customers and the society at large."
+            bio: "As a company, Gdpl has always prioritized quality, innovation, and a deep-rooted commitment to community building. Our vision is to create developments that not only meet expectations but exceed them, leaving a lasting impact on the lives of our customers and the society at large."
         },
         {
             name: "Mr. Nardeep Singh",
             role: "Driving Innovation and Growth",
             image: "/images/nardeep singh.jpg",
-            bio: "At GDPL, we are constantly innovating to align with the evolving needs of our customers. Our focus remains on delivering projects that uphold customer trust while paving the way for a brighter, more sustainable future."
+            bio: "At Gdpl, we are constantly innovating to align with the evolving needs of our customers. Our focus remains on delivering projects that uphold customer trust while paving the way for a brighter, more sustainable future."
         }
     ];
 
     return (
-        <main className="min-h-screen bg-transparent text-noir font-sans pb-24 selection:bg-noir selection:text-white">
+        <main className="min-h-screen bg-transparent text-white font-sans pb-24 selection:bg-noir selection:text-white">
             {/* Hero Section */}
             <section className="relative h-[80vh] w-full mb-32 overflow-hidden">
                 <div className="absolute inset-0 z-0">
@@ -40,10 +40,10 @@ export default function AboutPage() {
             <section className="container mx-auto px-6 mb-40 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
                     <div>
-                        <h2 className="text-h2 mb-12 border-l-4 border-gold pl-6 uppercase tracking-tighter">Who We Are</h2>
+                        <h2 className="text-h2 mb-12 border-l-4 border-gold pl-6 capitalize tracking-normal font-serif">Who We Are</h2>
                         <div className="space-y-8 text-muted text-lg leading-relaxed font-light">
                             <p>
-                                GDPL is a distinguished entity in the real estate sector, celebrated for
+                                Gdpl is a distinguished entity in the real estate sector, celebrated for
                                 delivering high-quality construction and innovative design. Our portfolio
                                 showcases a diverse range of projects, including luxurious residential estates,
                                 cutting-edge commercial hubs, and infrastructural marvels.
@@ -57,18 +57,18 @@ export default function AboutPage() {
                     </div>
 
                     {/* Stats Grid with Static High-End Typography */}
-                    <div className="grid grid-cols-2 gap-8 border-t border-black/10 pt-12">
+                    <div className="grid grid-cols-2 gap-8 border-t border-white/10 pt-12">
                         <div className="flex flex-col items-center text-center">
-                            <span className="text-4xl md:text-5xl font-black text-noir tracking-tighter">10+</span>
-                            <span className="text-[9px] uppercase tracking-[0.3em] text-noir/40 font-bold mt-2">Years of Legacy</span>
+                            <span className="text-4xl md:text-5xl font-normal text-white tracking-normal font-serif">10+</span>
+                            <span className="text-[9px] capitalize tracking-[0.3em] text-white/40 font-normal mt-2 font-serif">Years of Legacy</span>
                         </div>
                         <div className="flex flex-col items-center text-center">
-                            <span className="text-4xl md:text-5xl font-black text-noir tracking-tighter">500+</span>
-                            <span className="text-[9px] uppercase tracking-[0.3em] text-noir/40 font-bold mt-2">Families Served</span>
+                            <span className="text-4xl md:text-5xl font-normal text-white tracking-normal font-serif">300+</span>
+                            <span className="text-[9px] capitalize tracking-[0.3em] text-white/40 font-normal mt-2 font-serif">Families Served</span>
                         </div>
-                        <div className="col-span-2 pt-8 border-t border-black/5 mt-4 text-center">
-                            <span className="text-6xl md:text-7xl font-black text-noir tracking-tighter block mb-2">100%</span>
-                            <span className="text-[10px] uppercase tracking-[0.4em] text-noir/40 font-bold">Transparency & Trust</span>
+                        <div className="col-span-2 pt-8 border-t border-white/5 mt-4 text-center">
+                            <span className="text-6xl md:text-7xl font-normal text-white tracking-normal block mb-2 font-serif">100%</span>
+                            <span className="text-[14px] capitalize tracking-[0.4em] text-white/40 font-normal font-serif">Transparency & Trust</span>
                         </div>
                     </div>
                 </div>
@@ -85,8 +85,8 @@ export default function AboutPage() {
                     >
                         <h2 className="section-label mb-8">Evolution</h2>
                         {/* Architectural accent line */}
-                        <div className="w-12 h-[2px] mb-8 bg-black/10" />
-                        <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-12 text-noir">
+                        <div className="w-12 h-[2px] mb-8 bg-white/10" />
+                        <h2 className="text-4xl md:text-6xl font-normal capitalize tracking-normal leading-none mb-12 text-white font-serif">
                             Our<br />Journey
                         </h2>
                     </motion.div>
@@ -98,12 +98,12 @@ export default function AboutPage() {
                         className="space-y-8 relative"
                     >
                         {/* Timeline vertical line */}
-                        <div className="absolute left-0 top-0 bottom-0 w-[1px] hidden lg:block bg-black/10" />
+                        <div className="absolute left-0 top-0 bottom-0 w-[1px] hidden lg:block bg-white/10" />
 
                         <div className="lg:pl-8 relative">
                             <div className="absolute left-[-3.5px] top-2 w-2 h-2 rounded-full bg-noir hidden lg:block" />
                             <p className="text-muted text-lg leading-relaxed font-light">
-                                From our humble beginnings to becoming a trusted name in real estate, GDPL&apos;s journey is a testament to perseverance, innovation, and a customer-centric approach.
+                                From our humble beginnings to becoming a trusted name in real estate, Gdpl&apos;s journey is a testament to perseverance, innovation, and a customer-centric approach.
                             </p>
                         </div>
                         <div className="lg:pl-8 relative">
@@ -120,7 +120,7 @@ export default function AboutPage() {
             <section className="container mx-auto px-6 mb-20 relative z-10">
                 <div className="text-center mb-20">
                     <h2 className="section-label mb-4">The Visionaries</h2>
-                    <h3 className="text-h2 uppercase tracking-tighter">Our Leadership</h3>
+                    <h3 className="text-h2 capitalize tracking-normal font-serif">Our Leadership</h3>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32">
                     {leaders.map((leader) => (
@@ -144,9 +144,9 @@ export default function AboutPage() {
                                 <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-gold/0 group-hover:border-gold/50 transition-all duration-700" />
                             </div>
                             <div className="space-y-4">
-                                <h3 className="text-3xl font-black tracking-tight uppercase text-noir">{leader.name}</h3>
-                                <div className="text-noir uppercase tracking-[0.15em] text-[11px] font-black">{leader.role}</div>
-                                <p className="text-noir leading-relaxed font-normal mt-6 italic text-base md:text-lg">
+                                <h3 className="text-3xl font-normal tracking-normal capitalize text-white font-serif">{leader.name}</h3>
+                                <div className="text-white capitalize tracking-[0.15em] text-[11px] font-normal font-serif">{leader.role}</div>
+                                <p className="text-white leading-relaxed font-normal mt-6 italic text-base md:text-lg">
                                     &quot;{leader.bio}&quot;
                                 </p>
                             </div>
@@ -166,11 +166,11 @@ export default function AboutPage() {
                             transition={{ duration: 1 }}
                         >
                             <h2 className="section-label mb-12 !text-white/40">The Backbone</h2>
-                            <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-16 text-white">
-                                OUR TEAM
+                            <h2 className="text-4xl md:text-7xl font-normal capitalize tracking-normal leading-none mb-16 text-white font-serif">
+                                Our Team
                             </h2>
                             <p className="text-white/60 text-xl md:text-2xl font-light leading-relaxed mb-12">
-                                Behind GDPL&apos;s success lies a team of dedicated professionals who bring expertise, creativity, and passion to every project.
+                                Behind Gdpl&apos;s success lies a team of dedicated professionals who bring expertise, creativity, and passion to every project.
                             </p>
                             <p className="text-white/40 text-lg font-light leading-relaxed max-w-2xl mx-auto">
                                 Our team members, from architects to customer relations specialists, work collaboratively to ensure that our projects are nothing short of excellence. We are united by a common goal: building spaces that inspire.
@@ -185,19 +185,19 @@ export default function AboutPage() {
                 <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
                     <div className="max-w-xl">
                         <h2 className="section-label mb-8">Responsibility</h2>
-                        <div className="w-12 h-[2px] mb-8 bg-black/10" />
-                        <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none text-noir">
-                            CORPORATE SOCIAL<br /><span className="text-ruby">RESPONSIBILITY</span>
+                        <div className="w-12 h-[2px] mb-8 bg-white/10" />
+                        <h2 className="text-4xl md:text-6xl font-normal capitalize tracking-normal leading-none text-white font-serif">
+                            Corporate Social<br /><span className="text-[#D4AF37] font-serif">Responsibility</span>
                         </h2>
                     </div>
                     <div className="md:w-1/3">
-                        <p className="text-noir text-base font-normal leading-relaxed">
-                            At GDPL, we believe in giving back to the community. Our CSR initiatives focus on education, environment, and social welfare.
+                        <p className="text-white text-base font-normal leading-relaxed">
+                            At Gdpl, we believe in giving back to the community. Our CSR initiatives focus on education, environment, and social welfare.
                         </p>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                     {[
                         { title: "Education", text: "Supporting local schools and providing resources for children's growth.", icon: <Globe className="w-8 h-8" /> },
                         { title: "Environment", text: "Promoting green initiatives and sustainable living practices.", icon: <ShieldCheck className="w-8 h-8" /> },
@@ -209,13 +209,13 @@ export default function AboutPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: false }}
                             transition={{ duration: 0.8, delay: idx * 0.2 }}
-                            className="glass-premium p-12 rounded-3xl group border-black/5 hover:bg-white transition-all duration-700"
+                            className="glass-premium p-12 rounded-3xl group border-white/5 hover:bg-white transition-all duration-700"
                         >
-                            <div className="mb-8 p-4 bg-black/5 w-fit rounded-2xl text-noir group-hover:bg-noir group-hover:text-white transition-all duration-500 border border-black/5">
+                            <div className="mb-8 p-4 bg-white/5 w-fit rounded-2xl text-white group-hover:bg-noir group-hover:text-white transition-all duration-500 border border-white/5">
                                 {item.icon}
                             </div>
-                            <h3 className="text-2xl font-black uppercase tracking-tighter mb-4 group-hover:text-noir transition-colors text-noir">{item.title}</h3>
-                            <p className="text-noir text-base font-normal leading-relaxed">{item.text}</p>
+                            <h3 className="text-3xl font-normal capitalize tracking-normal mb-6 group-hover:text-white transition-colors text-white font-serif">{item.title}</h3>
+                            <p className="text-white text-base font-normal leading-relaxed">{item.text}</p>
                         </motion.div>
                     ))}
                 </div>
@@ -226,8 +226,8 @@ export default function AboutPage() {
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-white/10" />
                 <div className="container mx-auto px-6 text-center relative z-10">
                     <div className="max-w-4xl mx-auto">
-                        <div className="text-[10px] uppercase tracking-[0.5em] mb-12 font-bold text-white/40">Our Fundamental Vision</div>
-                        <h2 className="text-4xl md:text-5xl lg:text-7xl font-black leading-tight uppercase tracking-tighter text-white">
+                        <div className="text-[14px] capitalize tracking-[0.5em] mb-12 font-normal text-white/40 font-serif">Our Fundamental Vision</div>
+                        <h2 className="text-4xl md:text-5xl lg:text-7xl font-normal leading-tight capitalize tracking-normal text-white font-serif">
                             To be the region&apos;s most trusted developer, where{" "}
                             <span className="text-white/40">
                                 quality meets transparency.

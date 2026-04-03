@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Cormorant_Garamond } from "next/font/google";
+import { Plus_Jakarta_Sans, Carattere } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
@@ -10,10 +10,10 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
 });
 
-const cormorantGaramond = Cormorant_Garamond({
+const carattere = Carattere({
   variable: "--font-serif",
   subsets: ["latin"],
-  weight: ["600"],
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${plusJakartaSans.variable} ${cormorantGaramond.variable} font-sans antialiased text-text-primary-dark`}>
+      <body suppressHydrationWarning className={`${plusJakartaSans.variable} ${carattere.variable} font-sans antialiased text-text-primary-dark overflow-x-hidden`}>
         <LuxuryBackground />
         <Header />
         {children}

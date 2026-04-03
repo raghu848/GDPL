@@ -22,20 +22,48 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
     const opacityHero = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
     const statusColors = {
-        Ongoing: "bg-green-500/10 text-green-600 border-green-500/20",
-        Delivered: "bg-black/5 text-noir border-black/10",
+        Ongoing: "bg-black/5 text-black border-black/10",
+        Delivered: "bg-white/5 text-white border-white/10",
         Upcoming: "bg-blue-500/10 text-blue-600 border-blue-500/20",
     };
 
     return (
-        <main className="min-h-screen bg-transparent text-noir grain-overlay">
+        <main className="min-h-screen bg-transparent text-white grain-overlay">
             {/* ═══════ 1. HERO ═══════ */}
             <section
                 ref={heroRef}
-                className="relative h-screen w-full flex items-center overflow-hidden bg-stone-100"
+                className="relative h-screen w-full flex items-center overflow-hidden bg-stone-100 vhs-flicker"
             >
+                {/* 90's VHS Overlay Elements */}
+                <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
+                    <div className="vhs-scanlines" />
+                    
+                    {/* Golden Lens Flare / Light Leak */}
+                    <div className="absolute inset-0 z-10 opacity-50">
+                        <div className="absolute -top-[20%] -left-[20%] w-[140%] h-[140%] bg-[radial-gradient(circle_at_50%_50%,rgba(212,175,55,0.1)_0%,transparent_70%)] animate-slow-drift" />
+                    </div>
+
+                    {/* Digital Date */}
+                    <div className="absolute top-12 right-12 text-[#D4AF37]/60 font-mono text-[11px] tracking-widest font-bold drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]">
+                        {new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).toUpperCase()}
+                    </div>
+
+                    {/* Digital Timer */}
+                    <div className="absolute bottom-40 left-12 text-[#D4AF37]/30 font-mono text-[9px] tracking-widest uppercase hidden lg:block">
+                        SP  PLAY  00:04:12:08
+                    </div>
+                </div>
+
                 <motion.div
                     style={{ y: backgroundY }}
+                    animate={{ 
+                        scale: [1, 1.1, 1],
+                    }}
+                    transition={{ 
+                        duration: 30, 
+                        repeat: Infinity, 
+                        ease: "linear" 
+                    }}
                     className="absolute inset-0 z-0"
                 >
                     <Image
@@ -43,10 +71,11 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                         alt={project.name}
                         fill
                         priority
-                        className="object-cover scale-110"
+                        className="object-cover"
                         sizes="100vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-white via-white/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white via-white/60 to-transparent" />
+                    <div className="absolute inset-0 bg-[#D4AF37]/5 mix-blend-overlay" />
                 </motion.div>
 
                 <div className="container mx-auto px-6 h-full flex flex-col justify-center relative z-10">
@@ -60,28 +89,26 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                             transition={{ duration: 1, delay: 0.2 }}
                         >
                             <div className="flex items-center gap-4 mb-8">
-                                <div className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.4em] border shadow-sm ${statusColors[project.status]}`}>
+                                <div className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-[14px] font-black capitalize tracking-[0.4em] border shadow-sm ${statusColors[project.status]}`}>
                                     <span className="w-1.5 h-1.5 rounded-full bg-current" />
                                     {project.status}
                                 </div>
-                                <div className="h-[1px] w-12 bg-black/10" />
+                                <div className="h-[1px] w-12 bg-white/10" />
                                 <div className="flex items-center gap-2">
-                                    <MapPin className="w-4 h-4 text-ruby" />
-                                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-noir/40">{project.location}</span>
+                                    <MapPin className="w-4 h-4 text-[#D4AF37] font-serif" />
+                                    <span className="text-[14px] font-normal capitalize tracking-[0.3em] text-black/80 font-serif">{project.location}</span>
                                 </div>
                             </div>
                         </motion.div>
 
                         <div className="relative">
                             <motion.h1
-                                initial={{ opacity: 0, clipPath: "inset(0 100% 0 0)" }}
-                                animate={{ opacity: 1, clipPath: "inset(0 0% 0 0)" }}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-                                className="text-6xl md:text-9xl lg:text-[160px] font-black uppercase tracking-tighter leading-[0.8] mb-10 text-noir"
+                                className="text-5xl md:text-7xl lg:text-[100px] font-normal capitalize tracking-tight leading-[1.1] mb-12 text-black font-serif px-4"
                             >
-                                {project.name.split(' ').map((word, i) => (
-                                    <span key={i} className="block last:ml-[0.1em]">{word}</span>
-                                ))}
+                                {project.name}
                             </motion.h1>
                         </div>
 
@@ -89,9 +116,9 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, delay: 1 }}
-                            className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16"
+                            className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16 mb-20"
                         >
-                            <p className="text-noir/60 text-lg md:text-2xl font-light max-w-xl leading-relaxed italic">
+                            <p className="text-black/80 text-lg md:text-xl font-normal max-w-2xl leading-relaxed italic">
                                 "{project.tagline}"
                             </p>
                         </motion.div>
@@ -106,22 +133,22 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                         transition={{ duration: 1, delay: 1.2 }}
                         className="container mx-auto"
                     >
-                        <div className="glass-premium border border-black/5 rounded-[2rem] p-6 md:p-8 flex flex-wrap items-center justify-between gap-8 md:gap-12 shadow-2xl backdrop-blur-xl">
+                        <div className="glass-premium border border-white/5 rounded-[2rem] p-6 md:p-8 flex flex-wrap items-center justify-between gap-8 md:gap-12 shadow-2xl backdrop-blur-xl">
                             <div className="flex items-center gap-12 flex-1 flex-wrap">
                                 {project.priceLabel !== "Coming Soon" && (
                                     <div className="min-w-[140px]">
-                                        <p className="text-[9px] font-black uppercase tracking-[0.4em] text-noir/40 mb-2">Investment Value</p>
+                                        <p className="text-[12px] font-normal capitalize tracking-[0.4em] text-white/40 mb-2 font-serif">Investment Value</p>
                                         <p className="text-xl md:text-2xl font-black tracking-tight">{project.priceLabel}</p>
                                     </div>
                                 )}
                                 {project.area && project.area !== "TBA" && (
                                     <div className="min-w-[140px]">
-                                        <p className="text-[9px] font-black uppercase tracking-[0.4em] text-noir/40 mb-2">Development Size</p>
+                                        <p className="text-[12px] font-normal capitalize tracking-[0.4em] text-white/40 mb-2 font-serif">Development Size</p>
                                         <p className="text-xl md:text-2xl font-black tracking-tight">{project.area}</p>
                                     </div>
                                 )}
                                 <div className="min-w-[140px]">
-                                    <p className="text-[9px] font-black uppercase tracking-[0.4em] text-noir/40 mb-2">Configurations</p>
+                                    <p className="text-[12px] font-normal capitalize tracking-[0.4em] text-white/40 mb-2 font-serif">Configurations</p>
                                     <p className="text-xl md:text-2xl font-black tracking-tight">{project.configurations.length} Luxury Types</p>
                                 </div>
                             </div>
@@ -143,7 +170,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                     transition={{ delay: 2, duration: 2 }}
                     className="absolute right-12 bottom-12 hidden lg:flex flex-col items-center gap-4"
                 >
-                    <span className="text-[10px] font-black uppercase tracking-[0.5em] rotate-90 origin-right text-noir/20 whitespace-nowrap">Scroll Experience</span>
+                    <span className="text-[14px] font-normal capitalize tracking-[0.5em] rotate-90 origin-right text-white/20 whitespace-nowrap font-serif">Scroll Experience</span>
                     <div className="w-[1px] h-20 bg-gradient-to-b from-black/20 to-transparent" />
                 </motion.div>
             </section>
@@ -159,8 +186,8 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                             transition={{ duration: 1 }}
                         >
                             <p className="section-label mb-6">About the Project</p>
-                            <div className="w-12 h-[2px] mb-8 bg-black/10" />
-                            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-[0.9] mb-10 text-noir">
+                            <div className="w-12 h-[2px] mb-8 bg-white/10" />
+                            <h2 className="text-3xl md:text-5xl font-normal capitalize tracking-normal leading-[0.9] mb-10 text-white font-serif">
                                 {project.name}
                             </h2>
                             <p className="text-muted text-lg font-light leading-relaxed">{project.longDescription}</p>
@@ -173,8 +200,8 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                             transition={{ duration: 1, delay: 0.2 }}
                         >
                             {/* Highlights Card */}
-                            <div className="glass-premium p-8 md:p-10 rounded-3xl border border-black/5">
-                                <h3 className="text-lg font-black uppercase tracking-tight mb-8 flex items-center gap-3">
+                            <div className="glass-premium p-8 md:p-10 rounded-3xl border border-white/5">
+                                <h3 className="text-lg font-black capitalize tracking-tight mb-8 flex items-center gap-3">
                                     <span className="w-2 h-2 rounded-full bg-noir" />
                                     Key Highlights
                                 </h3>
@@ -188,10 +215,10 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                                             transition={{ delay: i * 0.1 }}
                                             className="flex items-center gap-4 group"
                                         >
-                                            <div className="p-1.5 bg-black/5 rounded-lg border border-black/10 text-noir group-hover:bg-noir group-hover:text-white transition-all">
+                                            <div className="p-1.5 bg-white/5 rounded-lg border border-white/10 text-white group-hover:bg-noir group-hover:text-white transition-all">
                                                 <Check className="w-3 h-3" />
                                             </div>
-                                            <span className="text-noir/80 text-sm font-light">{h}</span>
+                                            <span className="text-white/80 text-sm font-light">{h}</span>
                                         </motion.div>
                                     ))}
                                 </div>
@@ -212,8 +239,8 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                         className="text-center mb-16"
                     >
                         <p className="section-label mb-4">Floor Plans</p>
-                        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-noir">
-                            AVAILABLE <span className="text-ruby">CONFIGURATIONS</span>
+                        <h2 className="text-3xl md:text-5xl font-normal capitalize tracking-normal leading-none text-white font-serif">
+                            Available <span className="text-[#D4AF37] font-serif">Configurations</span>
                         </h2>
                     </motion.div>
 
@@ -225,13 +252,13 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: idx * 0.15 }}
-                                className="glass-premium p-8 rounded-2xl text-center group border border-black/5 transition-all duration-500 relative overflow-hidden"
+                                className="glass-premium p-8 rounded-2xl text-center group border border-white/5 transition-all duration-500 relative overflow-hidden"
                             >
                                 <div className="relative z-10">
-                                    <h3 className="text-2xl font-black uppercase tracking-tight mb-3 group-hover:text-black transition-colors">{config.type}</h3>
-                                    <p className="text-noir font-mono text-lg mb-2">{config.size}</p>
+                                    <h3 className="text-2xl font-black capitalize tracking-tight mb-3 group-hover:text-white transition-colors">{config.type}</h3>
+                                    <p className="text-white font-mono text-lg mb-2">{config.size}</p>
                                     {config.booking && (
-                                        <p className="text-[10px] uppercase tracking-[0.3em] text-noir/40 font-bold mt-4 pt-4 border-t border-black/5">
+                                        <p className="text-[14px] capitalize tracking-[0.3em] text-white/40 font-normal mt-4 pt-4 border-t border-white/5 font-serif">
                                             Booking: {config.booking}
                                         </p>
                                     )}
@@ -253,8 +280,8 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                         className="text-center mb-16"
                     >
                         <p className="section-label mb-4">Visual Tour</p>
-                        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-noir">
-                            PROJECT <span className="text-ruby">GALLERY</span>
+                        <h2 className="text-3xl md:text-5xl font-normal capitalize tracking-normal leading-none text-white font-serif">
+                            Project <span className="text-[#D4AF37] font-serif">Gallery</span>
                         </h2>
                     </motion.div>
 
@@ -294,7 +321,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                                 className="break-inside-avoid group cursor-pointer"
                                 onClick={() => setLightboxImage(img)}
                             >
-                                <div className="overflow-hidden rounded-2xl border border-black/5 transition-all duration-700 relative aspect-[4/3] md:aspect-auto">
+                                <div className="overflow-hidden rounded-2xl border border-white/5 transition-all duration-700 relative aspect-[4/3] md:aspect-auto">
                                     <Image
                                         src={img}
                                         alt={`${project.name} - Image ${idx + 1}`}
@@ -319,7 +346,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                         className="fixed inset-0 z-[100] bg-stone/95 backdrop-blur-md flex items-center justify-center p-4 md:p-12 cursor-pointer"
                         onClick={() => setLightboxImage(null)}
                     >
-                        <button className="absolute top-6 right-6 p-4 bg-black/5 rounded-full hover:bg-black hover:text-white transition-all z-10">
+                        <button className="absolute top-6 right-6 p-4 bg-white/5 rounded-full hover:bg-black hover:text-white transition-all z-10">
                             <X className="w-5 h-5" />
                         </button>
                         <Image
@@ -345,8 +372,8 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                         className="text-center mb-16"
                     >
                         <p className="section-label mb-4">Lifestyle</p>
-                        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-noir">
-                            PREMIUM <span className="text-ruby">AMENITIES</span>
+                        <h2 className="text-3xl md:text-5xl font-normal capitalize tracking-normal leading-none text-white font-serif">
+                            Premium <span className="text-[#D4AF37] font-serif">Amenities</span>
                         </h2>
                     </motion.div>
 
@@ -356,9 +383,9 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                             <button
                                 key={idx}
                                 onClick={() => setActiveAmenityTab(idx)}
-                                className={`px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 border ${activeAmenityTab === idx
+                                className={`px-6 py-3 rounded-full text-[14px] font-black capitalize tracking-[0.2em] transition-all duration-300 border ${activeAmenityTab === idx
                                     ? "bg-noir text-white border-noir"
-                                    : "bg-transparent text-neutral-400 border-black/10 hover:border-black/20 hover:text-noir"
+                                    : "bg-transparent text-neutral-400 border-white/10 hover:border-white/20 hover:text-white"
                                     }`}
                             >
                                 {cat.name}
@@ -374,9 +401,9 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.4 }}
-                            className="glass-premium p-8 md:p-12 rounded-3xl max-w-4xl mx-auto border border-black/5 shadow-sm"
+                            className="glass-premium p-8 md:p-12 rounded-3xl max-w-4xl mx-auto border border-white/5 shadow-sm"
                         >
-                            <h3 className="text-2xl font-black uppercase tracking-tighter mb-8">{project.amenities[activeAmenityTab].name}</h3>
+                            <h3 className="text-2xl font-black capitalize tracking-tighter mb-8">{project.amenities[activeAmenityTab].name}</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {project.amenities[activeAmenityTab].items.map((item, i) => (
                                     <motion.div
@@ -384,10 +411,10 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                                         initial={{ opacity: 0, x: -10 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: i * 0.05 }}
-                                        className="flex items-center gap-4 py-3 px-4 rounded-xl hover:bg-black/5 transition-colors group"
+                                        className="flex items-center gap-4 py-3 px-4 rounded-xl hover:bg-white/5 transition-colors group"
                                     >
                                         <div className="w-1.5 h-1.5 rounded-full bg-noir shrink-0 group-hover:scale-150 transition-transform" />
-                                        <span className="text-noir/80 text-sm font-light">{item}</span>
+                                        <span className="text-white/80 text-sm font-light">{item}</span>
                                     </motion.div>
                                 ))}
                             </div>
@@ -412,7 +439,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                             transition={{ duration: 1 }}
                         >
                             <p className="section-label mb-6 !text-white/40">Take the Next Step</p>
-                            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-none mb-6 text-white">
+                            <h2 className="text-3xl md:text-5xl lg:text-6xl font-normal capitalize tracking-normal leading-none mb-6 text-white font-serif">
                                 Interested in {project.name}?
                             </h2>
                             <p className="text-white/60 text-lg font-light max-w-xl mx-auto mb-12">
@@ -422,14 +449,14 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                                 <Link
                                     href="https://wa.me/917789000077"
                                     target="_blank"
-                                    className="inline-flex items-center justify-center gap-4 btn-gold py-5 px-10 rounded-full text-[10px] font-black uppercase tracking-[0.3em] group"
+                                    className="inline-flex items-center justify-center gap-4 btn-gold py-5 px-10 rounded-full text-[14px] font-normal capitalize tracking-[0.3em] group font-serif"
                                 >
                                     <MessageSquare className="w-4 h-4 group-hover:scale-110 transition-transform" />
                                     WhatsApp Us
                                 </Link>
                                 <Link
                                     href="tel:+917789000077"
-                                    className="inline-flex items-center justify-center gap-4 border border-white/20 text-white py-5 px-10 rounded-full text-[10px] font-black uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all group"
+                                    className="inline-flex items-center justify-center gap-4 border border-white/20 text-white py-5 px-10 rounded-full text-[14px] font-normal capitalize tracking-[0.3em] hover:bg-white hover:text-noir transition-all group font-serif"
                                 >
                                     <Phone className="w-4 h-4 group-hover:scale-110 transition-transform" />
                                     Call Now
