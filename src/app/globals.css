@@ -456,12 +456,12 @@ body::before {
     height: 100%;
     background: linear-gradient(
       rgba(212, 175, 55, 0) 50%,
-      rgba(212, 175, 55, 0.05) 50%
+      rgba(212, 175, 55, 0.03) 50%
     );
-    background-size: 100% 4px;
+    background-size: 100% 2px;
     z-index: 20;
     pointer-events: none;
-    opacity: 0.6;
+    opacity: 0.3;
   }
 
   .vhs-flicker {

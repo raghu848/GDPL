@@ -17,7 +17,7 @@ export default function ProjectsPage() {
     const filteredProjects = projects.filter(project => {
         const matchesSearch =
             project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            project.tagline.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            (project.tagline?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false) ||
             project.location.toLowerCase().includes(searchQuery.toLowerCase());
 
         const matchesFilter = activeFilter === "All" || project.status === activeFilter;
@@ -132,7 +132,9 @@ export default function ProjectsPage() {
                                                 {project.name}
                                             </h2>
 
-                                            <p className="text-white/50 text-xs md:text-sm capitalize tracking-[0.2em] font-bold mb-4">{project.tagline}</p>
+                                            {project.tagline && (
+                                                <p className="text-white/50 text-xs md:text-sm capitalize tracking-[0.2em] font-bold mb-4">{project.tagline}</p>
+                                            )}
 
                                             <p className="text-white/40 text-sm font-light leading-relaxed hidden md:block max-w-md mb-6">{project.description}</p>
 

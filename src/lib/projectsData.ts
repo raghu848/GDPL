@@ -12,7 +12,7 @@ export interface AmenityCategory {
 export interface Project {
     slug: string;
     name: string;
-    tagline: string;
+    tagline?: string;
     location: string;
     status: "Ongoing" | "Delivered" | "Upcoming";
     heroImage: string;
@@ -24,20 +24,45 @@ export interface Project {
     configurations: ProjectConfig[];
     amenities: AmenityCategory[];
     highlights: string[];
+    residencesSummary?: string;
+    projectType?: string;
+    amenityIcons?: Record<string, string>;
 }
 
 export const projects: Project[] = [
     {
         slug: "regal-residencia",
         name: "Regal Residencia",
-        tagline: "3, 3+1 & 4+1 BHK residences in Sector 114, Mohali, designed with open landscapes, podium-level amenities, and seamless green connectivity.",
+
         location: "Sector 114, Mohali",
         status: "Ongoing",
         heroImage: "/regal_rersidencia/Regal_Residencia_.jpg.jpeg",
         priceLabel: "₹6,900/sq.ft.",
-        area: "5+ Acres",
+        area: "8.5 Acres",
+        residencesSummary: "3, 3+1 & 4+1 BHK Homes",
+        projectType: "Residential + Commercial Hub",
+        amenityIcons: {
+            "Indoor Badminton": "/regal_rersidencia/icons/badminton_12635730.svg",
+            "Signature Club & Café": "/regal_rersidencia/icons/club_10934333.svg",
+            "Wi-Fi in Common Areas": "/regal_rersidencia/icons/computer_14197303.svg",
+            "Cricket Pitch": "/regal_rersidencia/icons/cricket-stump_17559333.svg",
+            "Premium Indoor Golf": "/regal_rersidencia/icons/golf-equipment_5477988.svg",
+            "Fully Equipped Gymnasium": "/regal_rersidencia/icons/gym_11055008.svg",
+            "Skating Rink": "/regal_rersidencia/icons/ice-skate_11249697.svg",
+            "Crèche Facility": "/regal_rersidencia/icons/playground_10638591.svg",
+            "Swimming Pool": "/regal_rersidencia/icons/rubber-pool_10772888.svg",
+            "Resort-style Swimming Pool": "/regal_rersidencia/icons/rubber-pool_10772888.svg",
+            "Spa & Sauna": "/regal_rersidencia/icons/sauna_17386830.svg",
+            "Basketball Court": "/regal_rersidencia/icons/stadium_4276518.svg",
+            "Mini Theatre": "/regal_rersidencia/icons/theater_3041710.svg",
+            "Barbeque Zone": "/regal_rersidencia/icons/bar-counter_4256133.svg",
+            "Yoga Room": "/regal_rersidencia/icons/beach_18694042.svg",
+            "Meditation Zone": "/regal_rersidencia/icons/harebell_1531185.svg",
+            "Jogging Track": "/regal_rersidencia/icons/gazebo_4590895.svg",
+            "Sports Arena": "/regal_rersidencia/icons/game-center_18369956.svg"
+        },
         description: "Thoughtfully designed independent floors combining spacious living with modern architecture. Features an Iconic Sky Walk, resort-style pool, and over 30 premium amenities.",
-        longDescription: "Regal Residencia redefines the concept of independent living in Mohali. Nestled in the prime location of Sector 114, this project offers ultra-spacious floors that combine the privacy of a villa with the convenience of a modern apartment complex. Every unit is designed with meticulous attention to natural light, ventilation, and vastu compliance. With over 30 world-class amenities including an Iconic Sky Walk, resort-style pool, spa, and signature club — Regal Residencia is where luxury meets lifestyle.",
+        longDescription: "Regal Residencia, Sector 114, Mohali is a premium residential–commercial development designed for modern urban living. Featuring spacious 3 & 4 BHK residences and exclusive penthouses, the project blends comfort, luxury, and convenience in one vibrant destination Thoughtfully planned with open green spaces, podium-level amenities, and a lively retail hub, it offers a perfect balance of lifestyle and functionality. Strategically located, it ensures seamless connectivity to Chandigarh, the airport, and key landmarks, making everyday living effortless..",
         galleryImages: [
             "/regal_rersidencia/Regal%20Residencia%20Sector%20114%20Mohali%20_page-0006.jpg",
             "/regal_rersidencia/Regal%20Residencia%20Sector%20114%20Mohali%20_page-0007.jpg",
@@ -72,11 +97,11 @@ export const projects: Project[] = [
             },
         ],
         highlights: [
-            "30+ World-class Amenities",
-            "Iconic Sky Walk — First in Region",
-            "Vastu Compliant Design",
-            "3-side Open Plot",
-            "Sun-facing Apartments",
+            "30+ World-Class Amenities",
+            "Iconic Sky Walk (First in the Region)",
+            "Spacious 3 & 4 BHK + Luxury Penthouses",
+            "Integrated Retail & Lifestyle Hub",
+            "Prime Location with Seamless Connectivity",
             "RERA Registered",
         ],
     },
@@ -127,13 +152,15 @@ export const projects: Project[] = [
             },
         ],
         highlights: [
-            "5.37 Acres — 3-Side Open",
-            "2-Acre Lush Green Podium Park",
-            "25,000 sq.ft. Club House",
-            "Sun-Facing Apartments",
-            "Earthvilla's & Skyvilla's Available",
+            "5.37 Acres Plot",
+            "2-Acre Podium Park",
+            "25,000 sq.ft. Club",
+            "Sun-Facing",
+            "Earthvillas & Skyvillas",
             "RERA Registered",
         ],
+        residencesSummary: "3+1, 4+1 BHK & Earthvillas",
+        projectType: "Luxury Residential",
     },
     {
         slug: "regal-empirus",
@@ -179,13 +206,15 @@ export const projects: Project[] = [
             },
         ],
         highlights: [
-            "5.37 Acres — 3-Side Open Site",
-            "2-Acre Lush Green Podium Park",
-            "Five-Star Club House & Banquet",
-            "Multi-level Parking System",
-            "Sun-Facing Apartments",
+            "5.37 Acres Site",
+            "2-Acre Podium Park",
+            "Five-Star Club",
+            "Multi-level Parking",
+            "Sun-Facing",
             "RERA Registered",
         ],
+        residencesSummary: "3+1 & 4+1 BHK Residences",
+        projectType: "Ultra-Luxury Residential",
     },
     {
         slug: "regal-luxuria",
@@ -223,13 +252,15 @@ export const projects: Project[] = [
             },
         ],
         highlights: [
-            "Ultra-Luxury Residences",
+            "Ultra-Luxury Living",
             "Bespoke Interiors",
-            "Private Terraces & Gardens",
-            "Residents-Only Exclusive Club",
-            "Smart Home Automation",
+            "Private Terraces",
+            "Exclusive Club",
+            "Home Automation",
             "Coming Soon",
         ],
+        residencesSummary: "4+1 BHK & Penthouses",
+        projectType: "Premium Commercial Plots",
     },
 ];
 

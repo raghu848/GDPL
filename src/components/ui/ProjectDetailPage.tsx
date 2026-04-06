@@ -6,6 +6,7 @@ import { MapPin, ArrowRight, ChevronRight, MessageSquare, Phone, Check, X, Mouse
 import Link from "next/link";
 import { useState, useRef } from "react";
 import Image from "next/image";
+import AmenityScroller from "./AmenityScroller";
 
 export default function ProjectDetailPage({ project }: { project: Project }) {
     const [activeAmenityTab, setActiveAmenityTab] = useState(0);
@@ -37,16 +38,13 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                 {/* 90's VHS Overlay Elements */}
                 <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
                     <div className="vhs-scanlines" />
-                    
-                    {/* Golden Lens Flare / Light Leak */}
-                    <div className="absolute inset-0 z-10 opacity-50">
-                        <div className="absolute -top-[20%] -left-[20%] w-[140%] h-[140%] bg-[radial-gradient(circle_at_50%_50%,rgba(212,175,55,0.1)_0%,transparent_70%)] animate-slow-drift" />
+
+                    {/* Golden Lens Flare / Light Leak - Reduced Opacity for clarity */}
+                    <div className="absolute inset-0 z-10 opacity-30">
+                        <div className="absolute -top-[20%] -left-[20%] w-[140%] h-[140%] bg-[radial-gradient(circle_at_50%_50%,rgba(212,175,55,0.08)_0%,transparent_70%)] animate-slow-drift" />
                     </div>
 
-                    {/* Digital Date */}
-                    <div className="absolute top-12 right-12 text-[#D4AF37]/60 font-mono text-[11px] tracking-widest font-bold drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]">
-                        {new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).toUpperCase()}
-                    </div>
+
 
                     {/* Digital Timer */}
                     <div className="absolute bottom-40 left-12 text-[#D4AF37]/30 font-mono text-[9px] tracking-widest uppercase hidden lg:block">
@@ -56,13 +54,13 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
 
                 <motion.div
                     style={{ y: backgroundY }}
-                    animate={{ 
+                    animate={{
                         scale: [1, 1.1, 1],
                     }}
-                    transition={{ 
-                        duration: 30, 
-                        repeat: Infinity, 
-                        ease: "linear" 
+                    transition={{
+                        duration: 30,
+                        repeat: Infinity,
+                        ease: "linear"
                     }}
                     className="absolute inset-0 z-0"
                 >
@@ -74,8 +72,8 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                         className="object-cover"
                         sizes="100vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-white via-white/60 to-transparent" />
-                    <div className="absolute inset-0 bg-[#D4AF37]/5 mix-blend-overlay" />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white via-white/30 to-transparent" />
+                    <div className="absolute inset-0 bg-[#D4AF37]/2 mix-blend-overlay" />
                 </motion.div>
 
                 <div className="container mx-auto px-6 h-full flex flex-col justify-center relative z-10">
@@ -112,16 +110,18 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                             </motion.h1>
                         </div>
 
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, delay: 1 }}
-                            className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16 mb-20"
-                        >
-                            <p className="text-black/80 text-lg md:text-xl font-normal max-w-2xl leading-relaxed italic">
-                                "{project.tagline}"
-                            </p>
-                        </motion.div>
+                        {project.tagline && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 1, delay: 1 }}
+                                className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16 mb-20"
+                            >
+                                <p className="text-black/80 text-lg md:text-xl font-normal max-w-2xl leading-relaxed italic">
+                                    "{project.tagline}"
+                                </p>
+                            </motion.div>
+                        )}
                     </motion.div>
                 </div>
 
@@ -135,22 +135,24 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                     >
                         <div className="glass-premium border border-white/5 rounded-[2rem] p-6 md:p-8 flex flex-wrap items-center justify-between gap-8 md:gap-12 shadow-2xl backdrop-blur-xl">
                             <div className="flex items-center gap-12 flex-1 flex-wrap">
-                                {project.priceLabel !== "Coming Soon" && (
-                                    <div className="min-w-[140px]">
-                                        <p className="text-[12px] font-normal capitalize tracking-[0.4em] text-white/40 mb-2 font-serif">Investment Value</p>
-                                        <p className="text-xl md:text-2xl font-black tracking-tight">{project.priceLabel}</p>
-                                    </div>
-                                )}
-                                {project.area && project.area !== "TBA" && (
+                                {project.area && (
                                     <div className="min-w-[140px]">
                                         <p className="text-[12px] font-normal capitalize tracking-[0.4em] text-white/40 mb-2 font-serif">Development Size</p>
                                         <p className="text-xl md:text-2xl font-black tracking-tight">{project.area}</p>
                                     </div>
                                 )}
-                                <div className="min-w-[140px]">
-                                    <p className="text-[12px] font-normal capitalize tracking-[0.4em] text-white/40 mb-2 font-serif">Configurations</p>
-                                    <p className="text-xl md:text-2xl font-black tracking-tight">{project.configurations.length} Luxury Types</p>
-                                </div>
+                                {project.residencesSummary && (
+                                    <div className="min-w-[140px]">
+                                        <p className="text-[12px] font-normal capitalize tracking-[0.4em] text-white/40 mb-2 font-serif">Residences</p>
+                                        <p className="text-xl md:text-2xl font-black tracking-tight">{project.residencesSummary}</p>
+                                    </div>
+                                )}
+                                {project.projectType && (
+                                    <div className="min-w-[140px]">
+                                        <p className="text-[12px] font-normal capitalize tracking-[0.4em] text-white/40 mb-2 font-serif">Project Type</p>
+                                        <p className="text-xl md:text-2xl font-black tracking-tight">{project.projectType}</p>
+                                    </div>
+                                )}
                             </div>
 
                             <a
@@ -176,7 +178,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
             </section>
 
             {/* ═══════ 2. OVERVIEW ═══════ */}
-            <section id="overview" className="py-32 relative">
+            <section id="overview" className="py-20 relative">
                 <div className="container mx-auto px-6">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
                         <motion.div
@@ -198,27 +200,28 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 1, delay: 0.2 }}
+                            className="flex flex-col justify-center"
                         >
                             {/* Highlights Card */}
-                            <div className="glass-premium p-8 md:p-10 rounded-3xl border border-white/5">
-                                <h3 className="text-lg font-black capitalize tracking-tight mb-8 flex items-center gap-3">
-                                    <span className="w-2 h-2 rounded-full bg-noir" />
+                            <div className="glass-premium p-10 md:p-12 rounded-[2.5rem] border border-white/5 shadow-2xl">
+                                <h3 className="text-xl font-black capitalize tracking-tight mb-10 flex items-center gap-4">
+                                    <span className="w-2.5 h-2.5 rounded-full bg-noir" />
                                     Key Highlights
                                 </h3>
-                                <div className="space-y-5">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
                                     {project.highlights.map((h, i) => (
                                         <motion.div
                                             key={i}
-                                            initial={{ opacity: 0, x: 20 }}
-                                            whileInView={{ opacity: 1, x: 0 }}
+                                            initial={{ opacity: 0, y: 10 }}
+                                            whileInView={{ opacity: 1, y: 0 }}
                                             viewport={{ once: true }}
                                             transition={{ delay: i * 0.1 }}
-                                            className="flex items-center gap-4 group"
+                                            className="flex items-center gap-5 group"
                                         >
-                                            <div className="p-1.5 bg-white/5 rounded-lg border border-white/10 text-white group-hover:bg-noir group-hover:text-white transition-all">
-                                                <Check className="w-3 h-3" />
+                                            <div className="shrink-0 p-2 bg-white/5 rounded-xl border border-white/10 text-white group-hover:bg-noir group-hover:text-white transition-all duration-300">
+                                                <Check className="w-4 h-4" />
                                             </div>
-                                            <span className="text-white/80 text-sm font-light">{h}</span>
+                                            <span className="text-white/80 text-base font-light leading-relaxed">{h}</span>
                                         </motion.div>
                                     ))}
                                 </div>
@@ -376,6 +379,15 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                             Premium <span className="text-[#D4AF37] font-serif">Amenities</span>
                         </h2>
                     </motion.div>
+                    
+                    {/* High-End Amenity Scroller */}
+                    {project.amenityIcons && (
+                        <div className="mb-20">
+                            <AmenityScroller 
+                                amenities={Object.entries(project.amenityIcons).map(([name, icon]) => ({ name, icon }))} 
+                            />
+                        </div>
+                    )}
 
                     {/* Tabs */}
                     <div className="flex flex-wrap justify-center gap-3 mb-12">

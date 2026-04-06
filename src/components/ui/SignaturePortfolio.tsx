@@ -149,16 +149,20 @@ function ProjectItem({
                 </h3>
 
                 {/* Mobile Tagline Reveal */}
-                <p className="text-sm font-medium leading-relaxed text-white/60 mb-6 lg:hidden line-clamp-2">
-                    {project.tagline}
-                </p>
+                {project.tagline && (
+                    <p className="text-sm font-medium leading-relaxed text-white/60 mb-6 lg:hidden line-clamp-2">
+                        {project.tagline}
+                    </p>
+                )}
 
-                <p className={cn(
-                    "hidden lg:block text-sm font-medium leading-relaxed max-w-xl transition-all duration-500 line-clamp-2",
-                    isActive ? "text-white/60" : "text-white/0"
-                )}>
-                    {project.tagline}
-                </p>
+                {project.tagline && (
+                    <p className={cn(
+                        "hidden lg:block text-sm font-medium leading-relaxed max-w-xl transition-all duration-500 line-clamp-2",
+                        isActive ? "text-white/60" : "text-white/0"
+                    )}>
+                        {project.tagline}
+                    </p>
+                )}
 
                 {/* Mobile-Only Image Reveal */}
                 <div className="lg:hidden mt-0 relative aspect-video rounded-2xl overflow-hidden border border-white/5">
