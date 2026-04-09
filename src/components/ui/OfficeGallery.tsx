@@ -6,32 +6,32 @@ import { useRef } from "react";
 
 const officeImages = [
   {
-    src: "/images/office_images/IMG_2361 (1).jpg",
+    src: "/office_images/IMG_2361 (1).jpg",
     alt: "Modern open-plan office with organized workstations and desktop computers",
     className: "md:col-span-2 md:row-span-3 aspect-square md:aspect-auto",
   },
   {
-    src: "/images/office_images/IMG_2362.jpg",
+    src: "/office_images/IMG_2362.jpg",
     alt: "Spacious professional workspace with ergonomic black chairs and white desks",
     className: "md:col-span-1 md:row-span-1 aspect-square md:aspect-auto",
   },
   {
-    src: "/images/office_images/IMG_2365.jpg",
+    src: "/office_images/IMG_2365.jpg",
     alt: "Contemporary office hallway with glass partitions and linear ceiling lights",
     className: "md:col-span-1 md:row-span-1 aspect-square md:aspect-auto",
   },
   {
-    src: "/images/office_images/IMG_2364.jpg",
+    src: "/office_images/IMG_2364.jpg",
     alt: "Minimalist reception area featuring a white desk and fluted wood wall accents",
     className: "md:col-span-1 md:row-span-2 aspect-[3/4] md:aspect-auto",
   },
   {
-    src: "/images/office_images/IMG_2378.jpg",
+    src: "/office_images/IMG_2378.jpg",
     alt: "Executive cabin workstation with motivational quote on a concrete-finish wall",
     className: "md:col-span-1 md:row-span-1 aspect-square md:aspect-auto",
   },
   {
-    src: "/images/office_images/IMG_2372.jpg",
+    src: "/office_images/IMG_2372.jpg",
     alt: "Luxury manager office with a decorative bull statue and landscape artwork",
     className: "md:col-span-1 md:row-span-1 aspect-square md:aspect-auto",
   },
