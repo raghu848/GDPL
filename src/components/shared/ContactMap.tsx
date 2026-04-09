@@ -72,6 +72,7 @@ export default function ContactMap() {
                     >
                         <iframe
                             src={mapEmbedUrl}
+                            title="Interactive Google Map showing GDPL office location in Sector 91, Mohali"
                             className="w-full h-full border-0 md:grayscale md:invert contrast-125 opacity-70 group-hover:grayscale-0 group-hover:invert-0 group-hover:opacity-100 transition-all duration-1000"
                             allowFullScreen
                             loading="lazy"

@@ -93,7 +93,7 @@ export default function SignaturePortfolio() {
                             >
                                 <Image
                                     src={project.heroImage}
-                                    alt={project.name}
+                                    alt={project.heroImageAlt}
                                     fill
                                     className="object-cover"
                                     priority={idx === 0}

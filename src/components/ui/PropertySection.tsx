@@ -16,7 +16,7 @@ export default function PropertySection({ title, topImage, bottomImage, carousel
 
                 {/* Top Image */}
                 <div className="w-full aspect-[21/9] md:aspect-[3/1] overflow-hidden rounded-3xl mb-16 shadow-2xl relative">
-                    <Image src={topImage} alt={`${title} Top Overview`} fill className="object-cover" />
+                    <Image src={topImage} alt={title + " project bird's eye view and master plan"} fill className="object-cover" />
                 </div>
             </div>
 
@@ -31,7 +31,7 @@ export default function PropertySection({ title, topImage, bottomImage, carousel
             {/* Bottom Image / Data Placeholder */}
             <div className="container mx-auto px-6 mt-16">
                 <div className="w-full aspect-[21/9] md:aspect-[3/1] overflow-hidden rounded-3xl shadow-2xl relative">
-                    <Image src={bottomImage} alt={`${title} Bottom Details`} fill className="object-cover" />
+                    <Image src={bottomImage} alt={title + " architectural detail and premium finishes"} fill className="object-cover" />
                 </div>
 
                 {/* Content Placeholder for user to provide */}

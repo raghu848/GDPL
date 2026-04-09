@@ -135,7 +135,7 @@ export default function AboutPage() {
                             <div className="relative aspect-[3/4] rounded-[2rem] overflow-hidden border border-gold/10 mx-auto w-full group-hover:border-gold/30 transition-all duration-700">
                                 <img
                                     src={leader.image}
-                                    alt={leader.name}
+                                    alt={"Official portrait of " + leader.name + ", " + leader.role + " at GDPL"}
                                     className="w-full h-full object-cover md:grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />

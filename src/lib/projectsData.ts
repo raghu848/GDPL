@@ -4,6 +4,14 @@ export interface ProjectConfig {
     booking?: string;
 }
 
+export interface LocationAdvantage {
+    name: string;
+    distance: string;
+    image?: string;
+    imageAlt?: string;
+    category: string;
+}
+
 export interface AmenityCategory {
     name: string;
     items: string[];
@@ -16,7 +24,9 @@ export interface Project {
     location: string;
     status: "Ongoing" | "Delivered" | "Upcoming";
     heroImage: string;
+    heroImageAlt: string;
     galleryImages: string[];
+    galleryImageAlts: string[];
     description: string;
     longDescription: string;
     priceLabel: string;
@@ -27,6 +37,7 @@ export interface Project {
     residencesSummary?: string;
     projectType?: string;
     amenityIcons?: Record<string, string>;
+    locationAdvantages?: LocationAdvantage[];
 }
 
 export const projects: Project[] = [
@@ -37,6 +48,7 @@ export const projects: Project[] = [
         location: "Sector 114, Mohali",
         status: "Ongoing",
         heroImage: "/regal_rersidencia/Regal_Residencia_.jpg.jpeg",
+        heroImageAlt: "Grand front elevation of Regal Residencia showrooms and residential balconies under a clear sky",
         priceLabel: "₹6,900/sq.ft.",
         area: "8.5 Acres",
         residencesSummary: "3, 3+1 & 4+1 BHK Homes",
@@ -73,6 +85,16 @@ export const projects: Project[] = [
             "/regal_rersidencia/Regal%20Residencia%20Sector%20114%20Mohali%20_page-0013.jpg",
             "/regal_rersidencia/Regal%20Residencia%20Sector%20114%20Mohali%20_page-0014.jpg",
         ],
+        galleryImageAlts: [
+            "Aerial view of the Regal Residencia residential cluster with landscaped common areas",
+            "Modern architectural detail of the residential towers at Regal Residencia",
+            "Luxurious apartment interior living room with elegant furniture",
+            "Spacious balcony view overlooking the Mohali skyline",
+            "World-class swimming pool and deck area at the signature club",
+            "Interactive children's play area with safe resilient flooring",
+            "Premium marble-finished lobby and reception area",
+            "Night view of Regal Residencia with integrated ambient lighting"
+        ],
         configurations: [
             { type: "3 Bhk", size: "1800 sq.ft." },
             { type: "3+1 Bhk", size: "2150 sq.ft." },
@@ -104,14 +126,40 @@ export const projects: Project[] = [
             "Prime Location with Seamless Connectivity",
             "RERA Registered",
         ],
+        locationAdvantages: [
+            { category: "Educational Institutions", name: "Delhi Public School", distance: "05 mins" },
+            { category: "Educational Institutions", name: "Guru Nanak Foundation School", distance: "05 mins" },
+            { category: "Educational Institutions", name: "Oakridge International School", distance: "10 mins" },
+            { category: "Educational Institutions", name: "Manav Mangal Smart School", distance: "10 mins" },
+            { category: "Educational Institutions", name: "Amity International School", distance: "15 mins" },
+            { category: "Educational Institutions", name: "CGC Landran", distance: "05 mins" },
+            { category: "Educational Institutions", name: "Chandigarh University", distance: "20 mins" },
+            { category: "Educational Institutions", name: "Rayat Bahra University", distance: "18 mins" },
+            { category: "Retail & Hotels", name: "Burger King", distance: "2 mins" },
+            { category: "Retail & Hotels", name: "KFC", distance: "3 mins" },
+            { category: "Retail & Hotels", name: "Domino's", distance: "2 mins" },
+            { category: "Retail & Hotels", name: "CP 67 Mall", distance: "15 mins" },
+            { category: "Retail & Hotels", name: "VR Mall", distance: "15 mins" },
+            { category: "Retail & Hotels", name: "Canaught Place Market TDI", distance: "10 mins" },
+            { category: "Retail & Hotels", name: "Bestech Mall", distance: "20 mins" },
+            { category: "Hospitals", name: "Sohana Multi Speciality Hospital", distance: "10 mins" },
+            { category: "Hospitals", name: "Ivy Hospital", distance: "10 mins" },
+            { category: "Hospitals", name: "Fortis Hospital", distance: "20 mins" },
+            { category: "Hospitals", name: "Max Hospital", distance: "20 mins" },
+            { category: "Hospitals", name: "New Life Hospital", distance: "05 mins" },
+            { category: "Business Parks", name: "Quark City", distance: "15 mins" },
+            { category: "Business Parks", name: "Industrial Area Phase 7 & 8", distance: "15 mins" },
+            { category: "Business Parks", name: "IT City 82", distance: "25 mins" },
+            { category: "Transportation", name: "International Airport", distance: "25 mins" },
+        ],
     },
     {
         slug: "regal-heights",
         name: "Regal Heights",
-        tagline: "3 & 4 BHK residences, Sky Villas and Earth Villas in Sector 91, Mohali, set within a 3-side open site with premium amenities.",
         location: "Sector 91, Mohali",
         status: "Ongoing",
         heroImage: "/regal_heights/Regal_Heights_.jpg.jpeg",
+        heroImageAlt: "Panoramic view of Regal Heights luxury high-rise towers in Sector 91, Mohali",
         priceLabel: "₹8,600/sq.ft.",
         area: "5.37 Acres",
         description: "A flagship high-rise project offering 25+ premium amenities. Spread across 5.37 acres with a massive 2-acre podium park. Sun-facing apartments with world-class club facilities.",
@@ -127,6 +175,18 @@ export const projects: Project[] = [
             "/regal_heights/img15.jpg",
             "/regal_heights/img19.jpg",
             "/regal_heights/img27.jpg",
+        ],
+        galleryImageAlts: [
+            "Majestic front entrance of Regal Heights residential tower",
+            "Vibrant evening view of the central podium park",
+            "Luxury 4 BHK apartment interior with premium flooring and false ceiling",
+            "State-of-the-art gymnasium at the Regal Heights club",
+            "Sun-facing layout of the residential blocks maximizing natural light",
+            "Elegant dining area and modular kitchen setup",
+            "Scenic view from the sky villa balcony",
+            "25,000 sq.ft. signature double-height club house",
+            "Kids' splash pool and separate adult swimming lanes",
+            "Beautifully landscaped jogging tracks and green walkways"
         ],
         configurations: [
             { type: "3+1 Bhk", size: "2200 sq.ft.", booking: "₹30L" },
@@ -169,10 +229,11 @@ export const projects: Project[] = [
         location: "Sector 91, Mohali",
         status: "Ongoing",
         heroImage: "/regal_empirus/Regal_Empirus_.jpg.jpeg",
+        heroImageAlt: "Architectural visualization of Regal Empirus ultra-luxury residential towers",
         priceLabel: "₹8,600/sq.ft.",
         area: "5.37 Acres",
-        description: "A luxurious living experience offering modern amenities and plenty of green space. 5.37 acres of total land area featuring a massive 2-acre lush green podium park inside a 3-side open site.",
-        longDescription: "Regal Empirus is the epitome of ultra-premium living in Mohali. Conceptualized for those who demand nothing but the finest, this project blends architectural grandeur with nature's tranquility. Situated on 5.37 acres of prime real estate in Sector 91, the project features a breathtaking 2-acre podium park, five-star club facilities, and apartments designed with sun-facing orientations for natural light. Every detail — from the multi-level parking to the panoramic views — has been crafted to deliver an experience that transcends ordinary luxury.",
+        description: "An expression of ultra-luxury across 5.37 acres in Sector 91, featuring iconic architecture, 3-side open residences, and landscaped podium gardens.",
+        longDescription: "Regal Empirus is an expression of ultra-luxury, crafted for those who belong to a class above. Spread across 5.37 acres in Sector 91, it stands as a landmark where iconic architecture meets expansive green landscapes.\n\nDesigned for grandeur, each residence offers spacious layouts, 3-side open living, and abundant natural light—creating homes that feel open, elegant, and exceptional. With world-class amenities and a landscaped podium garden, every detail reflects comfort, privacy, and indulgence.\n\nFeaturing exclusive 3+1 and 4+1 residences, along with Earth Villas and Duplex Sky Villas, Regal Empirus is more than a home—it’s a statement of refined living.",
         galleryImages: [
             "/regal_empirus/Regal_Empirus_.jpg.jpeg",
             "/regal_empirus/BOOKET_REGAL%20EMPIRUS%20CTC_page-0006.jpg",
@@ -183,9 +244,20 @@ export const projects: Project[] = [
             "/regal_empirus/BOOKET_REGAL%20EMPIRUS%20CTC_page-0012.jpg",
             "/regal_empirus/BOOKET_REGAL%20EMPIRUS%20CTC_page-0013.jpg",
         ],
+        galleryImageAlts: [
+            "Sophisticated facade design of Regal Empirus Sector 91",
+            "Grand double-height lobby at the entrance of Empirus Towers",
+            "Ultra-luxury living room with panoramic glass windows",
+            "Private terrace garden attached to an earth villa",
+            "Modern master bedroom with italian marble flooring",
+            "Fully equipped fitness centre and wellness spa",
+            "Resort-style infinity pool overview",
+            "Iconic skywalk connecting the signature towers"
+        ],
         configurations: [
             { type: "3+1 BHK", size: "2200 sq.ft." },
             { type: "4+1 BHK", size: "3200 sq.ft." },
+            { type: "Earth Villas & Duplex Sky Villas", size: "TBA" },
         ],
         amenities: [
             {
@@ -206,15 +278,25 @@ export const projects: Project[] = [
             },
         ],
         highlights: [
-            "5.37 Acres Site",
-            "2-Acre Podium Park",
-            "Five-Star Club",
-            "Multi-level Parking",
-            "Sun-Facing",
-            "RERA Registered",
+            "5.37 Acres Premium Township",
+            "5 Signature Towers",
+            "95%+ Sun-Facing Apartments",
+            "3+1 & 4+1BHK residences with Duplex villas",
         ],
-        residencesSummary: "3+1 & 4+1 BHK Residences",
+        residencesSummary: "3+1, 4+1 BHK & Duplex Villas",
         projectType: "Ultra-Luxury Residential",
+        locationAdvantages: [
+            { name: "Manav Mangal School", distance: "0 mins", category: "EDUCATION", image: "/regal_empirus/location_images/Manav_mangal_school.jpeg", imageAlt: "Facade of Manav Mangal Smart School campus" },
+            { name: "CGC Landran", distance: "2 mins", category: "EDUCATION", image: "/regal_empirus/location_images/cgc_landran.jpeg", imageAlt: "Entrance of CGC Landran college campus" },
+            { name: "Amity School", distance: "7 mins", category: "EDUCATION", image: "/regal_empirus/location_images/Amity_univercity.jpeg", imageAlt: "Modern architecture of Amity University building" },
+            { name: "Quark City", distance: "3 mins", category: "IT & BUSINESS", image: "/regal_empirus/location_images/quark_city.jpeg", imageAlt: "Professional exterior of Quark City IT Park" },
+            { name: "IT Hub", distance: "2 mins", category: "IT & BUSINESS", image: "/regal_empirus/location_images/IT city.jpeg", imageAlt: "Developing IT City Sector 82 skyline" },
+            { name: "Ivy Hospital", distance: "3 mins", category: "HEALTHCARE", image: "/regal_empirus/location_images/IVY.jpeg", imageAlt: "Ivy Hospital Mohali building exterior" },
+            { name: "Sohana Multi Speciality Hospital", distance: "5 mins", category: "HEALTHCARE", image: "/regal_empirus/location_images/sohana_hospital.jpeg", imageAlt: "Front view of Sohana Multi Speciality Hospital" },
+            { name: "Fortis Hospital", distance: "10 mins", category: "HEALTHCARE", image: "/regal_empirus/location_images/Fortis_hospital.jpeg", imageAlt: "Iconic Fortis Hospital Mohali building" },
+            { name: "CP 67 Mall", distance: "8 mins", category: "LIFESTYLE", image: "/regal_empirus/location_images/cp 67.jpeg", imageAlt: "Main entrance of CP 67 Mall on Airport road" },
+            { name: "International Airport", distance: "20 mins", category: "CONNECTIVITY", image: "/regal_empirus/location_images/Airport.jpeg", imageAlt: "Aerial view of Chandigarh International Airport terminal" },
+        ],
     },
     {
         slug: "regal-luxuria",
@@ -223,6 +305,7 @@ export const projects: Project[] = [
         location: "Mohali",
         status: "Upcoming",
         heroImage: "/regal_heights/Regal_Luxuria_.jpg.jpeg",
+        heroImageAlt: "Commercial plots at Regal Luxuria Sector 114 Mohali ready for development",
         priceLabel: "Coming Soon",
         area: "TBA",
         description: "Gdpl's most ambitious project yet — Regal Luxuria represents the pinnacle of luxury living in Mohali. Ultra-premium residences designed for the discerning few who accept nothing but the very best.",
@@ -232,6 +315,12 @@ export const projects: Project[] = [
             "/images/regal-luxuria/lobby.jpg",
             "/images/regal-luxuria/living.jpg",
             "/images/regal-luxuria/pool.jpg",
+        ],
+        galleryImageAlts: [
+            "Modern commercial complex elevation showing retail fronts",
+            "Luxury lobby design for corporate office space",
+            "Elegant living space visualization for premium suites",
+            "Rooftop infinity pool as part of the luxury amenities"
         ],
         configurations: [
             { type: "4+1 BHK Ultra-Luxury", size: "3500+ sq.ft." },

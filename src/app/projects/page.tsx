@@ -104,7 +104,7 @@ export default function ProjectsPage() {
                                     <ShutterReveal className="aspect-[21/9]">
                                         <Image
                                             src={project.heroImage}
-                                            alt={project.name}
+                                            alt={project.heroImageAlt}
                                             fill
                                             className="object-cover md:grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
                                             sizes="100vw"

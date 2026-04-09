@@ -40,7 +40,7 @@ export default function ContactPage() {
                         <div className="absolute bottom-3 right-3 w-10 h-10 border-b-2 border-r-2 border-white/10 z-10" />
                         <Image
                             src="/images/herosection.png"
-                            alt="Contact Hero"
+                            alt="Modern GDPL office headquarters and luxury residential visualization in Mohali"
                             width={800}
                             height={500}
                             priority

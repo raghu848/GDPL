@@ -19,6 +19,7 @@ import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "fra
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import SignaturePortfolio from "@/components/ui/SignaturePortfolio";
+import OfficeGallery from "@/components/ui/OfficeGallery";
 
 export default function Home() {
   const [activeAmenityTab, setActiveAmenityTab] = useState(0);
@@ -258,13 +259,13 @@ export default function Home() {
             {/* Desktop Background (hidden on mobile) */}
             <img
               src="/images/regal-luxuria/WhatsApp%20Image%202026-04-01%20at%205.43.10%20PM.jpeg"
-              alt=""
+              alt="Cinematic luxury residential interior with warm lighting"
               className="hidden md:block w-full h-full object-cover opacity-30 object-center"
             />
             {/* Mobile Background (visible only on mobile) */}
             <img
               src="/images/regal-luxuria/WhatsApp%20Image%202026-04-01%20at%205.43.56%20PM.jpeg"
-              alt=""
+              alt="Close-up of premium architectural textures and gold detailing"
               className="block md:hidden w-full h-full object-cover opacity-30 object-center"
             />
             {/* Overlay Gradient to dim the images and keep text readable */}
@@ -333,6 +334,9 @@ export default function Home() {
 
       {/* ═══════════════ 4. SIGNATURE PROJECTS ═══════════════ */}
       <SignaturePortfolio />
+
+      {/* ═══════════════ Office Gallery ═══════════════ */}
+      <OfficeGallery />
 
       {/* ═══════════════ 5. AMENITIES ═══════════════ */}
       <section className="py-32 bg-transparent relative">

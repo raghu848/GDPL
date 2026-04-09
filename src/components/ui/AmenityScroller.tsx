@@ -32,7 +32,7 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
         damping: 50,
         stiffness: 400
     });
-    const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 2], {
+    const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 1.2], {
         clamp: false
     });
 
@@ -81,7 +81,7 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
 export default function AmenityScroller({ amenities }: AmenityScrollerProps) {
     return (
         <div className="relative w-full overflow-hidden py-20 bg-noir/5 backdrop-blur-md border-y border-white/5">
-            <ParallaxText baseVelocity={-1}>
+            <ParallaxText baseVelocity={-0.3}>
                 {amenities.map((amenity, idx) => (
                     <div
                         key={`${amenity.name}-${idx}`}

@@ -61,7 +61,7 @@ export default function Header() {
                     <Link href="/" className="absolute left-1/2 -translate-x-1/2 group">
                         <img
                             src="/images/GDPL_Logo_white2.png?v=2"
-                            alt="GDPL Logo"
+                            alt="GDPL - Group Developers Private Limited Logo"
                             className="h-8 md:h-12 w-auto object-contain transition-transform duration-700 group-hover:scale-110"
                         />
                     </Link>

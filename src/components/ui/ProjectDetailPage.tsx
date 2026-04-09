@@ -7,6 +7,8 @@ import Link from "next/link";
 import { useState, useRef } from "react";
 import Image from "next/image";
 import AmenityScroller from "./AmenityScroller";
+import LocationScroller from "./LocationScroller";
+import LocationSplitScroll from "./LocationSplitScroll";
 
 export default function ProjectDetailPage({ project }: { project: Project }) {
     const [activeAmenityTab, setActiveAmenityTab] = useState(0);
@@ -44,8 +46,6 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                         <div className="absolute -top-[20%] -left-[20%] w-[140%] h-[140%] bg-[radial-gradient(circle_at_50%_50%,rgba(212,175,55,0.08)_0%,transparent_70%)] animate-slow-drift" />
                     </div>
 
-
-
                     {/* Digital Timer */}
                     <div className="absolute bottom-40 left-12 text-[#D4AF37]/30 font-mono text-[9px] tracking-widest uppercase hidden lg:block">
                         SP  PLAY  00:04:12:08
@@ -66,7 +66,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                 >
                     <Image
                         src={project.heroImage}
-                        alt={project.name}
+                        alt={project.heroImageAlt}
                         fill
                         priority
                         className="object-cover"
@@ -180,53 +180,59 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
             {/* ═══════ 2. OVERVIEW ═══════ */}
             <section id="overview" className="py-20 relative">
                 <div className="container mx-auto px-6">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-                        <motion.div
-                            initial={{ opacity: 0, x: -40 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1 }}
-                        >
-                            <p className="section-label mb-6">About the Project</p>
-                            <div className="w-12 h-[2px] mb-8 bg-white/10" />
-                            <h2 className="text-3xl md:text-5xl font-normal capitalize tracking-normal leading-[0.9] mb-10 text-white font-serif">
-                                {project.name}
-                            </h2>
-                            <p className="text-muted text-lg font-light leading-relaxed">{project.longDescription}</p>
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ opacity: 0, x: 40 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1, delay: 0.2 }}
-                            className="flex flex-col justify-center"
-                        >
-                            {/* Highlights Card */}
-                            <div className="glass-premium p-10 md:p-12 rounded-[2.5rem] border border-white/5 shadow-2xl">
-                                <h3 className="text-xl font-black capitalize tracking-tight mb-10 flex items-center gap-4">
-                                    <span className="w-2.5 h-2.5 rounded-full bg-noir" />
-                                    Key Highlights
-                                </h3>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-                                    {project.highlights.map((h, i) => (
-                                        <motion.div
-                                            key={i}
-                                            initial={{ opacity: 0, y: 10 }}
-                                            whileInView={{ opacity: 1, y: 0 }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: i * 0.1 }}
-                                            className="flex items-center gap-5 group"
-                                        >
-                                            <div className="shrink-0 p-2 bg-white/5 rounded-xl border border-white/10 text-white group-hover:bg-noir group-hover:text-white transition-all duration-300">
-                                                <Check className="w-4 h-4" />
-                                            </div>
-                                            <span className="text-white/80 text-base font-light leading-relaxed">{h}</span>
-                                        </motion.div>
+                    <div className="flex flex-col lg:flex-row gap-20 items-start">
+                        <div className="flex-1 w-full">
+                            <motion.div
+                                initial={{ opacity: 0, x: -40 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1 }}
+                            >
+                                <p className="section-label mb-6">About the Project</p>
+                                <div className="w-12 h-[2px] mb-8 bg-white/10" />
+                                <h2 className="text-3xl md:text-5xl font-normal capitalize tracking-normal leading-[0.9] mb-10 text-white font-serif">
+                                    {project.name}
+                                </h2>
+                                <div className="text-muted text-lg font-light leading-relaxed space-y-6 font-playfair">
+                                    {project.longDescription.split('\n\n').map((para, i) => (
+                                        <p key={i}>{para}</p>
                                     ))}
                                 </div>
-                            </div>
-                        </motion.div>
+                            </motion.div>
+
+                            {/* Highlights Card - Now below content */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 40 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1, delay: 0.2 }}
+                                className="mt-20"
+                            >
+                                <div className="glass-premium p-10 md:p-12 rounded-[2.5rem] border border-white/5 shadow-2xl">
+                                    <h3 className="text-xl font-bold capitalize tracking-tight mb-10 flex items-center gap-4 font-opensans">
+                                        <span className="w-2.5 h-2.5 rounded-full bg-noir" />
+                                        Key Highlights
+                                    </h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-8">
+                                        {project.highlights.map((h, i) => (
+                                            <motion.div
+                                                key={i}
+                                                initial={{ opacity: 0, y: 10 }}
+                                                whileInView={{ opacity: 1, y: 0 }}
+                                                viewport={{ once: true }}
+                                                transition={{ delay: i * 0.1 }}
+                                                className="flex items-center gap-5 group"
+                                            >
+                                                <div className="shrink-0 p-2 bg-white/5 rounded-xl border border-white/10 text-white group-hover:bg-noir group-hover:text-white transition-all duration-300">
+                                                    <Check className="w-4 h-4" />
+                                                </div>
+                                                <span className="text-white/80 text-sm font-light leading-relaxed font-playfair">{h}</span>
+                                            </motion.div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -258,10 +264,10 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                                 className="glass-premium p-8 rounded-2xl text-center group border border-white/5 transition-all duration-500 relative overflow-hidden"
                             >
                                 <div className="relative z-10">
-                                    <h3 className="text-2xl font-black capitalize tracking-tight mb-3 group-hover:text-white transition-colors">{config.type}</h3>
-                                    <p className="text-white font-mono text-lg mb-2">{config.size}</p>
+                                    <h3 className="text-2xl font-bold capitalize tracking-tight mb-3 group-hover:text-[#D4AF37] transition-colors font-opensans">{config.type}</h3>
+                                    <p className="text-white font-opensans text-lg mb-2 opacity-80">{config.size}</p>
                                     {config.booking && (
-                                        <p className="text-[14px] capitalize tracking-[0.3em] text-white/40 font-normal mt-4 pt-4 border-t border-white/5 font-serif">
+                                        <p className="text-[14px] capitalize tracking-[0.3em] text-white/40 font-normal mt-4 pt-4 border-t border-white/5 font-opensans">
                                             Booking: {config.booking}
                                         </p>
                                     )}
@@ -327,7 +333,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                                 <div className="overflow-hidden rounded-2xl border border-white/5 transition-all duration-700 relative aspect-[4/3] md:aspect-auto">
                                     <Image
                                         src={img}
-                                        alt={`${project.name} - Image ${idx + 1}`}
+                                        alt={project.galleryImageAlts[idx] || `${project.name} gallery image ${idx + 1}`}
                                         width={800}
                                         height={600}
                                         className="w-full h-auto object-cover md:grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
@@ -395,7 +401,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                             <button
                                 key={idx}
                                 onClick={() => setActiveAmenityTab(idx)}
-                                className={`px-6 py-3 rounded-full text-[14px] font-black capitalize tracking-[0.2em] transition-all duration-300 border ${activeAmenityTab === idx
+                                className={`px-6 py-3 rounded-full text-[14px] font-black capitalize tracking-[0.2em] transition-all duration-300 border font-opensans ${activeAmenityTab === idx
                                     ? "bg-noir text-white border-noir"
                                     : "bg-transparent text-neutral-400 border-white/10 hover:border-white/20 hover:text-white"
                                     }`}
@@ -415,7 +421,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                             transition={{ duration: 0.4 }}
                             className="glass-premium p-8 md:p-12 rounded-3xl max-w-4xl mx-auto border border-white/5 shadow-sm"
                         >
-                            <h3 className="text-2xl font-black capitalize tracking-tighter mb-8">{project.amenities[activeAmenityTab].name}</h3>
+                            <h3 className="text-2xl font-bold capitalize tracking-tighter mb-8 font-opensans">{project.amenities[activeAmenityTab].name}</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {project.amenities[activeAmenityTab].items.map((item, i) => (
                                     <motion.div
@@ -426,7 +432,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                                         className="flex items-center gap-4 py-3 px-4 rounded-xl hover:bg-white/5 transition-colors group"
                                     >
                                         <div className="w-1.5 h-1.5 rounded-full bg-noir shrink-0 group-hover:scale-150 transition-transform" />
-                                        <span className="text-white/80 text-sm font-light">{item}</span>
+                                        <span className="text-white/80 text-sm font-light font-playfair">{item}</span>
                                     </motion.div>
                                 ))}
                             </div>
@@ -435,7 +441,66 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                 </div>
             </section>
 
-            {/* ═══════ 6. CTA ═══════ */}
+            {/* ═══════ 6. LOCATION ADVANTAGES ═══════ */}
+            {project.locationAdvantages && (
+                project.slug === "regal-residencia" ? (
+                    <LocationSplitScroll items={project.locationAdvantages} />
+                ) : (
+                    <section className="py-32 relative overflow-hidden">
+                        {/* Background Accents */}
+                        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(212,175,55,0.05),transparent_70%)] pointer-events-none" />
+
+                        <div className="container mx-auto px-6 mb-12 text-center">
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1 }}
+                            >
+                                <p className="section-label mb-6">Prime Connectivity</p>
+                                <h2 className="text-4xl md:text-7xl lg:text-[80px] font-normal capitalize tracking-tight leading-tight text-white font-serif italic mb-8">
+                                    Location <span className="text-[#D4AF37] font-serif">Advantages</span>
+                                </h2>
+                                <p className="text-white/60 text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed font-playfair">
+                                    Strategically positioned for seamless connectivity to top schools, hospitals, IT hubs, and lifestyle destinations.
+                                </p>
+                            </motion.div>
+                        </div>
+
+                        <LocationScroller items={project.locationAdvantages} />
+
+                        {/* Summary Stats Row - Matching Screenshot */}
+                        <div className="container mx-auto px-6 mt-16">
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1, delay: 0.5 }}
+                                className="grid grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-10 py-12 border-t border-white/5 max-w-6xl mx-auto font-playfair"
+                            >
+                                <div className="text-center group">
+                                    <p className="text-3xl md:text-5xl lg:text-6xl font-normal text-white mb-3 tracking-tighter group-hover:text-[#D4AF37] transition-colors">10+</p>
+                                    <p className="text-[10px] md:text-[12px] font-black tracking-[0.3em] uppercase text-white/40 group-hover:text-white transition-colors">Key Destinations</p>
+                                </div>
+                                <div className="text-center group">
+                                    <p className="text-3xl md:text-5xl lg:text-6xl font-normal text-white mb-3 tracking-tighter group-hover:text-[#D4AF37] transition-colors">Approx. 20</p>
+                                    <p className="text-[10px] md:text-[12px] font-black tracking-[0.3em] uppercase text-white/40 group-hover:text-white transition-colors">Minutes Drive</p>
+                                </div>
+                                <div className="text-center group">
+                                    <p className="text-3xl md:text-5xl lg:text-6xl font-normal text-white mb-3 tracking-tighter group-hover:text-[#D4AF37] transition-colors">Multiple</p>
+                                    <p className="text-[10px] md:text-[12px] font-black tracking-[0.3em] uppercase text-white/40 group-hover:text-white transition-colors">Top Hospitals</p>
+                                </div>
+                                <div className="text-center group">
+                                    <p className="text-3xl md:text-5xl lg:text-6xl font-normal text-white mb-3 tracking-tighter group-hover:text-[#D4AF37] transition-colors">Multiple</p>
+                                    <p className="text-[10px] md:text-[12px] font-black tracking-[0.3em] uppercase text-white/40 group-hover:text-white transition-colors">Edu Institutions</p>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </section>
+                )
+            )}
+
+            {/* ═══════ 7. CTA ═══════ */}
             <section className="py-32 relative bg-noir text-white">
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-white/10" />
                 <div className="container mx-auto px-6">
@@ -454,21 +519,21 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                             <h2 className="text-3xl md:text-5xl lg:text-6xl font-normal capitalize tracking-normal leading-none mb-6 text-white font-serif">
                                 Interested in {project.name}?
                             </h2>
-                            <p className="text-white/60 text-lg font-light max-w-xl mx-auto mb-12">
+                            <p className="text-white/60 text-lg font-light max-w-xl mx-auto mb-12 font-playfair">
                                 Schedule a private site visit or connect with our team for detailed pricing and floor plans.
                             </p>
                             <div className="flex flex-col md:flex-row gap-4 justify-center">
                                 <Link
                                     href="https://wa.me/917789000077"
                                     target="_blank"
-                                    className="inline-flex items-center justify-center gap-4 btn-gold py-5 px-10 rounded-full text-[14px] font-normal capitalize tracking-[0.3em] group font-serif"
+                                    className="inline-flex items-center justify-center gap-4 btn-gold py-5 px-10 rounded-full text-[14px] font-normal capitalize tracking-[0.3em] group font-opensans"
                                 >
                                     <MessageSquare className="w-4 h-4 group-hover:scale-110 transition-transform" />
                                     WhatsApp Us
                                 </Link>
                                 <Link
                                     href="tel:+917789000077"
-                                    className="inline-flex items-center justify-center gap-4 border border-white/20 text-white py-5 px-10 rounded-full text-[14px] font-normal capitalize tracking-[0.3em] hover:bg-white hover:text-noir transition-all group font-serif"
+                                    className="inline-flex items-center justify-center gap-4 border border-white/20 text-white py-5 px-10 rounded-full text-[14px] font-normal capitalize tracking-[0.3em] hover:bg-white hover:text-noir transition-all group font-opensans"
                                 >
                                     <Phone className="w-4 h-4 group-hover:scale-110 transition-transform" />
                                     Call Now

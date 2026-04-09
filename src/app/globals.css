@@ -17,6 +17,9 @@
   --color-gold-light: #ffffff;
 
   --font-sans: var(--font-sans), 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-serif: var(--font-serif), 'Carattere', cursive;
+  --font-playfair: var(--font-playfair), 'Playfair Display', serif;
+  --font-open-sans: var(--font-open-sans), 'Open Sans', sans-serif;
   --color-ruby: #D4AF37; /* Gold Highlight */
   --color-ruby-light: rgba(212, 175, 55, 0.3);
 }
@@ -191,6 +194,28 @@ body::before {
 
 /* ===== SID THAILAND INSPIRED UTILITIES ===== */
 
+@utility font-playfair {
+  font-family: var(--font-playfair) !important;
+}
+
+@utility font-opensans {
+  font-family: var(--font-open-sans) !important;
+}
+
+@layer base {
+  h1,
+  h2 {
+    @apply font-serif font-normal tracking-[0.03em];
+  }
+
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-sans font-black tracking-[0.03em];
+  }
+}
+
 @layer utilities {
   .text-h1 {
     @apply font-serif text-[12vw] md:text-[8rem] lg:text-[140px] font-normal capitalize tracking-[0.03em] leading-[0.85];
@@ -200,21 +225,12 @@ body::before {
     @apply font-serif text-4xl md:text-6xl font-normal capitalize tracking-[0.03em];
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-serif font-normal tracking-[0.03em];
-  }
-
   .btn-dark {
-    @apply border border-[#FAFAFA] text-[#FAFAFA] bg-transparent hover:bg-[#FAFAFA] hover:text-[#121212] transition-colors duration-300 px-6 py-3 cursor-pointer;
+    @apply border border-[#FAFAFA] text-[#FAFAFA] bg-transparent hover:bg-[#FAFAFA] hover:text-[#121212] transition-colors duration-300 px-6 py-3 cursor-pointer font-opensans;
   }
 
   .btn-light {
-    @apply border border-[#1A1A1A] bg-[#1A1A1A] text-[#FAFAFA] hover:bg-transparent hover:text-[#1A1A1A] transition-colors duration-300 px-6 py-3 cursor-pointer;
+    @apply border border-[#1A1A1A] bg-[#1A1A1A] text-[#FAFAFA] hover:bg-transparent hover:text-[#1A1A1A] transition-colors duration-300 px-6 py-3 cursor-pointer font-opensans;
   }
 
   .action-text,
@@ -386,6 +402,7 @@ body::before {
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
+    font-family: var(--font-open-sans);
   }
 
   .btn-gold:hover {
@@ -432,6 +449,14 @@ body::before {
     border-color: rgba(212, 175, 55, 0.5) !important;
     box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1), 0 0 20px rgba(212, 175, 55, 0.05);
     outline: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
   /* ===== PREMIUM GOLDEN VHS / 90'S VIDEO EFFECTS ===== */
