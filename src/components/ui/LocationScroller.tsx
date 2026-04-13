@@ -1,10 +1,10 @@
 "use client";
 
-import { motion, useAnimationFrame, useMotionValue } from "framer-motion";
+import { motion, useAnimationFrame, useMotionValue, useTransform, useSpring, useVelocity } from "framer-motion";
 import Image from "next/image";
 import { LocationAdvantage } from "@/lib/projectsData";
 import { GraduationCap, HeartPulse, Building2, ShoppingBag, Plane, Clock, ChevronRight } from "lucide-react";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState, ReactNode } from "react";
 
 interface LocationScrollerProps {
     items: LocationAdvantage[];
@@ -21,38 +21,64 @@ const getCategoryIcon = (category: string) => {
     }
 };
 
+const wrap = (min: number, max: number, v: number) => {
+    const rangeSize = max - min;
+    return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
+};
+
+interface ParallaxProps {
+    children: ReactNode;
+    baseVelocity: number;
+}
+
+function ScrollingContainer({ children, baseVelocity = 100 }: ParallaxProps) {
+    const baseX = useMotionValue(0);
+    const { scrollY } = useScrollProxy(); // Custom hook or just use global scroll
+    
+    // Manual Drag handling
+    const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
+
+    const directionFactor = useRef<number>(1);
+    useAnimationFrame((t, delta) => {
+        let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
+        baseX.set(baseX.get() + moveBy);
+    });
+
+    return (
+        <div className="flex flex-nowrap whitespace-nowrap">
+            <motion.div 
+                className="flex flex-nowrap whitespace-nowrap cursor-grab active:cursor-grabbing" 
+                style={{ x }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.05}
+                onDrag={(e, info) => {
+                    baseX.set(baseX.get() + info.delta.x * 0.01);
+                }}
+            >
+                <div className="flex gap-6 px-3">{children}</div>
+                <div className="flex gap-6 px-3">{children}</div>
+                <div className="flex gap-6 px-3">{children}</div>
+                <div className="flex gap-6 px-3">{children}</div>
+            </motion.div>
+        </div>
+    );
+}
+
+// Simple proxy for scrolly since we don't need velocity factoring here for now
+function useScrollProxy() {
+    return { scrollY: useMotionValue(0) };
+}
+
 export default function LocationScroller({ items }: LocationScrollerProps) {
-    const [isHovered, setIsHovered] = useState(false);
-    
-    // Duplicate items to create infinite loop effect
-    const duplicatedItems = [...items, ...items, ...items];
-    
     return (
         <div className="relative w-full overflow-hidden py-10">
             {/* Gradient Fades for edges */}
             <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-noir to-transparent pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-noir to-transparent pointer-events-none" />
 
-            <motion.div 
-                className="flex gap-6 px-6"
-                animate={{
-                    x: ["0%", "-33.333%"]
-                }}
-                transition={{
-                    x: {
-                        duration: 20, // Increased speed as requested
-                        repeat: Infinity,
-                        ease: "linear",
-                    }
-                }}
-                onHoverStart={() => setIsHovered(true)}
-                onHoverEnd={() => setIsHovered(false)}
-                // Pausing logic via CSS/Framer
-                style={{
-                    animationPlayState: isHovered ? "paused" : "running"
-                }}
-            >
-                {duplicatedItems.map((loc, idx) => (
+            <ScrollingContainer baseVelocity={-0.8}>
+                {items.map((loc, idx) => (
                     <div
                         key={idx}
                         className="flex-shrink-0 w-[300px] md:w-[340px] group"
@@ -105,7 +131,7 @@ export default function LocationScroller({ items }: LocationScrollerProps) {
                         </div>
                     </div>
                 ))}
-            </motion.div>
+            </ScrollingContainer>
         </div>
     );
 }

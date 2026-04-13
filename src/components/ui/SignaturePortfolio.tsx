@@ -25,10 +25,10 @@ export default function SignaturePortfolio() {
     return (
         <section
             ref={containerRef}
-            className="py-20 md:py-32 bg-transparent relative overflow-hidden"
+            className="py-16 md:py-24 bg-transparent relative overflow-hidden"
         >
             {/* Heading - Always Visible & Center-Aligned on Mobile, Left-Aligned on Desktop */}
-            <div className="container mx-auto px-6 mb-16 md:mb-24">
+            <div className="container mx-auto px-6 mb-12 md:mb-16">
                 {/* Desktop Animated Parallax */}
                 <motion.div style={{ x: translateX, opacity }} className="hidden md:block">
                     <p className="section-label mb-4">Our Portfolio</p>

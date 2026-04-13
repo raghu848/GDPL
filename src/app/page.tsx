@@ -136,7 +136,7 @@ export default function Home() {
       {/* ═══════════════ 3B. Our Philosophy (Smooth Linear Sticky Scroll) ═══════════════ */}
       <div
         ref={philosophyRef}
-        className="h-[160vh] relative z-20"
+        className="h-[130vh] relative z-20"
       >
         <section className="sticky top-[10vh] md:top-[12vh] flex flex-col items-center overflow-hidden w-full bg-[#06110d] text-white py-12 px-4 md:px-6 rounded-none z-10 shadow-3xl">
 
@@ -228,7 +228,7 @@ export default function Home() {
       <Timeline />
 
       {/* ═══════════════ 6. WHY CHOOSE GDPL ═══════════════ */}
-      <section className="py-32 bg-transparent relative">
+      <section className="py-24 bg-transparent relative">
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -270,7 +270,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════ 7. TESTIMONIALS ═══════════════ */}
-      <section className="py-32 bg-transparent relative overflow-hidden">
+      <section className="py-24 bg-transparent relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-[1px]" style={{ background: "linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent)" }} />
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
@@ -330,7 +330,7 @@ export default function Home() {
       <ContactMap />
 
       {/* ═══════════════ 10. VISION CTA ═══════════════ */}
-      <section className="relative py-40 overflow-hidden bg-noir">
+      <section className="relative py-24 overflow-hidden bg-noir">
         <div className="absolute top-0 left-0 w-full h-[1px] bg-white/10" />
         <div className="absolute bottom-0 left-0 w-full h-[1px] bg-white/10" />
 

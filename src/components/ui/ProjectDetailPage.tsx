@@ -2,17 +2,16 @@
 
 import { Project } from "@/lib/projectsData";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { MapPin, ArrowRight, ChevronRight, MessageSquare, Phone, Check, X, MousePointer2 } from "lucide-react";
+import { MapPin, ArrowRight, MessageSquare, Phone, Check } from "lucide-react";
 import Link from "next/link";
 import { useState, useRef } from "react";
 import Image from "next/image";
 import AmenityScroller from "./AmenityScroller";
 import LocationScroller from "./LocationScroller";
 import LocationSplitScroll from "./LocationSplitScroll";
+import EmpirusGallery from "./EmpirusGallery";
 
 export default function ProjectDetailPage({ project }: { project: Project }) {
-    const [activeAmenityTab, setActiveAmenityTab] = useState(0);
-    const [lightboxImage, setLightboxImage] = useState<string | null>(null);
     const heroRef = useRef<HTMLDivElement>(null);
 
     const { scrollYProgress } = useScroll({
@@ -243,15 +242,18 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                 </div>
             </section>
 
+            {/* ═══════ 2.5 CUSTOM EMPIRUS GALLERY ═══════ */}
+            {project.slug === "regal-empirus" && <EmpirusGallery />}
+
             {/* ═══════ 3. CONFIGURATIONS ═══════ */}
-            <section className="py-32 relative">
+            <section className="py-10 relative">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1 }}
-                        className="text-center mb-16"
+                        className="text-center mb-10"
                     >
                         <p className="section-label mb-4">Floor Plans</p>
                         <h2 className="text-3xl md:text-5xl font-normal capitalize tracking-normal leading-none text-white font-serif">
@@ -283,176 +285,42 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                     </div>
                 </div>
             </section>
-
-            {/* ═══════ 4. GALLERY ═══════ */}
-            <section className="py-32 relative">
-                <div className="container mx-auto px-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1 }}
-                        className="text-center mb-16"
-                    >
-                        <p className="section-label mb-4">Visual Tour</p>
-                        <h2 className="text-3xl md:text-5xl font-normal capitalize tracking-normal leading-none text-white font-serif">
-                            Project <span className="text-[#D4AF37] font-serif">Gallery</span>
-                        </h2>
-                    </motion.div>
-
-                    {/* Staggered Masonry Grid */}
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.05 }}
-                        variants={{
-                            hidden: { opacity: 0 },
-                            visible: {
-                                opacity: 1,
-                                transition: {
-                                    staggerChildren: 0.1,
-                                    delayChildren: 0.2
-                                }
-                            }
-                        }}
-                        className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4"
-                    >
-                        {project.galleryImages.map((img, idx) => (
-                            <motion.div
-                                key={idx}
-                                variants={{
-                                    hidden: { opacity: 0, y: 40, scale: 0.95, filter: "blur(10px)" },
-                                    visible: {
-                                        opacity: 1,
-                                        y: 0,
-                                        scale: 1,
-                                        filter: "blur(0px)",
-                                        transition: {
-                                            duration: 1.2,
-                                            ease: [0.16, 1, 0.3, 1]
-                                        }
-                                    }
-                                }}
-                                className="break-inside-avoid group cursor-pointer"
-                                onClick={() => setLightboxImage(img)}
-                            >
-                                <div className="overflow-hidden rounded-2xl border border-white/5 transition-all duration-700 relative aspect-[4/3] md:aspect-auto">
-                                    <Image
-                                        src={img}
-                                        alt={project.galleryImageAlts[idx] || `${project.name} gallery image ${idx + 1}`}
-                                        width={800}
-                                        height={600}
-                                        className="w-full h-auto object-cover md:grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-                                    />
-                                </div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Lightbox */}
-            <AnimatePresence>
-                {lightboxImage && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[100] bg-stone/95 backdrop-blur-md flex items-center justify-center p-4 md:p-12 cursor-pointer"
-                        onClick={() => setLightboxImage(null)}
-                    >
-                        <button className="absolute top-6 right-6 p-4 bg-white/5 rounded-full hover:bg-black hover:text-white transition-all z-10">
-                            <X className="w-5 h-5" />
-                        </button>
-                        <Image
-                            src={lightboxImage}
-                            alt="Gallery fullscreen"
-                            width={1920}
-                            height={1080}
-                            className="max-w-full max-h-[85vh] object-contain rounded-xl"
-                        />
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
             {/* ═══════ 5. AMENITIES ═══════ */}
-            <section className="py-32 relative">
-                <div className="absolute top-0 left-0 w-full h-[1px]" style={{ background: "linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent)" }} />
-                <div className="container mx-auto px-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1 }}
-                        className="text-center mb-16"
-                    >
-                        <p className="section-label mb-4">Lifestyle</p>
-                        <h2 className="text-3xl md:text-5xl font-normal capitalize tracking-normal leading-none text-white font-serif">
-                            Premium <span className="text-[#D4AF37] font-serif">Amenities</span>
-                        </h2>
-                    </motion.div>
-                    
-                    {/* High-End Amenity Scroller */}
-                    {project.amenityIcons && (
-                        <div className="mb-20">
-                            <AmenityScroller 
-                                amenities={Object.entries(project.amenityIcons).map(([name, icon]) => ({ name, icon }))} 
-                            />
-                        </div>
-                    )}
-
-                    {/* Tabs */}
-                    <div className="flex flex-wrap justify-center gap-3 mb-12">
-                        {project.amenities.map((cat, idx) => (
-                            <button
-                                key={idx}
-                                onClick={() => setActiveAmenityTab(idx)}
-                                className={`px-6 py-3 rounded-full text-[14px] font-black capitalize tracking-[0.2em] transition-all duration-300 border font-opensans ${activeAmenityTab === idx
-                                    ? "bg-noir text-white border-noir"
-                                    : "bg-transparent text-neutral-400 border-white/10 hover:border-white/20 hover:text-white"
-                                    }`}
-                            >
-                                {cat.name}
-                            </button>
-                        ))}
-                    </div>
-
-                    {/* Tab Content */}
-                    <AnimatePresence mode="wait">
+            {project.slug !== "regal-empirus" && (
+                <section className="py-10 relative">
+                    <div className="absolute top-0 left-0 w-full h-[1px]" style={{ background: "linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent)" }} />
+                    <div className="container mx-auto px-6">
                         <motion.div
-                            key={activeAmenityTab}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 0.4 }}
-                            className="glass-premium p-8 md:p-12 rounded-3xl max-w-4xl mx-auto border border-white/5 shadow-sm"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1 }}
+                            className="text-center mb-10"
                         >
-                            <h3 className="text-2xl font-bold capitalize tracking-tighter mb-8 font-opensans">{project.amenities[activeAmenityTab].name}</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {project.amenities[activeAmenityTab].items.map((item, i) => (
-                                    <motion.div
-                                        key={i}
-                                        initial={{ opacity: 0, x: -10 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ delay: i * 0.05 }}
-                                        className="flex items-center gap-4 py-3 px-4 rounded-xl hover:bg-white/5 transition-colors group"
-                                    >
-                                        <div className="w-1.5 h-1.5 rounded-full bg-noir shrink-0 group-hover:scale-150 transition-transform" />
-                                        <span className="text-white/80 text-sm font-light font-playfair">{item}</span>
-                                    </motion.div>
-                                ))}
-                            </div>
+                            <p className="section-label mb-4">Lifestyle</p>
+                            <h2 className="text-3xl md:text-5xl font-normal capitalize tracking-normal leading-none text-white font-serif">
+                                Premium <span className="text-[#D4AF37] font-serif">Amenities</span>
+                            </h2>
                         </motion.div>
-                    </AnimatePresence>
-                </div>
-            </section>
+                        
+                        {/* High-End Amenity Scroller */}
+                        {project.amenityIcons && (
+                            <div className="mb-20">
+                                <AmenityScroller 
+                                    amenities={Object.entries(project.amenityIcons).map(([name, icon]) => ({ name, icon }))} 
+                                />
+                            </div>
+                        )}
+                    </div>
+                </section>
+            )}
 
             {/* ═══════ 6. LOCATION ADVANTAGES ═══════ */}
             {project.locationAdvantages && (
                 project.slug === "regal-residencia" ? (
                     <LocationSplitScroll items={project.locationAdvantages} />
                 ) : (
-                    <section className="py-32 relative overflow-hidden">
+                    <section className="py-20 relative overflow-hidden">
                         {/* Background Accents */}
                         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(212,175,55,0.05),transparent_70%)] pointer-events-none" />
 
@@ -507,7 +375,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
             )}
 
             {/* ═══════ 7. CTA ═══════ */}
-            <section className="py-32 relative bg-noir text-white">
+            <section className="py-24 relative bg-noir text-white">
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-white/10" />
                 <div className="container mx-auto px-6">
                     <div className="bg-white/5 backdrop-blur-sm p-12 md:p-20 rounded-3xl text-center relative overflow-hidden border border-white/10">

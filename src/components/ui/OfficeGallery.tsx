@@ -64,7 +64,7 @@ export default function OfficeGallery() {
 
   return (
     <section className="py-12 md:py-20 bg-transparent relative overflow-hidden">
-      <div className="container mx-auto px-6 mb-12 md:mb-16">
+      <div className="container mx-auto px-6 mb-8 md:mb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

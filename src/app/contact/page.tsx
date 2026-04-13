@@ -11,7 +11,7 @@ export default function ContactPage() {
     return (
         <main className="min-h-screen bg-transparent text-white selection:bg-noir selection:text-white grain-overlay">
             {/* 1. Hero Section with Image */}
-            <section className="pt-40 pb-20 border-b border-gold/5 mx-auto px-6 container relative z-10">
+            <section className="pt-32 pb-16 border-b border-gold/5 mx-auto px-6 container relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -152,7 +152,7 @@ export default function ContactPage() {
             </section>
 
             {/* 3. Office Info Section */}
-            <section className="py-40 bg-transparent relative z-10">
+            <section className="py-24 bg-transparent relative z-10">
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-white/10" />
                 <div className="container mx-auto px-6">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-24 items-center">

@@ -45,7 +45,7 @@ export const projects: Project[] = [
     {
         slug: "regal-residencia",
         name: "Regal Residencia",
-        tagline: "Premium independent floors in Sector 114 featuring an Iconic Sky Walk and 30+ world-class amenities.",
+        tagline: "3, 3+1 & 4+1 BHK residences in Sector 114, Mohali, designed with open landscapes, podium-level amenities, and seamless green connectivity.",
 
         location: "Sector 114, Mohali",
         status: "Ongoing",
@@ -126,8 +126,7 @@ export const projects: Project[] = [
             "Iconic Sky Walk (First in the Region)",
             "Spacious 3 & 4 BHK + Luxury Penthouses",
             "Integrated Retail & Lifestyle Hub",
-            "Prime Location with Seamless Connectivity",
-            "RERA Registered",
+
         ],
         locationAdvantages: [
             { category: "Educational Institutions", name: "Delhi Public School", distance: "05 mins" },
@@ -159,7 +158,7 @@ export const projects: Project[] = [
     {
         slug: "regal-heights",
         name: "Regal Heights",
-        tagline: "Flagship high-rise in Sector 91 featuring a 2-acre podium park and premium sun-facing residences.",
+        tagline: "3 & 4 BHK residences, Sky Villas and Earth Villas in Sector 91, Mohali, set within a 3-side open site with premium amenities.",
         location: "Sector 91, Mohali",
         status: "Ongoing",
         heroImage: "/regal_heights/Regal_Heights_.jpg.jpeg",
@@ -221,7 +220,7 @@ export const projects: Project[] = [
             "25,000 sq.ft. Club",
             "Sun-Facing",
             "Earthvillas & Skyvillas",
-            "RERA Registered",
+
         ],
         residencesSummary: "3+1, 4+1 BHK & Earthvillas",
         totalUnits: "125 Units",
@@ -230,7 +229,7 @@ export const projects: Project[] = [
     {
         slug: "regal-empirus",
         name: "Regal Empirus",
-        tagline: "Ultra-luxury residences in Sector 91 with iconic architecture, 3-side open views, and premium amenities.",
+        tagline: "3+1 & 4+1 BHK ultra-luxury residences in Sector 91, Mohali, featuring sun-facing layouts, iconic skywalk design, and world-class amenities.",
         location: "Sector 91, Mohali",
         status: "Ongoing",
         heroImage: "/regal_empirus/Regal_Empirus_.jpg.jpeg",

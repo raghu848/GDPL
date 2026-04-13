@@ -46,19 +46,6 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
     const directionFactor = useRef<number>(1);
     useAnimationFrame((t, delta) => {
         let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
-
-        /**
-         * This is what controls the direction of the scroll
-         * depending on the scroll velocity
-         */
-        if (velocityFactor.get() < 0) {
-            directionFactor.current = -1;
-        } else if (velocityFactor.get() > 0) {
-            directionFactor.current = 1;
-        }
-
-        moveBy += directionFactor.current * moveBy * velocityFactor.get();
-
         baseX.set(baseX.get() + moveBy);
     });
 
@@ -68,7 +55,17 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
      */
     return (
         <div className="flex flex-nowrap whitespace-nowrap">
-            <motion.div className="flex flex-nowrap whitespace-nowrap" style={{ x }}>
+            <motion.div 
+                className="flex flex-nowrap whitespace-nowrap cursor-grab active:cursor-grabbing" 
+                style={{ x }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.05}
+                onDrag={(e, info) => {
+                    // Reduced multiplier for more controlled drag
+                    baseX.set(baseX.get() + info.delta.x * 0.01);
+                }}
+            >
                 <div className="flex gap-16 px-12">{children}</div>
                 <div className="flex gap-16 px-12">{children}</div>
                 <div className="flex gap-16 px-12">{children}</div>
@@ -81,7 +78,7 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
 export default function AmenityScroller({ amenities }: AmenityScrollerProps) {
     return (
         <div className="relative w-full overflow-hidden py-20 bg-noir/5 backdrop-blur-md border-y border-white/5">
-            <ParallaxText baseVelocity={-0.3}>
+            <ParallaxText baseVelocity={-0.5}>
                 {amenities.map((amenity, idx) => (
                     <div
                         key={`${amenity.name}-${idx}`}

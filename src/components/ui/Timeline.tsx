@@ -73,10 +73,10 @@ const Timeline: React.FC = () => {
   const [activeId, setActiveId] = useState<number | null>(null);
 
   return (
-    <section className="py-20 bg-white text-gray-900 font-sans overflow-hidden">
+    <section className="py-16 bg-white text-gray-900 font-sans overflow-hidden">
       <div className="max-w-[1100px] mx-auto px-4">
         {/* Header */}
-        <div className="flex flex-col items-center gap-1 mb-12 text-center">
+        <div className="flex flex-col items-center gap-1 mb-8 text-center">
           <div className="flex justify-center mb-4">
             <Image
               src="/images/GDPL_Logo_white1.png"

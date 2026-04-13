@@ -33,22 +33,63 @@ export default function ProjectsPage() {
 
     return (
         <main className="min-h-screen bg-transparent text-white pb-24 grain-overlay">
-            {/* Hero */}
-            <section className="relative h-[70vh] w-full mb-24 overflow-hidden flex items-center">
+            {/* Premium Aesthetic Hero Section */}
+            <section className="relative h-[65vh] w-full mb-16 overflow-hidden flex items-center justify-center bg-noir">
                 <div className="absolute inset-0 z-0">
-                    <div className="absolute inset-0 bg-gradient-to-b from-stone/60 via-stone/30 to-transparent z-10" />
-                    <video
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        poster="/images/herosection.png"
-                        className="w-full h-full object-cover"
+                    <motion.div
+                        className="w-full h-full"
+                        initial={{ scale: 1 }}
+                        animate={{ scale: 1.15 }}
+                        transition={{ duration: 30, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
                     >
-                        <source src="/images/GDPL 1st (1080p No Audio).mp4" type="video/mp4" />
-                    </video>
+                        {/* Dramatic Lighting Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-b from-stone/80 via-stone/40 to-noir z-10" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-noir/50 via-transparent to-noir/50 z-10" />
+                        
+                        {/* Dynamic Grain Overlay */}
+                        <div className="absolute inset-0 opacity-[0.15] pointer-events-none mix-blend-overlay z-20" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
+                        
+                        <img
+                            src="/regal_empirus/Regal_Empirus_.jpg.jpeg"
+                            alt="GDPL Signature Portfolio"
+                            className="w-full h-full object-cover"
+                        />
+                    </motion.div>
+                </div>
+                
+                <div className="relative z-30 text-center px-4 w-full max-w-5xl mx-auto pt-20">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                        <p className="text-[14px] md:text-[16px] font-normal capitalize tracking-[0.4em] text-gold/80 mb-6 font-serif">
+                            Discover Excellence
+                        </p>
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-normal capitalize tracking-normal leading-[1.1] text-white font-serif drop-shadow-2xl">
+                            Our Signature <span className="text-[#D4AF37] opacity-90 inline-block font-serif">Portfolio</span>
+                        </h1>
+                        <p className="text-white/60 text-lg md:text-xl font-light mt-8 max-w-2xl mx-auto tracking-wide">
+                            Masterpieces of modern living, designed for those who accept nothing but the exceptional.
+                        </p>
+                    </motion.div>
                 </div>
 
+                {/* Animated Scroll Down Line */}
+                <motion.div 
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.5, duration: 1 }}
+                >
+                    <div className="w-[1px] h-[80px] bg-white/10 relative overflow-hidden">
+                        <motion.div 
+                            className="absolute top-0 left-0 w-full h-1/2 bg-[#D4AF37]"
+                            animate={{ top: ["-50%", "100%"] }}
+                            transition={{ duration: 2.5, ease: "easeInOut", repeat: Infinity }}
+                        />
+                    </div>
+                </motion.div>
             </section>
 
             <div className="container mx-auto px-6">
@@ -57,7 +98,7 @@ export default function ProjectsPage() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
-                    className="flex flex-col md:flex-row gap-6 mb-20 items-center"
+                    className="flex flex-col md:flex-row gap-6 mb-12 items-center"
                 >
                     {/* Search */}
                     <div className="relative flex-1 w-full">
@@ -174,7 +215,7 @@ export default function ProjectsPage() {
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="text-center py-32"
+                        className="text-center py-20"
                     >
                         <p className="text-muted text-xl font-light">No projects match your search.</p>
                         <button

@@ -60,9 +60,9 @@ export default function LocationSplitScroll({ items }: LocationSplitScrollProps)
                 {/* Right Side - Scrollable */}
                 <div className="w-full lg:w-1/2 px-8 md:px-16 lg:px-24">
                     {/* Top padding - reverted to perfect initial alignment */}
-                    <div className="h-[40vh] hidden lg:block" />
+                    <div className="h-[30vh] hidden lg:block" />
                     
-                    <div className="max-w-xl mx-auto lg:mx-0 space-y-24 lg:space-y-40">
+                    <div className="max-w-xl mx-auto lg:mx-0 space-y-16 lg:space-y-28">
                         {categories.map((category, idx) => (
                             <div key={category} className="relative">
                                 <motion.h3 
@@ -75,7 +75,7 @@ export default function LocationSplitScroll({ items }: LocationSplitScrollProps)
                                     {category}
                                 </motion.h3>
                                 
-                                <div className="space-y-8">
+                                <div className="space-y-5">
                                     {groupedItems[category].map((item, itemIdx) => (
                                         <motion.div 
                                             key={itemIdx}
@@ -107,7 +107,7 @@ export default function LocationSplitScroll({ items }: LocationSplitScrollProps)
                     </div>
                     
                     {/* Critical spacer: Ensures section ends exactly when Education is aligned */}
-                    <div className="h-[15vh] lg:h-[15vh]" />
+                    <div className="h-[10vh] lg:h-[10vh]" />
                 </div>
             </div>
         </section>

@@ -21,23 +21,45 @@ export default function AboutPage() {
 
     return (
         <main className="min-h-screen bg-transparent text-white font-sans pb-24 selection:bg-noir selection:text-white">
-            {/* Hero Section */}
-            <section className="relative h-[80vh] w-full mb-32 overflow-hidden">
+            {/* Premium Aesthetic Hero Section */}
+            <section className="relative h-[55vh] w-full mb-20 overflow-hidden flex items-center justify-center bg-noir">
                 <div className="absolute inset-0 z-0">
-                    <video
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        className="w-full h-full object-cover"
+                    <motion.div
+                        className="w-full h-full"
+                        initial={{ scale: 1 }}
+                        animate={{ scale: 1.15 }}
+                        transition={{ duration: 25, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
                     >
-                        <source src="/images/WhatsApp Video 2024-12-12 at 1.39.05 PM (540p No Audio).mp4" type="video/mp4" />
-                    </video>
+                        <div className="absolute inset-0 bg-gradient-to-t from-noir via-noir/60 to-noir/30 z-10" />
+                        {/* Dynamic Grain Overlay */}
+                        <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay z-20" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
+                        <img
+                            src="/office_images/IMG_2361 (1).jpg"
+                            alt="GDPL Headquarters"
+                            className="w-full h-full object-cover"
+                        />
+                    </motion.div>
+                </div>
+                
+                <div className="relative z-30 text-center px-4 w-full max-w-5xl mx-auto pt-40">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                        <p className="text-[14px] md:text-[16px] font-normal capitalize tracking-[0.4em] text-gold/80 mb-6 font-serif">
+                            The GDPL Legacy
+                        </p>
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-normal capitalize tracking-normal leading-[1.1] text-white font-serif drop-shadow-2xl">
+                            Shaping <span className="text-[#D4AF37] opacity-90 inline-block font-serif">Skylines</span><br />
+                            Building <span className="opacity-70 font-serif">Trust</span>
+                        </h1>
+                    </motion.div>
                 </div>
             </section>
 
             {/* Main Content - Who We Are */}
-            <section className="container mx-auto px-6 mb-40 relative z-10">
+            <section className="container mx-auto px-6 mb-24 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
                     <div>
                         <h2 className="text-h2 mb-12 border-l-4 border-gold pl-6 capitalize tracking-normal font-serif">Who We Are</h2>
@@ -75,7 +97,7 @@ export default function AboutPage() {
             </section>
 
             {/* Our Journey Section with Timeline */}
-            <section className="container mx-auto px-6 mb-40 relative z-10">
+            <section className="container mx-auto px-6 mb-24 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
@@ -156,7 +178,7 @@ export default function AboutPage() {
             </section>
 
             {/* Our Team (High-Contrast Noir Section) */}
-            <section className="py-24 bg-noir text-white mb-32 relative z-10">
+            <section className="py-20 bg-noir text-white mb-24 relative z-10">
                 <div className="container mx-auto px-6">
                     <div className="max-w-4xl mx-auto text-center">
                         <motion.div
@@ -181,7 +203,7 @@ export default function AboutPage() {
             </section>
 
             {/* CSR Section with Gold Icon Glow */}
-            <section className="container mx-auto px-6 mb-40 relative z-10">
+            <section className="container mx-auto px-6 mb-24 relative z-10">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
                     <div className="max-w-xl">
                         <h2 className="section-label mb-8">Responsibility</h2>
@@ -222,7 +244,7 @@ export default function AboutPage() {
             </section>
 
             {/* Vision Callout (Noir Contrast) */}
-            <section className="relative py-40 overflow-hidden bg-noir">
+            <section className="relative py-24 overflow-hidden bg-noir">
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-white/10" />
                 <div className="container mx-auto px-6 text-center relative z-10">
                     <div className="max-w-4xl mx-auto">
