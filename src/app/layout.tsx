@@ -8,28 +8,33 @@ import LuxuryBackground from "@/components/ui/LuxuryBackground";
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const carattere = Carattere({
   variable: "--font-serif",
   subsets: ["latin"],
   weight: ["400"],
+  display: "swap",
 });
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const libreBaskerville = Libre_Baskerville({
   variable: "--font-libre",
   subsets: ["latin"],
   weight: ["400", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {

@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Menu, X, Phone } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export default function Header() {
     const pathname = usePathname();
@@ -59,10 +60,13 @@ export default function Header() {
 
                     {/* Center: Logo */}
                     <Link href="/" className="absolute left-1/2 -translate-x-1/2 group">
-                        <img
-                            src="/images/GDPL_Logo_white2.png?v=2"
+                        <Image
+                            src="/images/GDPL_Logo_white2.png"
                             alt="GDPL - Group Developers Private Limited Logo"
+                            width={120}
+                            height={48}
                             className="h-8 md:h-12 w-auto object-contain transition-transform duration-700 group-hover:scale-110"
+                            priority
                         />
                     </Link>
 

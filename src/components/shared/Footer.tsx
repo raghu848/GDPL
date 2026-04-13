@@ -13,7 +13,7 @@ export default function Footer() {
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
                     <div className="space-y-6">
-                        <Image src="/images/GDPL_Logo_white2.png?v=2" alt="GDPL - Group Developers Private Limited Logo" width={160} height={40} className="h-10 w-auto" />
+                        <Image src="/images/GDPL_Logo_white2.png" alt="GDPL - Group Developers Private Limited Logo" width={160} height={40} className="h-10 w-auto" />
                         <p className="text-muted text-xs font-light max-w-xs leading-relaxed">
                             We know everything you need about Mohali property market. Building trust since a decade.
                         </p>

@@ -28,14 +28,13 @@ const EmpirusGallery: React.FC = () => {
     const gridRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const ctx = gsap.context(() => {
-            // Check if we are on mobile (screen width < 1024px)
-            const isDesktop = window.innerWidth >= 1024;
+        const mm = gsap.matchMedia();
 
+        mm.add("(min-width: 1024px)", () => {
             if (!sectionRef.current || !gridRef.current) return;
 
             // Pinning the section
-            ScrollTrigger.create({
+            const mainTrigger = ScrollTrigger.create({
                 trigger: sectionRef.current,
                 start: "top top",
                 end: "+=300%", // Scroll duration of 3 viewport heights
@@ -48,14 +47,8 @@ const EmpirusGallery: React.FC = () => {
             const items = gridRef.current.querySelectorAll(".gallery-item");
 
             items.forEach((item, index) => {
-                // Create a "wave" effect by varying the translation intensities and directions
-                // stagger the intensity logic
-                const intensity = 100 + (index % 5) * 50; 
-                const direction = index < 5 ? -1 : 1; // Row 1 moves one way, Row 2 another? 
-                // Actually user said "translate upward", so let's do staggered upward movement.
-                
-                const yMove = isDesktop ? (index % 2 === 0 ? -150 : -250) : -100;
-                const scaleMove = isDesktop ? 1.05 : 1.02;
+                const yMove = index % 2 === 0 ? -150 : -250;
+                const scaleMove = 1.05;
 
                 gsap.fromTo(item, 
                     { 
@@ -77,15 +70,29 @@ const EmpirusGallery: React.FC = () => {
                     }
                 );
             });
-        }, sectionRef);
 
-        return () => ctx.revert();
+            return () => {
+                mainTrigger.kill();
+                ScrollTrigger.getAll().forEach(st => st.kill());
+            };
+        });
+
+        // Mobile logic (no pinning, static grid)
+        mm.add("(max-width: 1023px)", () => {
+            // Reset items to natural state
+            const items = gridRef.current?.querySelectorAll(".gallery-item");
+            if (items) {
+                gsap.set(items, { y: 0, opacity: 1, scale: 1 });
+            }
+        });
+
+        return () => mm.revert();
     }, []);
 
     return (
         <section 
             ref={sectionRef} 
-            className="relative h-screen w-full bg-noir overflow-hidden flex flex-col justify-center items-center py-20"
+            className="relative h-auto lg:h-screen w-full bg-noir overflow-hidden flex flex-col justify-center items-center py-16 lg:py-20"
         >
             {/* Architectural Grid Background Overlay */}
             <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)', backgroundSize: '100px 100px' }} />

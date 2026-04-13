@@ -143,16 +143,21 @@ export default function Home() {
           {/* 🖼 Background Images Layer */}
           <div className="absolute inset-0 pointer-events-none z-0">
             {/* Desktop Background (hidden on mobile) */}
-            <img
+            <Image
               src="/images/regal-luxuria/WhatsApp%20Image%202026-04-01%20at%205.43.10%20PM.jpeg"
               alt="Cinematic luxury residential interior with warm lighting"
-              className="hidden md:block w-full h-full object-cover opacity-30 object-center"
+              fill
+              className="hidden md:block object-cover opacity-30 object-center"
+              sizes="100vw"
+              priority
             />
             {/* Mobile Background (visible only on mobile) */}
-            <img
+            <Image
               src="/images/regal-luxuria/WhatsApp%20Image%202026-04-01%20at%205.43.56%20PM.jpeg"
               alt="Close-up of premium architectural textures and gold detailing"
-              className="block md:hidden w-full h-full object-cover opacity-30 object-center"
+              fill
+              className="block md:hidden object-cover opacity-30 object-center"
+              sizes="100vw"
             />
             {/* Overlay Gradient to dim the images and keep text readable */}
             <div className="absolute inset-0 bg-[#06110d]/20" />

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Globe, Heart, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 
 export default function AboutPage() {
     const leaders = [
@@ -22,7 +23,7 @@ export default function AboutPage() {
     return (
         <main className="min-h-screen bg-transparent text-white font-sans pb-24 selection:bg-noir selection:text-white">
             {/* Premium Aesthetic Hero Section */}
-            <section className="relative h-[55vh] w-full mb-20 overflow-hidden flex items-center justify-center bg-noir">
+            <section className="relative h-[75vh] w-full mb-32 overflow-hidden flex items-center justify-center bg-noir">
                 <div className="absolute inset-0 z-0">
                     <motion.div
                         className="w-full h-full"
@@ -33,10 +34,13 @@ export default function AboutPage() {
                         <div className="absolute inset-0 bg-gradient-to-t from-noir via-noir/60 to-noir/30 z-10" />
                         {/* Dynamic Grain Overlay */}
                         <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay z-20" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
-                        <img
+                        <Image
                             src="/office_images/IMG_2361 (1).jpg"
                             alt="GDPL Headquarters"
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
+                            priority
+                            sizes="100vw"
                         />
                     </motion.div>
                 </div>
@@ -155,10 +159,12 @@ export default function AboutPage() {
                             className="space-y-10 group max-w-md mx-auto text-center"
                         >
                             <div className="relative aspect-[3/4] rounded-[2rem] overflow-hidden border border-gold/10 mx-auto w-full group-hover:border-gold/30 transition-all duration-700">
-                                <img
+                                <Image
                                     src={leader.image}
                                     alt={"Official portrait of " + leader.name + ", " + leader.role + " at GDPL"}
-                                    className="w-full h-full object-cover md:grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+                                    fill
+                                    className="object-cover md:grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 100vw, 400px"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
                                 {/* Gold corner accents on hover */}
