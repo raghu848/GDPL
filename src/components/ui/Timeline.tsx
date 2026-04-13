@@ -74,20 +74,20 @@ const Timeline: React.FC = () => {
 
   return (
     <section className="py-16 bg-white text-gray-900 font-sans overflow-hidden">
-      <div className="max-w-[1100px] mx-auto px-4">
+      <div className="max-w-[1350px] mx-auto px-6">
         {/* Header */}
         <div className="flex flex-col items-center gap-1 mb-8 text-center">
           <div className="flex justify-center mb-4">
             <Image
               src="/images/GDPL_Logo_white1.png"
               alt="GDPL Logo"
-              width={160}
-              height={64}
-              className="h-16 w-auto object-contain"
+              width={220}
+              height={80}
+              className="h-20 w-auto object-contain"
             />
           </div>
-          <div className="text-[10px] font-medium tracking-[0.3em] text-gray-400 uppercase">Building Dreams</div>
-          <p className="font-serif italic text-sm text-gray-500 mt-2">The Journey of Growth, Trust & Landmarks.</p>
+          <div className="text-[12px] font-bold tracking-[0.4em] text-gray-400 uppercase">Building Dreams</div>
+          <p className="font-serif italic text-base text-gray-500 mt-3">The Journey of Growth, Trust & Landmarks.</p>
         </div>
 
         {/* Timeline Outer */}
@@ -106,24 +106,24 @@ const Timeline: React.FC = () => {
                 className="flex flex-col items-center relative group cursor-pointer"
               >
                 <motion.div
-                  whileHover={{ y: -4 }}
-                  className={`bg-white border rounded-xl p-3.5 w-full max-w-[200px] mb-[18px] transition-all duration-300 ${
+                  whileHover={{ y: -6 }}
+                  className={`bg-white border rounded-2xl p-4 w-full transition-all duration-300 ${
                     activeId === idx 
-                    ? "border-[#E8003D] bg-[#fff0f4] shadow-[0_4px_20px_rgba(232,0,61,0.12)]" 
-                    : "border-gray-100 group-hover:border-[#E8003D] group-hover:shadow-[0_4px_20px_rgba(232,0,61,0.12)]"
+                    ? "border-[#E8003D] bg-[#fff0f4] shadow-[0_8px_30px_rgba(232,0,61,0.15)]" 
+                    : "border-gray-100 group-hover:border-[#E8003D] group-hover:shadow-[0_8px_30px_rgba(232,0,61,0.15)]"
                   }`}
                 >
-                  <div className="w-full h-[90px] rounded-lg mb-2.5 overflow-hidden bg-gray-50 flex items-center justify-center relative">
+                  <div className="w-full h-[150px] rounded-xl mb-4 overflow-hidden bg-gray-50 flex items-center justify-center relative">
                     {item.image ? (
                       <Image src={item.image} alt={item.name} fill className="object-cover" />
                     ) : (
-                      <div className="text-[10px] uppercase tracking-widest text-gray-400 font-medium">No Image</div>
+                      <div className="text-[11px] uppercase tracking-widest text-gray-400 font-bold">No Image</div>
                     )}
                   </div>
-                  <div className="text-[12px] font-semibold text-gray-900 leading-tight mb-1.5 line-clamp-2 h-[34px]">
+                  <div className="text-[14px] font-bold text-gray-900 leading-tight mb-3 line-clamp-2 h-[40px]">
                     {item.name}
                   </div>
-                  <div className={`inline-flex items-center gap-1 text-[9px] font-medium px-2 py-0.5 rounded-full ${
+                  <div className={`inline-flex items-center gap-1.5 text-[10px] font-bold px-3 py-1 rounded-full ${
                     item.badge === "delivered" ? "bg-green-50 text-green-700" :
                     item.badge === "possession" ? "bg-amber-50 text-amber-700" :
                     "bg-blue-50 text-blue-700"
@@ -142,12 +142,12 @@ const Timeline: React.FC = () => {
                 }`} />
 
                 {/* Year Group */}
-                <div className="flex items-center flex-wrap justify-center gap-1 mt-3">
-                  <span className="text-[13px] font-bold text-[#E8003D]">{item.launch}</span>
+                <div className="flex items-center flex-wrap justify-center gap-1.5 mt-4">
+                  <span className="text-[16px] font-black text-[#E8003D]">{item.launch}</span>
                   {item.possession !== "Coming Soon" && (
                     <>
-                      <span className="text-gray-300 text-[11px]">→</span>
-                      <span className="text-[11px] text-gray-400 mt-0.5">{item.possession}</span>
+                      <span className="text-gray-300 text-[13px]">→</span>
+                      <span className="text-[13px] text-gray-400 font-medium mt-0.5">{item.possession}</span>
                     </>
                   )}
                 </div>
@@ -165,34 +165,34 @@ const Timeline: React.FC = () => {
               exit={{ opacity: 0, y: 10 }}
               className="mt-8 mx-4 border border-gray-100 rounded-xl p-5 bg-gray-50 shadow-sm"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2 text-base font-semibold text-gray-900">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-3 text-xl font-bold text-gray-900 font-serif">
                   <span className="text-[#E8003D]">■</span> {timelineData[activeId].name}
                 </div>
                 <button 
                   onClick={() => setActiveId(null)}
-                  className="text-gray-400 hover:text-[#E8003D] transition-colors"
+                  className="text-gray-400 hover:text-[#E8003D] transition-colors p-2"
                 >
-                  <X size={20} />
+                  <X size={24} />
                 </button>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <label className="block text-[10px] uppercase tracking-widest text-gray-400 mb-1">Launch Year</label>
-                  <span className="text-sm font-medium text-gray-900">{timelineData[activeId].launch}</span>
+                  <label className="block text-[11px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-2">Launch Year</label>
+                  <span className="text-lg font-bold text-gray-900">{timelineData[activeId].launch}</span>
                 </div>
                 <div>
-                  <label className="block text-[10px] uppercase tracking-widest text-gray-400 mb-1">Possession</label>
-                  <span className="text-sm font-medium text-gray-900">{timelineData[activeId].possession}</span>
+                  <label className="block text-[11px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-2">Possession</label>
+                  <span className="text-lg font-bold text-gray-900">{timelineData[activeId].possession}</span>
                 </div>
                 <div>
-                  <label className="block text-[10px] uppercase tracking-widest text-gray-400 mb-1">Status</label>
-                  <span className="text-sm font-medium text-gray-900">{timelineData[activeId].status}</span>
+                  <label className="block text-[11px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-2">Status</label>
+                  <span className="text-lg font-bold text-gray-900">{timelineData[activeId].status}</span>
                 </div>
-                <div className="md:col-span-3 pt-4 border-t border-gray-200">
-                  <label className="block text-[10px] uppercase tracking-widest text-gray-400 mb-1">About Project</label>
-                  <p className="text-sm text-gray-600 leading-relaxed font-light">{timelineData[activeId].desc}</p>
+                <div className="md:col-span-3 pt-6 border-t border-gray-200">
+                  <label className="block text-[11px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-3">About Project</label>
+                  <p className="text-lg text-gray-600 leading-relaxed font-light font-playfair">{timelineData[activeId].desc}</p>
                 </div>
               </div>
             </motion.div>
