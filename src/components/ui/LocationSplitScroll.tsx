@@ -70,7 +70,7 @@ export default function LocationSplitScroll({ items }: LocationSplitScrollProps)
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true, margin: "-100px" }}
                                     transition={{ duration: 0.8 }}
-                                    className="text-[#2ECC71] text-3xl md:text-4xl font-serif mb-8 tracking-wide"
+                                    className="text-[#D4AF37] text-3xl md:text-4xl font-serif mb-8 tracking-wide"
                                 >
                                     {category}
                                 </motion.h3>
@@ -86,13 +86,13 @@ export default function LocationSplitScroll({ items }: LocationSplitScrollProps)
                                             className="flex flex-col md:flex-row md:items-baseline md:justify-between group cursor-default"
                                         >
                                             <div className="flex items-center gap-4">
-                                                <div className="w-1.5 h-1.5 rounded-full bg-[#2ECC71]/30 group-hover:bg-[#2ECC71] group-hover:scale-150 transition-all duration-500" />
+                                                <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]/30 group-hover:bg-[#D4AF37] group-hover:scale-150 transition-all duration-500" />
                                                 <span className="text-xl md:text-2xl text-white/90 font-playfair font-light group-hover:text-white transition-colors duration-300">
                                                     {item.name}
                                                 </span>
                                             </div>
-                                            <div className="flex-grow mx-6 hidden md:block border-b border-white/5 group-hover:border-[#2ECC71]/20 transition-all duration-500" />
-                                            <span className="text-lg md:text-xl text-white/30 font-opensans group-hover:text-[#2ECC71]/70 transition-colors duration-300">
+                                            <div className="flex-grow mx-6 hidden md:block border-b border-white/5 group-hover:border-[#D4AF37]/20 transition-all duration-500" />
+                                            <span className="text-lg md:text-xl text-white/30 font-opensans group-hover:text-[#D4AF37]/70 transition-colors duration-300">
                                                 — {item.distance}
                                             </span>
                                         </motion.div>

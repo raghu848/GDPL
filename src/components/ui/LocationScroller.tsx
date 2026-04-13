@@ -76,9 +76,9 @@ export default function LocationScroller({ items }: LocationScrollerProps) {
                                     </div>
 
                                     {/* Category Badge (Bottom Left of Image) */}
-                                    <div className="absolute bottom-4 left-4 bg-[#D4AF37] px-3 py-1.5 rounded-lg flex items-center gap-2 shadow-lg">
+                                    <div className="absolute bottom-4 left-4 bg-noir/80 backdrop-blur-md px-3 py-1.5 rounded-lg flex items-center gap-2 shadow-lg border border-[#D4AF37]/30 text-[#D4AF37]">
                                         {getCategoryIcon(loc.category)}
-                                        <span className="text-[9px] font-black tracking-[0.2em] text-noir">{loc.category}</span>
+                                        <span className="text-[9px] font-black tracking-[0.2em]">{loc.category}</span>
                                     </div>
                                 </div>
                             )}

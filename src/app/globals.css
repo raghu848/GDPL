@@ -22,6 +22,7 @@
   --font-open-sans: var(--font-open-sans), 'Open Sans', sans-serif;
   --color-ruby: #D4AF37; /* Gold Highlight */
   --color-ruby-light: rgba(212, 175, 55, 0.3);
+  --font-libre: var(--font-libre), serif;
 }
 
 :root {
@@ -200,6 +201,10 @@ body::before {
 
 @utility font-opensans {
   font-family: var(--font-open-sans) !important;
+}
+
+@utility font-libre {
+  font-family: var(--font-libre) !important;
 }
 
 @layer base {

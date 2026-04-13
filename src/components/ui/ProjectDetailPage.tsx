@@ -104,7 +104,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-                                className="text-5xl md:text-7xl lg:text-[100px] font-normal capitalize tracking-tight leading-[1.1] mb-12 text-black font-serif px-4"
+                                className="text-5xl md:text-7xl lg:text-[100px] font-bold capitalize tracking-tight leading-[1.1] mb-12 text-black font-libre px-4"
                             >
                                 {project.name}
                             </motion.h1>
@@ -151,6 +151,12 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
                                     <div className="min-w-[140px]">
                                         <p className="text-[12px] font-normal capitalize tracking-[0.4em] text-white/40 mb-2 font-serif">Project Type</p>
                                         <p className="text-xl md:text-2xl font-black tracking-tight">{project.projectType}</p>
+                                    </div>
+                                )}
+                                {project.totalUnits && (
+                                    <div className="min-w-[140px]">
+                                        <p className="text-[12px] font-normal capitalize tracking-[0.4em] text-white/40 mb-2 font-serif">Total Units</p>
+                                        <p className="text-xl md:text-2xl font-black tracking-tight text-[#D4AF37]">{project.totalUnits}</p>
                                     </div>
                                 )}
                             </div>

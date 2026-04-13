@@ -36,6 +36,7 @@ export interface Project {
     highlights: string[];
     residencesSummary?: string;
     projectType?: string;
+    totalUnits?: string;
     amenityIcons?: Record<string, string>;
     locationAdvantages?: LocationAdvantage[];
 }
@@ -44,6 +45,7 @@ export const projects: Project[] = [
     {
         slug: "regal-residencia",
         name: "Regal Residencia",
+        tagline: "Premium independent floors in Sector 114 featuring an Iconic Sky Walk and 30+ world-class amenities.",
 
         location: "Sector 114, Mohali",
         status: "Ongoing",
@@ -52,6 +54,7 @@ export const projects: Project[] = [
         priceLabel: "₹6,900/sq.ft.",
         area: "8.5 Acres",
         residencesSummary: "3, 3+1 & 4+1 BHK Homes",
+        totalUnits: "650 Units",
         projectType: "Residential + Commercial Hub",
         amenityIcons: {
             "Indoor Badminton": "/regal_rersidencia/icons/badminton_12635730.svg",
@@ -156,6 +159,7 @@ export const projects: Project[] = [
     {
         slug: "regal-heights",
         name: "Regal Heights",
+        tagline: "Flagship high-rise in Sector 91 featuring a 2-acre podium park and premium sun-facing residences.",
         location: "Sector 91, Mohali",
         status: "Ongoing",
         heroImage: "/regal_heights/Regal_Heights_.jpg.jpeg",
@@ -220,12 +224,13 @@ export const projects: Project[] = [
             "RERA Registered",
         ],
         residencesSummary: "3+1, 4+1 BHK & Earthvillas",
+        totalUnits: "125 Units",
         projectType: "Luxury Residential",
     },
     {
         slug: "regal-empirus",
         name: "Regal Empirus",
-        tagline: "3+1 & 4+1 BHK ultra-luxury residences in Sector 91, Mohali, featuring sun-facing layouts, iconic skywalk design, and world-class amenities.",
+        tagline: "Ultra-luxury residences in Sector 91 with iconic architecture, 3-side open views, and premium amenities.",
         location: "Sector 91, Mohali",
         status: "Ongoing",
         heroImage: "/regal_empirus/Regal_Empirus_.jpg.jpeg",
@@ -284,6 +289,7 @@ export const projects: Project[] = [
             "3+1 & 4+1BHK residences with Duplex villas",
         ],
         residencesSummary: "3+1, 4+1 BHK & Duplex Villas",
+        totalUnits: "380 Units",
         projectType: "Ultra-Luxury Residential",
         locationAdvantages: [
             { name: "Manav Mangal School", distance: "0 mins", category: "EDUCATION", image: "/regal_empirus/location_images/Manav_mangal_school.jpeg", imageAlt: "Facade of Manav Mangal Smart School campus" },
@@ -349,6 +355,7 @@ export const projects: Project[] = [
             "Coming Soon",
         ],
         residencesSummary: "4+1 BHK & Penthouses",
+        totalUnits: "70 Showrooms",
         projectType: "Premium Commercial Plots",
     },
 ];

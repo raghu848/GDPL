@@ -20,96 +20,10 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import SignaturePortfolio from "@/components/ui/SignaturePortfolio";
 import OfficeGallery from "@/components/ui/OfficeGallery";
+import Timeline from "@/components/ui/Timeline";
 
 export default function Home() {
-  const [activeAmenityTab, setActiveAmenityTab] = useState(0);
 
-  const amenityCategories = [
-    {
-      name: "Sports & Recreation",
-      icon: <Dumbbell className="w-5 h-5" />,
-      items: [
-        { name: "Resort-style Swimming Pool", icon: <Waves className="w-4 h-4" /> },
-        { name: "Indoor Badminton Court", icon: <Trophy className="w-4 h-4" /> },
-        { name: "Basketball Court", icon: <Target className="w-4 h-4" /> },
-        { name: "Cricket Pitch", icon: <Target className="w-4 h-4" /> },
-        { name: "Skating Rink", icon: <Wind className="w-4 h-4" /> },
-        { name: "Jogging Track", icon: <Footprints className="w-4 h-4" /> },
-        { name: "Table Tennis", icon: <Tablets className="w-4 h-4" /> },
-        { name: "Billiards Room", icon: <Gamepad2 className="w-4 h-4" /> },
-        { name: "Premium Indoor Golf", icon: <Target className="w-4 h-4" /> },
-      ]
-    },
-    {
-      name: "Smart Living",
-      icon: <Wifi className="w-5 h-5" />,
-      items: [
-        { name: "Smart Premium Lifts", icon: <MoveUp className="w-4 h-4" /> },
-        { name: "Complete Power Backup", icon: <Zap className="w-4 h-4" /> },
-        { name: "Wi-Fi in Common Areas", icon: <Wifi className="w-4 h-4" /> },
-        { name: "All-Weather Air Conditioning", icon: <ThermometerSnowflake className="w-4 h-4" /> },
-        { name: "Premium Marble Flooring", icon: <Grid3X3 className="w-4 h-4" /> },
-        { name: "False Ceiling", icon: <LayoutPanelLeft className="w-4 h-4" /> },
-        { name: "Internal Height – 10.5 Feet", icon: <MoveUp className="w-4 h-4" /> }
-      ]
-    },
-    {
-      name: "Health & Wellness",
-      icon: <HeartPulse className="w-5 h-5" />,
-      items: [
-        { name: "Fully Equipped Gymnasium", icon: <Dumbbell className="w-4 h-4" /> },
-        { name: "Spa & Sauna", icon: <Wind className="w-4 h-4" /> },
-        { name: "Yoga Room", icon: <Leaf className="w-4 h-4" /> },
-        { name: "Medical Facilities", icon: <Stethoscope className="w-4 h-4" /> },
-        { name: "24×7 Ambulance Service", icon: <PlusCircle className="w-4 h-4" /> },
-        { name: "Meditation Zone", icon: <HeartPulse className="w-4 h-4" /> }
-      ]
-    },
-    {
-      name: "Food & Beverages",
-      icon: <UtensilsCrossed className="w-5 h-5" />,
-      items: [
-        { name: "Signature Club & Café", icon: <Club className="w-4 h-4" /> },
-        { name: "Rooftop Lounge", icon: <Wind className="w-4 h-4" /> },
-        { name: "Barbeque Zone", icon: <Pizza className="w-4 h-4" /> },
-        { name: "Open-Air Coffee Area", icon: <Coffee className="w-4 h-4" /> },
-        { name: "Library & Reading Café", icon: <BookOpen className="w-4 h-4" /> }
-      ]
-    },
-    {
-      name: "Kids & Family",
-      icon: <Baby className="w-5 h-5" />,
-      items: [
-        { name: "Kids' Play Area", icon: <Palette className="w-4 h-4" /> },
-        { name: "In-House Crèche", icon: <Baby className="w-4 h-4" /> },
-        { name: "Kids' Corner", icon: <Ghost className="w-4 h-4" /> },
-        { name: "Kids' Pool", icon: <Waves className="w-4 h-4" /> },
-        { name: "Open-to-Sky Lawns", icon: <Leaf className="w-4 h-4" /> }
-      ]
-    },
-    {
-      name: "Entertainment",
-      icon: <Clapperboard className="w-5 h-5" />,
-      items: [
-        { name: "Mini Theatre", icon: <Video className="w-4 h-4" /> },
-        { name: "Virtual Golf Simulator", icon: <Target className="w-4 h-4" /> },
-        { name: "Snooker Zone", icon: <Gamepad2 className="w-4 h-4" /> },
-        { name: "Recreation Room", icon: <Music className="w-4 h-4" /> },
-        { name: "Iconic Sky Walk", icon: <Footprints className="w-4 h-4" /> }
-      ]
-    },
-    {
-      name: "Safety & Security",
-      icon: <Lock className="w-5 h-5" />,
-      items: [
-        { name: "3-Tier Security System", icon: <Shield className="w-4 h-4" /> },
-        { name: "Complete Camera Surveillance", icon: <Video className="w-4 h-4" /> },
-        { name: "Panic Button", icon: <BellRing className="w-4 h-4" /> },
-        { name: "Biometric Entry", icon: <Fingerprint className="w-4 h-4" /> },
-        { name: "24/7 Guard Service", icon: <UserCheck className="w-4 h-4" /> }
-      ]
-    },
-  ];
 
   const testimonials = [
     {
@@ -129,39 +43,11 @@ export default function Home() {
     },
   ];
 
-  const timeline = [
-    { year: "2015", title: "The Beginning", desc: "GDPL was founded with a vision to transform the Mohali real estate landscape with transparency and quality construction." },
-    { year: "2017", title: "First Milestone", desc: "Successfully delivered our first residential project, earning the trust of hundreds of families in the Tricity region." },
-    { year: "2020", title: "Expanding Horizons", desc: "Launched Regal Heights & Regal Residencia — flagship projects that set new benchmarks for luxury living in sector 91." },
-    { year: "2023", title: "Market Leadership", desc: "Crossed 300+ delivered units with 100% transparency record. Recognized as one of Mohali's most trusted developers." },
-    { year: "2026", title: "The Future Is Now", desc: "With 8 active projects spanning Mohali, Zirakpur, and New Chandigarh — GDPL continues to shape the region's skyline." },
-  ];
+
 
   const [activeTestimonial, setActiveTestimonial] = useState(0);
-  const [activeTimelineStep, setActiveTimelineStep] = useState(0);
-  const timelineRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Robust IntersectionObserver — fires when item crosses the vertical midpoint
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
 
-    timelineRefs.current.forEach((el, idx) => {
-      if (!el) return;
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveTimelineStep(idx);
-        },
-        {
-          rootMargin: "-45% 0px -45% 0px",
-          threshold: 0,
-        }
-      );
-      observer.observe(el);
-      observers.push(observer);
-    });
-
-    return () => observers.forEach((o) => o.disconnect());
-  }, []);
 
   const philosophyRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -338,77 +224,8 @@ export default function Home() {
       {/* ═══════════════ Office Gallery ═══════════════ */}
       <OfficeGallery />
 
-      {/* ═══════════════ 5. AMENITIES ═══════════════ */}
-      <section className="py-32 bg-transparent relative">
-        <div className="absolute top-0 left-0 w-full h-[1px]" style={{ background: "linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent)" }} />
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="text-center mb-16"
-          >
-            <p className="section-label mb-4">Signature Amenities</p>
-            <h2 className="text-4xl md:text-6xl font-normal capitalize tracking-normal leading-none mb-6 font-serif">
-              Amenities That Set Us Apart
-            </h2>
-            <p className="text-muted text-base md:text-lg font-light max-w-2xl mx-auto">
-              At Gdpl, amenities are not just conveniences — they&apos;re a reflection of our philosophy. Each element is carefully designed to elevate lifestyles.
-            </p>
-          </motion.div>
-
-          {/* Tabs */}
-          <div className="flex xl:justify-center gap-3 mb-16 overflow-x-auto pb-4 no-scrollbar -mx-6 px-6 snap-x snap-mandatory">
-            {amenityCategories.map((cat, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveAmenityTab(idx)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-full text-[14px] font-black capitalize tracking-[0.2em] transition-all duration-300 border whitespace-nowrap snap-center ${activeAmenityTab === idx
-                  ? "bg-noir text-white border-noir shadow-lg"
-                  : "bg-transparent text-neutral-400 border-white/5 hover:border-white/20 hover:text-white"
-                  }`}
-              >
-                {cat.icon}
-                <span>{cat.name}</span>
-              </button>
-            ))}
-          </div>
-
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeAmenityTab}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-              className="bg-noir p-8 md:p-12 rounded-3xl text-white shadow-2xl relative overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
-              <h3 className="text-2xl md:text-3xl font-normal capitalize tracking-normal mb-8 flex items-center gap-4 font-serif">
-                <span className="text-gold">{amenityCategories[activeAmenityTab].icon}</span>
-                {amenityCategories[activeAmenityTab].name}
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {amenityCategories[activeAmenityTab].items.map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    className="flex items-center gap-4 py-3 px-4 rounded-xl hover:bg-white/5 transition-colors group"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-noir group-hover:text-gold transition-all duration-500 text-white/40">
-                      {item.icon}
-                    </div>
-                    <span className="text-white/80 text-xs md:text-sm font-light tracking-wide">{item.name}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </section>
+      {/* ═══════════════ 8. TIMELINE (Interactive Horizontal) ═══════════════ */}
+      <Timeline />
 
       {/* ═══════════════ 6. WHY CHOOSE GDPL ═══════════════ */}
       <section className="py-32 bg-transparent relative">
@@ -505,68 +322,6 @@ export default function Home() {
                 />
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════ 8. TIMELINE (Sticky Split-Screen) ═══════════════ */}
-      <section className="relative bg-transparent">
-        <div className="flex flex-col md:flex-row">
-          {/* Left Side: Sticky Year */}
-          <div className="hidden md:block w-1/2 h-screen sticky top-0 bg-noir overflow-hidden z-10">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.05)_0%,transparent_70%)]" />
-            <div className="h-full flex items-center justify-center p-20 relative">
-              <div className="text-center transition-all duration-300">
-                <p className="text-white/40 text-[10px] font-normal tracking-[0.4em] capitalize mb-8 font-serif">Legacy of Trust</p>
-                <h3 className="text-8xl lg:text-[12rem] font-normal tracking-normal text-white leading-none mb-4 font-serif transition-all duration-300">
-                  {timeline[activeTimelineStep].year}
-                </h3>
-                <h4 className="text-2xl font-bold capitalize tracking-widest text-white/80 transition-all duration-300">
-                  {timeline[activeTimelineStep].title}
-                </h4>
-              </div>
-            </div>
-          </div>
-
-          <div className="md:hidden bg-noir py-10 px-6 text-center">
-            <p className="text-white/40 text-[14px] font-normal capitalize tracking-[0.5em] mb-4 font-serif">Our Journey</p>
-            <h2 className="text-5xl font-normal text-white capitalize tracking-normal font-serif">Legacy of Trust</h2>
-          </div>
-
-          {/* Right Side: Content */}
-          <div className="w-full md:w-1/2 bg-transparent">
-            {timeline.map((item, idx) => (
-              <div
-                key={idx}
-                className="min-h-[100vh] flex items-center px-8 md:px-20 py-12 md:py-16 border-b border-white/5 last:border-0"
-              >
-                <div className="max-w-md">
-                  <div className="md:hidden mb-6 flex items-baseline gap-4">
-                    <span className="text-4xl font-normal text-white font-serif">{item.year}</span>
-                    <span className="text-xs font-bold capitalize tracking-widest text-white/40">{item.title}</span>
-                  </div>
-                  <motion.div
-                    ref={(el) => { timelineRefs.current[idx] = el; }}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-10% 0px" }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <div className="w-12 h-[2px] bg-white/10 mb-8" />
-                    <h3 className="text-2xl md:text-3xl font-normal capitalize tracking-normal mb-8 text-white leading-tight font-serif">
-                      {item.desc.split(". ")[0]}.
-                    </h3>
-                    <p className="text-white/60 text-lg font-light leading-relaxed">
-                      {item.desc.split(". ").slice(1).join(". ")}
-                    </p>
-                    <div className="mt-12 flex items-center justify-between">
-                      <div className="text-[14px] capitalize tracking-[0.3em] font-normal text-white/30 font-serif">Milestone {idx + 1}</div>
-                      <div className="w-20 h-[1px] bg-white/5" />
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
