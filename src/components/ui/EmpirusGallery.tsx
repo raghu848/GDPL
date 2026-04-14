@@ -33,46 +33,43 @@ const EmpirusGallery: React.FC = () => {
         mm.add("(min-width: 1024px)", () => {
             if (!sectionRef.current || !gridRef.current) return;
 
-            // Pinning the section
-            const mainTrigger = ScrollTrigger.create({
-                trigger: sectionRef.current,
-                start: "top top",
-                end: "+=300%", // Scroll duration of 3 viewport heights
-                pin: true,
-                scrub: 1,
-                anticipatePin: 1,
-            });
-
-            // Target all image items
             const items = gridRef.current.querySelectorAll(".gallery-item");
 
-            items.forEach((item, index) => {
-                const yMove = index % 2 === 0 ? -150 : -250;
-                const scaleMove = 1.05;
+            // Efficient single timeline for the entire section
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: "top top",
+                    end: "+=200%", 
+                    pin: true,
+                    scrub: 0.6,
+                    anticipatePin: 1,
+                }
+            });
 
-                gsap.fromTo(item, 
-                    { 
-                        y: index % 2 === 0 ? 50 : 150, 
-                        opacity: 0.8,
-                        scale: 0.95
-                    },
-                    {
-                        y: yMove,
-                        opacity: 1,
-                        scale: scaleMove,
-                        ease: "none",
-                        scrollTrigger: {
-                            trigger: sectionRef.current,
-                            start: "top top",
-                            end: "+=300%",
-                            scrub: 1,
-                        }
-                    }
-                );
+            // Set initial state - More conservative offsets to ensure frame visibility
+            gsap.set(items, { 
+                y: (i) => i < 5 ? 40 : 80,
+                opacity: 0.7,
+                scale: 0.9,
+                willChange: "transform, opacity"
+            });
+
+            // Smooth parallax movement
+            tl.to(items, {
+                y: (i) => i < 5 ? -80 : -40, // Row 1 moves up more, Row 2 moves up less
+                opacity: 1,
+                scale: 1,
+                ease: "power2.out",
+                stagger: {
+                    amount: 0.3,
+                    from: "start",
+                    grid: [2, 5]
+                }
             });
 
             return () => {
-                mainTrigger.kill();
+                tl.kill();
                 ScrollTrigger.getAll().forEach(st => st.kill());
             };
         });
@@ -97,7 +94,7 @@ const EmpirusGallery: React.FC = () => {
             {/* Architectural Grid Background Overlay */}
             <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)', backgroundSize: '100px 100px' }} />
             
-            <div className="container mx-auto px-6 relative z-10 pt-32">
+            <div className="w-full relative z-10 pt-24 pb-12 px-0">
                 <div className="text-center mb-16">
                     <p className="text-[14px] font-normal capitalize tracking-[0.4em] text-gold/60 mb-4 font-serif">Signature Features</p>
                     <h2 className="text-4xl md:text-6xl font-normal capitalize tracking-tight text-white font-serif leading-none">
@@ -107,12 +104,12 @@ const EmpirusGallery: React.FC = () => {
 
                 <div 
                     ref={gridRef}
-                    className="grid grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6 max-w-7xl mx-auto"
+                    className="grid grid-cols-2 lg:grid-cols-5 gap-2 md:gap-4 w-full"
                 >
                     {images.map((img, i) => (
                         <div 
                             key={i} 
-                            className="gallery-item relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 group shadow-2xl bg-white/5"
+                            className="gallery-item relative aspect-square overflow-hidden rounded-2xl border border-white/10 group shadow-2xl bg-white/5"
                         >
                             <Image 
                                 src={img.src} 
