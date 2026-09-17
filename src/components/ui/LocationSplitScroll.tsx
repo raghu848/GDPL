@@ -1,115 +1,73 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useRef } from "react";
 import { LocationAdvantage } from "@/lib/projectsData";
+import { useSectionTimeline } from "@/animations/useSectionTimeline";
+import { createEditorialTimeline } from "@/animations/timelines";
+import RevealLines from "./RevealLines";
 
 interface LocationSplitScrollProps {
-    items: LocationAdvantage[];
+  items: LocationAdvantage[];
 }
 
 export default function LocationSplitScroll({ items }: LocationSplitScrollProps) {
-    const containerRef = useRef<HTMLDivElement>(null);
-    
-    // Group items by category
-    const groupedItems = items.reduce((acc, item) => {
-        if (!acc[item.category]) {
-            acc[item.category] = [];
-        }
-        acc[item.category].push(item);
-        return acc;
-    }, {} as Record<string, LocationAdvantage[]>);
+  const ref = useRef<HTMLElement>(null);
+  useSectionTimeline(ref, (el, env) => {
+    createEditorialTimeline(el, env);
+  });
 
-    // Sort items within each category by name length (longest first)
-    Object.keys(groupedItems).forEach(category => {
-        groupedItems[category].sort((a, b) => b.name.length - a.name.length);
-    });
+  // Group by category, longest names first (keeps the original ordering rule).
+  const grouped = items.reduce<Record<string, LocationAdvantage[]>>((acc, item) => {
+    (acc[item.category] ??= []).push(item);
+    return acc;
+  }, {});
+  const categories = Object.keys(grouped);
+  categories.forEach((c) => grouped[c].sort((a, b) => b.name.length - a.name.length));
 
-    const categories = Object.keys(groupedItems);
+  return (
+    <section ref={ref} className="tone-light relative bg-sand text-ink">
+      <div className="shell grid grid-cols-1 lg:grid-cols-12 gap-x-8">
+        <div className="lg:col-span-5 lg:sticky lg:top-0 lg:h-screen self-start flex flex-col justify-center pt-28 pb-16 lg:py-0">
+          <div className="flex items-center gap-6 mb-10">
+            <span data-index className="eyebrow text-muted">
+              Location
+            </span>
+          </div>
+          <RevealLines className="display-lg" lines={["Connected to", "everywhere you", <em key="b" className="accent-text">need to be.</em>]} />
+          <p data-fade className="mt-10 body-lg text-muted max-w-[40ch]">
+            Strategically located with seamless connectivity to highways, the airport, and city hubs — offering unmatched
+            convenience every day.
+          </p>
+        </div>
 
-    return (
-        <section 
-            ref={containerRef}
-            className="relative bg-[#0B2418] text-white overflow-visible w-full"
-        >
-            <div className="flex flex-col lg:flex-row min-h-screen w-full relative">
-                
-                {/* Left Side - Fixed/Sticky */}
-                <div className="w-full lg:w-1/2 lg:h-screen lg:sticky lg:top-0 flex flex-col justify-center px-8 md:px-16 lg:px-24 xl:px-32 bg-[#0B2418] z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                        <div className="mb-6 flex items-center gap-4">
-                            <div className="w-12 h-[1px] bg-[#D4AF37]" />
-                            <span className="text-[12px] font-black tracking-[0.4em] uppercase text-[#D4AF37]">Location</span>
-                        </div>
-                        <h2 className="text-6xl md:text-8xl lg:text-[80px] xl:text-[100px] font-serif leading-[1] mb-10 tracking-normal text-white">
-                            <span className="text-white">Connected</span> to<br />
-                            <span className="text-[#D4AF37]">Everywhere</span> You<br />
-                            <span className="text-white">Need</span> to <span className="text-[#D4AF37]">Be.</span>
-                        </h2>
-                        <p className="text-white/60 text-lg md:text-xl font-playfair max-w-md leading-relaxed italic">
-                            Strategically located with seamless connectivity to highways, the airport, and city hubs—offering unmatched convenience every day.
-                        </p>
-                    </motion.div>
-                </div>
-
-                {/* Right Side - Scrollable */}
-                <div className="w-full lg:w-1/2 px-8 md:px-16 lg:px-24">
-                    {/* Top padding - reverted to perfect initial alignment */}
-                    <div className="h-[30vh] hidden lg:block" />
-                    
-                    <div className="max-w-xl mx-auto lg:mx-0 space-y-16 lg:space-y-28">
-                        {categories.map((category, idx) => (
-                            <div key={category} className="relative">
-                                <motion.h3 
-                                    initial={{ opacity: 0, x: -20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true, margin: "-100px" }}
-                                    transition={{ duration: 0.8 }}
-                                    className="text-[#D4AF37] text-3xl md:text-4xl font-serif mb-8 tracking-wide"
-                                >
-                                    {category}
-                                </motion.h3>
-                                
-                                <div className="space-y-5">
-                                    {groupedItems[category].map((item, itemIdx) => (
-                                        <motion.div 
-                                            key={itemIdx}
-                                            initial={{ opacity: 0, y: 20 }}
-                                            whileInView={{ opacity: 1, y: 0 }}
-                                            viewport={{ once: true }}
-                                            transition={{ duration: 0.6, delay: itemIdx * 0.1 }}
-                                            className="flex flex-col md:flex-row md:items-baseline md:justify-between group cursor-default"
-                                        >
-                                            <div className="flex items-center gap-4">
-                                                <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]/30 group-hover:bg-[#D4AF37] group-hover:scale-150 transition-all duration-500" />
-                                                <span className="text-xl md:text-2xl text-white/90 font-playfair font-light group-hover:text-white transition-colors duration-300">
-                                                    {item.name}
-                                                </span>
-                                            </div>
-                                            <div className="flex-grow mx-6 hidden md:block border-b border-white/5 group-hover:border-[#D4AF37]/20 transition-all duration-500" />
-                                            <span className="text-lg md:text-xl text-white/30 font-opensans group-hover:text-[#D4AF37]/70 transition-colors duration-300">
-                                                — {item.distance}
-                                            </span>
-                                        </motion.div>
-                                    ))}
-                                </div>
-                                
-                                {idx < categories.length - 1 && (
-                                    <div className="absolute -bottom-20 lg:-bottom-32 left-0 w-full h-[1px] bg-gradient-to-r from-white/5 via-white/10 to-transparent" />
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                    
-                    {/* Critical spacer: Ensures section ends exactly when Education is aligned */}
-                    <div className="h-[10vh] lg:h-[10vh]" />
-                </div>
+        <div className="lg:col-span-6 lg:col-start-7 pb-28 lg:py-[28vh]">
+          {categories.map((category, ci) => (
+            <div key={category} className="mb-20 last:mb-0">
+              <h3 data-fade className="eyebrow text-accent mb-6 flex items-center gap-4">
+                <span>{String(ci + 1).padStart(2, "0")}</span>
+                <span className="h-px w-8 bg-accent/40" />
+                {category}
+              </h3>
+              <ul>
+                {grouped[category].map((item) => (
+                  <li
+                    key={item.name}
+                    data-fade
+                    className="group flex items-baseline justify-between gap-6 border-t border-ink/10 py-5 last:border-b"
+                  >
+                    <span className="font-display text-[clamp(1.15rem,1.6vw,1.6rem)] leading-snug tracking-[-0.01em] text-ink/90 transition-[transform,color] duration-500 group-hover:translate-x-2 group-hover:text-ink">
+                      {item.name}
+                    </span>
+                    <span className="eyebrow text-[0.65rem] text-muted whitespace-nowrap transition-colors duration-500 group-hover:text-accent">
+                      {item.distance}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
-        </section>
-    );
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }

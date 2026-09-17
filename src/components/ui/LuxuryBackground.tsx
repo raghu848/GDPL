@@ -19,14 +19,9 @@ export default function LuxuryBackground() {
 
         const resize = () => {
             canvas.width = window.innerWidth;
-            canvas.height = document.documentElement.scrollHeight;
+            canvas.height = window.innerHeight;
         };
 
-        // Observe body height changes
-        const resizeObserver = new ResizeObserver(() => {
-            resize();
-        });
-        resizeObserver.observe(document.body);
         resize();
 
         class Particle {
@@ -180,7 +175,6 @@ export default function LuxuryBackground() {
         return () => {
             cancelAnimationFrame(animationId);
             window.removeEventListener("resize", handleResize);
-            resizeObserver.disconnect();
         };
     }, []);
 

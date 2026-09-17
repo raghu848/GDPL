@@ -1,117 +1,73 @@
 "use client";
 
-import { motion, useScroll, useSpring, useTransform, useMotionValue, useVelocity, useAnimationFrame } from "framer-motion";
+import { motion, useMotionValue, useTransform, useAnimationFrame } from "framer-motion";
 import Image from "next/image";
-import { useRef, ReactNode } from "react";
+import { ReactNode } from "react";
 
-// Local implementation of wrap to avoid dependency issues
 const wrap = (min: number, max: number, v: number) => {
-    const rangeSize = max - min;
-    return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
+  const rangeSize = max - min;
+  return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
 };
 
 interface Amenity {
-    name: string;
-    icon: string;
+  name: string;
+  icon: string;
 }
 
-interface AmenityScrollerProps {
-    amenities: Amenity[];
+/** Endless, draggable marquee. */
+function Marquee({ children, baseVelocity }: { children: ReactNode; baseVelocity: number }) {
+  const baseX = useMotionValue(0);
+  const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
+
+  useAnimationFrame((_, delta) => {
+    baseX.set(baseX.get() + baseVelocity * (delta / 1000));
+  });
+
+  return (
+    <div className="flex flex-nowrap whitespace-nowrap">
+      <motion.div
+        className="flex flex-nowrap whitespace-nowrap cursor-grab active:cursor-grabbing"
+        style={{ x }}
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={0.05}
+        onDrag={(_, info) => baseX.set(baseX.get() + info.delta.x * 0.01)}
+      >
+        {[0, 1, 2, 3].map((copy) => (
+          <div key={copy} className="flex gap-6 md:gap-10 px-3 md:px-5" aria-hidden={copy > 0}>
+            {children}
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
 }
 
-interface ParallaxProps {
-    children: ReactNode;
-    baseVelocity: number;
-}
-
-function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
-    const baseX = useMotionValue(0);
-    const { scrollY } = useScroll();
-    const scrollVelocity = useVelocity(scrollY);
-    const smoothVelocity = useSpring(scrollVelocity, {
-        damping: 50,
-        stiffness: 400
-    });
-    const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 1.2], {
-        clamp: false
-    });
-
-    /**
-     * This is a magic wrapping for the length of the text - you
-     * have to replace for wrapping that works for you or dynamically
-     * calculate
-     */
-    const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
-
-    const directionFactor = useRef<number>(1);
-    useAnimationFrame((t, delta) => {
-        let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
-        baseX.set(baseX.get() + moveBy);
-    });
-
-    /**
-     * The number of times to repeat the child text should be enough to
-     * fill the screen width and allow for seamless looping.
-     */
-    return (
-        <div className="flex flex-nowrap whitespace-nowrap">
-            <motion.div 
-                className="flex flex-nowrap whitespace-nowrap cursor-grab active:cursor-grabbing" 
-                style={{ x }}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.05}
-                onDrag={(e, info) => {
-                    // Reduced multiplier for more controlled drag
-                    baseX.set(baseX.get() + info.delta.x * 0.01);
-                }}
-            >
-                <div className="flex gap-16 px-12">{children}</div>
-                <div className="flex gap-16 px-12">{children}</div>
-                <div className="flex gap-16 px-12">{children}</div>
-                <div className="flex gap-16 px-12">{children}</div>
-            </motion.div>
-        </div>
-    );
-}
-
-export default function AmenityScroller({ amenities }: AmenityScrollerProps) {
-    return (
-        <div className="relative w-full overflow-hidden py-20 bg-noir/5 backdrop-blur-md border-y border-white/5">
-            <ParallaxText baseVelocity={-0.5}>
-                {amenities.map((amenity, idx) => (
-                    <div
-                        key={`${amenity.name}-${idx}`}
-                        className="flex flex-col items-center gap-6 group min-w-[160px]"
-                    >
-                        <div className="relative">
-                            {/* Golden Glow Background */}
-                            <div className="absolute inset-0 bg-[#D4AF37]/0 rounded-full blur-2xl group-hover:bg-[#D4AF37]/15 transition-all duration-700" />
-                            
-                            <div className="relative w-24 h-24 rounded-3xl bg-white/5 border border-white/10 flex items-center justify-center p-6 transition-all duration-700 group-hover:bg-noir group-hover:border-[#D4AF37]/50 group-hover:-translate-y-4 shadow-2xl">
-                                <div className="relative w-full h-full">
-                                    <Image
-                                        src={amenity.icon}
-                                        alt={amenity.name}
-                                        fill
-                                        className="object-contain filter invert opacity-100 brightness-200 group-hover:scale-110 transition-all duration-700 drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div className="text-center">
-                            <span className="block text-[11px] font-black tracking-[0.4em] uppercase text-white/30 group-hover:text-white transition-all duration-500 mb-1">
-                                {amenity.name}
-                            </span>
-                            <div className="w-0 h-[1px] bg-[#D4AF37] mx-auto group-hover:w-full transition-all duration-700 opacity-50" />
-                        </div>
-                    </div>
-                ))}
-            </ParallaxText>
-
-            {/* Premium Gradient Mask Overlays */}
-            {/* Removed as per previous request, but subtle ones can be added back if it feels too 'raw' */}
-        </div>
-    );
+export default function AmenityScroller({ amenities }: { amenities: Amenity[] }) {
+  return (
+    <div className="relative w-full overflow-hidden border-y border-ink/10 py-14 md:py-20" data-cursor="hover">
+      <Marquee baseVelocity={-0.5}>
+        {amenities.map((amenity) => (
+          <div key={amenity.name} className="group flex w-[150px] md:w-[180px] flex-col items-center gap-6">
+            <div className="relative flex h-24 w-24 md:h-28 md:w-28 items-center justify-center rounded-full border border-ink/15 transition-[border-color,background-color] duration-700 group-hover:border-accent group-hover:bg-ink/[0.03]">
+              <div className="relative h-9 w-9 md:h-10 md:w-10">
+                <Image
+                  src={amenity.icon}
+                  alt=""
+                  fill
+                  sizes="40px"
+                  className="object-contain opacity-70 transition-[opacity,transform] duration-700 group-hover:scale-110 group-hover:opacity-100"
+                />
+              </div>
+            </div>
+            <span className="eyebrow text-[0.6rem] text-center whitespace-normal leading-relaxed text-ink/70 transition-colors duration-500 group-hover:text-ink">
+              {amenity.name}
+            </span>
+          </div>
+        ))}
+      </Marquee>
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-40 bg-gradient-to-r from-linen to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-40 bg-gradient-to-l from-linen to-transparent" />
+    </div>
+  );
 }

@@ -1,269 +1,243 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Globe, Heart, ShieldCheck } from "lucide-react";
 import Image from "next/image";
+import PageHero from "@/components/sections/shared/PageHero";
+import EditorialSection from "@/components/sections/shared/EditorialSection";
+import SectionHeader from "@/components/sections/shared/SectionHeader";
+import CTASection from "@/components/sections/shared/CTASection";
+import MagneticButton from "@/components/ui/MagneticButton";
+import { WHATSAPP } from "@/components/shared/Navbar";
+
+const LEADERS = [
+  {
+    name: "Mr. B.S. Gill",
+    role: "Visionary Leader and Mentor",
+    image: "/images/mr bs gill.jpg",
+    bio: "As a company, Gdpl has always prioritized quality, innovation, and a deep-rooted commitment to community building. Our vision is to create developments that not only meet expectations but exceed them, leaving a lasting impact on the lives of our customers and the society at large.",
+  },
+  {
+    name: "Mr. Nardeep Singh",
+    role: "Driving Innovation and Growth",
+    image: "/images/nardeep singh.jpg",
+    bio: "At Gdpl, we are constantly innovating to align with the evolving needs of our customers. Our focus remains on delivering projects that uphold customer trust while paving the way for a brighter, more sustainable future.",
+  },
+];
+
+const CSR = [
+  { title: "Education", text: "Supporting local schools and providing resources for children's growth." },
+  { title: "Environment", text: "Promoting green initiatives and sustainable living practices." },
+  { title: "Social Welfare", text: "Aiming to make a meaningful difference in the lives of the people we serve." },
+];
 
 export default function AboutPage() {
-    const leaders = [
-        {
-            name: "Mr. B.S. Gill",
-            role: "Visionary Leader and Mentor",
-            image: "/images/mr bs gill.jpg",
-            bio: "As a company, Gdpl has always prioritized quality, innovation, and a deep-rooted commitment to community building. Our vision is to create developments that not only meet expectations but exceed them, leaving a lasting impact on the lives of our customers and the society at large."
-        },
-        {
-            name: "Mr. Nardeep Singh",
-            role: "Driving Innovation and Growth",
-            image: "/images/nardeep singh.jpg",
-            bio: "At Gdpl, we are constantly innovating to align with the evolving needs of our customers. Our focus remains on delivering projects that uphold customer trust while paving the way for a brighter, more sustainable future."
+  return (
+    <main className="bg-bone text-ink">
+      <PageHero
+        lines={["Shaping skylines,", <em key="t" className="accent-text">building trust.</em>]}
+        headlineClassName="space-y-[0.14em]"
+        copy="A distinguished name in Mohali real estate."
+        image={{
+          src: "/regal_empirus/renders/night-elevation-wide.jpg",
+          alt: "Regal Empirus towers lit up at dusk beside the Sector 91 road",
+        }}
+        actions={
+          <>
+            <MagneticButton href="#leadership" variant="solid">
+              Meet the Leadership
+            </MagneticButton>
+          </>
         }
-    ];
+      />
 
-    return (
-        <main className="min-h-screen bg-transparent text-white font-sans pb-24 selection:bg-noir selection:text-white">
-            {/* Premium Aesthetic Hero Section */}
-            <section className="relative h-[75vh] w-full mb-32 overflow-hidden flex items-center justify-center bg-noir">
-                <div className="absolute inset-0 z-0">
-                    <motion.div
-                        className="w-full h-full"
-                        initial={{ scale: 1 }}
-                        animate={{ scale: 1.15 }}
-                        transition={{ duration: 25, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
-                    >
-                        <div className="absolute inset-0 bg-gradient-to-t from-noir via-noir/60 to-noir/30 z-10" />
-                        {/* Dynamic Grain Overlay */}
-                        <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay z-20" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
-                        <Image
-                            src="/office_images/IMG_2361 (1).jpg"
-                            alt="GDPL Headquarters"
-                            fill
-                            className="object-cover"
-                            priority
-                            sizes="100vw"
-                        />
-                    </motion.div>
-                </div>
-                
-                <div className="relative z-30 text-center px-4 w-full max-w-5xl mx-auto pt-40">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                        <p className="text-[14px] md:text-[16px] font-normal capitalize tracking-[0.4em] text-gold/80 mb-6 font-serif">
-                            The GDPL Legacy
-                        </p>
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-normal capitalize tracking-normal leading-[1.1] text-white font-serif drop-shadow-2xl">
-                            Shaping <span className="text-[#D4AF37] opacity-90 inline-block font-serif">Skylines</span><br />
-                            Building <span className="opacity-70 font-serif">Trust</span>
-                        </h1>
-                    </motion.div>
-                </div>
-            </section>
+      {/* 01 — Who we are */}
+      <EditorialSection tone="light">
+        <SectionHeader
+          label="Who We Are"
+          lines={["A distinguished", "name in", <em key="r" className="accent-text">real estate.</em>]}
+        />
 
-            {/* Main Content - Who We Are */}
-            <section className="container mx-auto px-6 mb-24 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
-                    <div>
-                        <h2 className="text-h2 mb-12 border-l-4 border-gold pl-6 capitalize tracking-normal font-serif">Who We Are</h2>
-                        <div className="space-y-8 text-muted text-lg leading-relaxed font-light">
-                            <p>
-                                Gdpl is a distinguished entity in the real estate sector, celebrated for
-                                delivering high-quality construction and innovative design. Our portfolio
-                                showcases a diverse range of projects, including luxurious residential estates,
-                                cutting-edge commercial hubs, and infrastructural marvels.
-                            </p>
-                            <p>
-                                Each development reflects our unwavering commitment to sustainability and
-                                modernity, ensuring that every structure is not only aesthetically pleasing
-                                but also environmentally responsible.
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Stats Grid with Static High-End Typography */}
-                    <div className="grid grid-cols-2 gap-8 border-t border-white/10 pt-12">
-                        <div className="flex flex-col items-center text-center">
-                            <span className="text-4xl md:text-5xl font-normal text-white tracking-normal font-serif">10+</span>
-                            <span className="text-[9px] capitalize tracking-[0.3em] text-white/40 font-normal mt-2 font-serif">Years of Legacy</span>
-                        </div>
-                        <div className="flex flex-col items-center text-center">
-                            <span className="text-4xl md:text-5xl font-normal text-white tracking-normal font-serif">300+</span>
-                            <span className="text-[9px] capitalize tracking-[0.3em] text-white/40 font-normal mt-2 font-serif">Families Served</span>
-                        </div>
-                        <div className="col-span-2 pt-8 border-t border-white/5 mt-4 text-center">
-                            <span className="text-6xl md:text-7xl font-normal text-white tracking-normal block mb-2 font-serif">100%</span>
-                            <span className="text-[14px] capitalize tracking-[0.4em] text-white/40 font-normal font-serif">Transparency & Trust</span>
-                        </div>
-                    </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-14">
+          <div className="lg:col-span-5 lg:col-start-3 flex flex-col gap-8">
+            <p data-fade className="text-xl leading-relaxed text-ink/95">
+              Gdpl is a distinguished entity in the real estate sector, celebrated for delivering high-quality construction and
+              innovative design. Our portfolio showcases a diverse range of projects, including luxurious residential estates,
+              cutting-edge commercial hubs, and infrastructural marvels.
+            </p>
+            <p data-fade className="leading-[1.8] text-muted">
+              Each development reflects our unwavering commitment to sustainability and modernity, ensuring that every structure
+              is not only aesthetically pleasing but also environmentally responsible.
+            </p>
+          </div>
+          {/* On desktop the frame is pinned to the bottom of the text and rises into
+              the empty band beside the heading, so nothing is left hanging below. */}
+          <div className="lg:col-span-4 lg:col-start-9 lg:relative">
+            <div data-frame data-dir="up" className="media-frame aspect-[4/5] lg:absolute lg:inset-x-0 lg:bottom-0 lg:min-h-full">
+              <div data-parallax="6" className="media-inner">
+                <div data-media className="absolute inset-0">
+                  <Image
+                    src="/office_images/IMG_2366.jpg"
+                    alt="GDPL office workspace with the message 'We build life long relationships with our customers'"
+                    fill
+                    sizes="(min-width: 1024px) 30vw, 100vw"
+                    className="object-cover"
+                  />
                 </div>
-            </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </EditorialSection>
 
-            {/* Our Journey Section with Timeline */}
-            <section className="container mx-auto px-6 mb-24 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: false }}
-                        transition={{ duration: 1 }}
-                    >
-                        <h2 className="section-label mb-8">Evolution</h2>
-                        {/* Architectural accent line */}
-                        <div className="w-12 h-[2px] mb-8 bg-white/10" />
-                        <h2 className="text-4xl md:text-6xl font-normal capitalize tracking-normal leading-none mb-12 text-white font-serif">
-                            Our<br />Journey
-                        </h2>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: false }}
-                        transition={{ duration: 1, delay: 0.2 }}
-                        className="space-y-8 relative"
-                    >
-                        {/* Timeline vertical line */}
-                        <div className="absolute left-0 top-0 bottom-0 w-[1px] hidden lg:block bg-white/10" />
+      {/* 02 — Journey */}
+      <EditorialSection tone="linen" className="md:py-28">
+        <SectionHeader
+          label="Evolution"
+          lines={["Our", <em key="j" className="accent-text">journey.</em>]}
+          copy="From humble beginnings to a trusted name in real estate."
+          className="md:mb-14"
+        />
+        {/* The photo stretches to the height of the two chapters, so neither column leaves a gap. */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-12">
+          <div className="lg:col-span-6 lg:col-start-3">
+            <ol className="flex flex-col">
+              {[
+                "From our humble beginnings to becoming a trusted name in real estate, Gdpl's journey is a testament to perseverance, innovation, and a customer-centric approach.",
+                "Over the years, we have expanded our horizons, delivering landmark projects and setting new benchmarks in the industry. Our growth is fueled by the trust of our clients and our passion for excellence.",
+              ].map((text, i) => (
+                <li key={i} className="py-8 first:pt-0 last:pb-0">
+                  <div data-rule className="hairline mb-8 first:hidden" />
+                  <span data-fade className="eyebrow text-accent block mb-5">
+                    Chapter 0{i + 1}
+                  </span>
+                  <p data-fade className="font-display text-[clamp(1.35rem,2vw,1.9rem)] leading-[1.45] tracking-[-0.01em] text-ink/90">
+                    {text}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <div className="lg:col-span-4 lg:col-start-9">
+            <div data-frame data-dir="up" className="media-frame aspect-[3/4] lg:aspect-auto lg:h-full lg:min-h-[26rem]">
+              <div data-parallax="8" className="media-inner">
+                <div data-media className="absolute inset-0">
+                  <Image
+                    src="/office_images/IMG_2364.jpg"
+                    alt="Minimalist GDPL reception with fluted wood wall accents"
+                    fill
+                    sizes="(min-width: 1024px) 30vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </EditorialSection>
 
-                        <div className="lg:pl-8 relative">
-                            <div className="absolute left-[-3.5px] top-2 w-2 h-2 rounded-full bg-noir hidden lg:block" />
-                            <p className="text-muted text-lg leading-relaxed font-light">
-                                From our humble beginnings to becoming a trusted name in real estate, Gdpl&apos;s journey is a testament to perseverance, innovation, and a customer-centric approach.
-                            </p>
-                        </div>
-                        <div className="lg:pl-8 relative">
-                            <div className="absolute left-[-4px] top-2 gold-dot hidden lg:block" />
-                            <p className="text-muted text-lg leading-relaxed font-light">
-                                Over the years, we have expanded our horizons, delivering landmark projects and setting new benchmarks in the industry. Our growth is fueled by the trust of our clients and our passion for excellence.
-                            </p>
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
+      {/* 03 — Leadership */}
+      <EditorialSection tone="light" id="leadership">
+        <SectionHeader label="The Visionaries" lines={["Our", <em key="l" className="accent-text">leadership.</em>]} />
 
-            {/* Our Leadership */}
-            <section className="container mx-auto px-6 mb-20 relative z-10">
-                <div className="text-center mb-20">
-                    <h2 className="section-label mb-4">The Visionaries</h2>
-                    <h3 className="text-h2 capitalize tracking-normal font-serif">Our Leadership</h3>
+        <div className="flex flex-col gap-24 md:gap-40">
+          {LEADERS.map((leader, i) => (
+            <article key={leader.name} className="group grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-10 items-center">
+              <div className={i % 2 === 0 ? "lg:col-span-5 lg:col-start-2" : "lg:col-span-5 lg:col-start-8 lg:row-start-1"}>
+                <div data-frame data-dir="up" className="media-frame aspect-[3/4]">
+                  <div data-media className="absolute inset-0">
+                    <Image
+                      src={leader.image}
+                      alt={`Official portrait of ${leader.name}, ${leader.role} at GDPL`}
+                      fill
+                      sizes="(min-width: 1024px) 38vw, 100vw"
+                      className="object-cover object-top grayscale transition-[filter,transform] duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:grayscale-0 group-hover:scale-[1.03]"
+                    />
+                  </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32">
-                    {leaders.map((leader) => (
-                        <motion.div
-                            key={leader.name}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: false }}
-                            transition={{ duration: 1 }}
-                            className="space-y-10 group max-w-md mx-auto text-center"
-                        >
-                            <div className="relative aspect-[3/4] rounded-[2rem] overflow-hidden border border-gold/10 mx-auto w-full group-hover:border-gold/30 transition-all duration-700">
-                                <Image
-                                    src={leader.image}
-                                    alt={"Official portrait of " + leader.name + ", " + leader.role + " at GDPL"}
-                                    fill
-                                    className="object-cover md:grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
-                                    sizes="(max-width: 768px) 100vw, 400px"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
-                                {/* Gold corner accents on hover */}
-                                <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-gold/0 group-hover:border-gold/50 transition-all duration-700" />
-                                <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-gold/0 group-hover:border-gold/50 transition-all duration-700" />
-                            </div>
-                            <div className="space-y-4">
-                                <h3 className="text-3xl font-normal tracking-normal capitalize text-white font-serif">{leader.name}</h3>
-                                <div className="text-white capitalize tracking-[0.15em] text-[11px] font-normal font-serif">{leader.role}</div>
-                                <p className="text-white leading-relaxed font-normal mt-6 italic text-base md:text-lg">
-                                    &quot;{leader.bio}&quot;
-                                </p>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
+              </div>
+              <div className={i % 2 === 0 ? "lg:col-span-5 lg:col-start-8" : "lg:col-span-5 lg:col-start-2 lg:row-start-1"}>
+                <span data-fade className="eyebrow text-muted block">
+                  0{i + 1} — {leader.role}
+                </span>
+                <h3 data-fade className="mt-6 font-display text-[clamp(2.25rem,4vw,4rem)] leading-[1.02] tracking-[-0.03em]">
+                  {leader.name}
+                </h3>
+                <div data-rule className="hairline my-10" />
+                <p data-fade className="font-display text-[clamp(1.2rem,1.7vw,1.65rem)] leading-[1.5] tracking-[-0.01em] text-ink/85">
+                  &ldquo;{leader.bio}&rdquo;
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </EditorialSection>
 
-            {/* Our Team (High-Contrast Noir Section) */}
-            <section className="py-20 bg-noir text-white mb-24 relative z-10">
-                <div className="container mx-auto px-6">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: false }}
-                            transition={{ duration: 1 }}
-                        >
-                            <h2 className="section-label mb-12 !text-white/40">The Backbone</h2>
-                            <h2 className="text-4xl md:text-7xl font-normal capitalize tracking-normal leading-none mb-16 text-white font-serif">
-                                Our Team
-                            </h2>
-                            <p className="text-white/60 text-xl md:text-2xl font-light leading-relaxed mb-12">
-                                Behind Gdpl&apos;s success lies a team of dedicated professionals who bring expertise, creativity, and passion to every project.
-                            </p>
-                            <p className="text-white/40 text-lg font-light leading-relaxed max-w-2xl mx-auto">
-                                Our team members, from architects to customer relations specialists, work collaboratively to ensure that our projects are nothing short of excellence. We are united by a common goal: building spaces that inspire.
-                            </p>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
+      {/* 04 — Team */}
+      <EditorialSection tone="sand">
+        <SectionHeader label="The Backbone" lines={["Our", <em key="t" className="accent-text">team.</em>]} />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-14 items-end">
+          <div className="lg:col-span-6 lg:col-start-3">
+            <p data-fade className="font-display text-[clamp(1.6rem,2.8vw,2.75rem)] leading-[1.3] tracking-[-0.02em]">
+              Behind Gdpl&apos;s success lies a team of dedicated professionals who bring expertise, creativity, and passion to
+              every project.
+            </p>
+            <p data-fade className="mt-10 body-lg text-muted max-w-[52ch]">
+              Our team members, from architects to customer relations specialists, work collaboratively to ensure that our
+              projects are nothing short of excellence. We are united by a common goal: building spaces that inspire.
+            </p>
+          </div>
+          <div className="lg:col-span-3 lg:col-start-10">
+            <div data-frame data-dir="left" className="media-frame aspect-[4/5]">
+              <div data-media className="absolute inset-0">
+                <Image
+                  src="/office_images/IMG_2367.jpg"
+                  alt="GDPL cabin with the message 'We support and respect our team members'"
+                  fill
+                  sizes="(min-width: 1024px) 22vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </EditorialSection>
 
-            {/* CSR Section with Gold Icon Glow */}
-            <section className="container mx-auto px-6 mb-24 relative z-10">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
-                    <div className="max-w-xl">
-                        <h2 className="section-label mb-8">Responsibility</h2>
-                        <div className="w-12 h-[2px] mb-8 bg-white/10" />
-                        <h2 className="text-4xl md:text-6xl font-normal capitalize tracking-normal leading-none text-white font-serif">
-                            Corporate Social<br /><span className="text-[#D4AF37] font-serif">Responsibility</span>
-                        </h2>
-                    </div>
-                    <div className="md:w-1/3">
-                        <p className="text-white text-base font-normal leading-relaxed">
-                            At Gdpl, we believe in giving back to the community. Our CSR initiatives focus on education, environment, and social welfare.
-                        </p>
-                    </div>
-                </div>
+      {/* 05 — CSR */}
+      <EditorialSection tone="light">
+        <SectionHeader
+          label="Responsibility"
+          lines={["Corporate social", <em key="c" className="accent-text">responsibility.</em>]}
+          copy="At Gdpl, we believe in giving back to the community. Our CSR initiatives focus on education, environment, and social welfare."
+        />
+        <div data-stagger className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-14">
+          {CSR.map((item, i) => (
+            <div key={item.title} data-item className="group">
+              <div className="hairline mb-8" />
+              <span className="eyebrow text-accent">0{i + 1}</span>
+              <h3 className="mt-6 font-display text-[clamp(1.9rem,2.8vw,2.75rem)] leading-tight tracking-[-0.02em] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2">
+                {item.title}
+              </h3>
+              <p className="mt-5 leading-relaxed text-muted max-w-[32ch]">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </EditorialSection>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    {[
-                        { title: "Education", text: "Supporting local schools and providing resources for children's growth.", icon: <Globe className="w-8 h-8" /> },
-                        { title: "Environment", text: "Promoting green initiatives and sustainable living practices.", icon: <ShieldCheck className="w-8 h-8" /> },
-                        { title: "Social Welfare", text: "Aiming to make a meaningful difference in the lives of the people we serve.", icon: <Heart className="w-8 h-8" /> }
-                    ].map((item, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: false }}
-                            transition={{ duration: 0.8, delay: idx * 0.2 }}
-                            className="glass-premium p-12 rounded-3xl group border-white/5 hover:bg-white transition-all duration-700"
-                        >
-                            <div className="mb-8 p-4 bg-white/5 w-fit rounded-2xl text-white group-hover:bg-noir group-hover:text-white transition-all duration-500 border border-white/5">
-                                {item.icon}
-                            </div>
-                            <h3 className="text-3xl font-normal capitalize tracking-normal mb-6 group-hover:text-white transition-colors text-white font-serif">{item.title}</h3>
-                            <p className="text-white text-base font-normal leading-relaxed">{item.text}</p>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Vision Callout (Noir Contrast) */}
-            <section className="relative py-24 overflow-hidden bg-noir">
-                <div className="absolute top-0 left-0 w-full h-[1px] bg-white/10" />
-                <div className="container mx-auto px-6 text-center relative z-10">
-                    <div className="max-w-4xl mx-auto">
-                        <div className="text-[14px] capitalize tracking-[0.5em] mb-12 font-normal text-white/40 font-serif">Our Fundamental Vision</div>
-                        <h2 className="text-4xl md:text-5xl lg:text-7xl font-normal leading-tight capitalize tracking-normal text-white font-serif">
-                            To be the region&apos;s most trusted developer, where{" "}
-                            <span className="text-white/40">
-                                quality meets transparency.
-                            </span>
-                        </h2>
-                    </div>
-                </div>
-            </section>
-        </main>
-    );
+      <CTASection
+        image={{
+          src: "/images/regal-luxuria/WhatsApp Image 2026-04-01 at 5.43.10 PM.jpeg",
+          alt: "City lights of the Tricity region at night",
+        }}
+        eyebrow="Our Fundamental Vision"
+        headlineClassName="display-lg max-w-[20ch]"
+        lines={["To be the region's most", "trusted developer, where", <em key="v" className="accent-text">quality meets transparency.</em>]}
+        copy="Every address we build is a promise kept — to our customers, our partners and the city we call home."
+        actions={
+          <>
+            <MagneticButton href={WHATSAPP} variant="solid">
+              Start a Conversation
+            </MagneticButton>
+            <MagneticButton href="/contact">Contact Us</MagneticButton>
+          </>
+        }
+      />
+    </main>
+  );
 }

@@ -1,9 +1,6 @@
-import { getProjectBySlug } from "@/lib/projectsData";
-import ProjectDetailPage from "@/components/ui/ProjectDetailPage";
-import { notFound } from "next/navigation";
+import RegalLuxuriaCustomPage from "@/components/ui/RegalLuxuriaCustomPage";
 
 export default function RegalLuxuriaPage() {
-    const project = getProjectBySlug("regal-luxuria");
-    if (!project) return notFound();
-    return <ProjectDetailPage project={project} />;
+    return <RegalLuxuriaCustomPage />;
 }
+

@@ -1,40 +1,24 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Carattere, Playfair_Display, Open_Sans, Libre_Baskerville } from "next/font/google";
+import { Jost } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
-import Header from "@/components/shared/Header";
-import Footer from "@/components/shared/Footer";
-import LuxuryBackground from "@/components/ui/LuxuryBackground";
+import ClientLayout from "@/components/shared/ClientLayout";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-sans",
+const jost = Jost({
+  variable: "--font-jost",
   subsets: ["latin"],
+  weight: ["300", "400", "500"],
   display: "swap",
 });
 
-const carattere = Carattere({
-  variable: "--font-serif",
-  subsets: ["latin"],
-  weight: ["400"],
+// Boska (Indian Type Foundry, Fontshare free font licence) — the title face across the site.
+const boska = localFont({
+  variable: "--font-boska",
   display: "swap",
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const openSans = Open_Sans({
-  variable: "--font-open-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const libreBaskerville = Libre_Baskerville({
-  variable: "--font-libre",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
+  src: [
+    { path: "./fonts/Boska-Medium.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/Boska-MediumItalic.woff2", weight: "500", style: "italic" },
+  ],
 });
 
 export const metadata: Metadata = {
@@ -48,12 +32,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${plusJakartaSans.variable} ${carattere.variable} ${playfair.variable} ${openSans.variable} ${libreBaskerville.variable} font-sans antialiased text-text-primary-dark overflow-x-hidden`}>
-        <LuxuryBackground />
-        <Header />
-        {children}
-        <Footer />
+    <html lang="en" suppressHydrationWarning className={`${jost.variable} ${boska.variable}`}>
+      <body suppressHydrationWarning className="font-sans antialiased text-text-primary-dark overflow-x-hidden">
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

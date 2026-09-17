@@ -1,232 +1,206 @@
 "use client";
 
-import { projects } from "@/lib/projectsData";
-import { ArrowRight, Search, MapPin } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import ShutterReveal from "@/components/ui/ShutterReveal";
-import { motion } from "framer-motion";
-import { useState } from "react";
 import Image from "next/image";
+import { Search } from "lucide-react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { projects, Project } from "@/lib/projectsData";
+import { useSectionTimeline } from "@/animations/useSectionTimeline";
+import { createEditorialTimeline } from "@/animations/timelines";
+import PageHero from "@/components/sections/shared/PageHero";
+import ContactCTA from "@/components/sections/home/ContactCTA";
+import { Arrow } from "@/components/ui/MagneticButton";
+import { cn } from "@/lib/utils";
+
+const FILTERS = ["All", "Ongoing", "Upcoming", "Delivered"] as const;
+const pad = (n: number) => String(n).padStart(2, "0");
 
 export default function ProjectsPage() {
-    const [searchQuery, setSearchQuery] = useState("");
-    const [activeFilter, setActiveFilter] = useState("All");
+  const [query, setQuery] = useState("");
+  const [filter, setFilter] = useState<(typeof FILTERS)[number]>("All");
 
-    const filters = ["All", "Ongoing", "Upcoming", "Delivered"];
+  const counts = useMemo(
+    () => Object.fromEntries(FILTERS.map((f) => [f, f === "All" ? projects.length : projects.filter((p) => p.status === f).length])),
+    []
+  );
 
-    const filteredProjects = projects.filter(project => {
-        const matchesSearch =
-            project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            (project.tagline?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false) ||
-            project.location.toLowerCase().includes(searchQuery.toLowerCase());
-
-        const matchesFilter = activeFilter === "All" || project.status === activeFilter;
-
-        return matchesSearch && matchesFilter;
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return projects.filter((p) => {
+      const matchesSearch =
+        !q || p.name.toLowerCase().includes(q) || (p.tagline?.toLowerCase().includes(q) ?? false) || p.location.toLowerCase().includes(q);
+      return matchesSearch && (filter === "All" || p.status === filter);
     });
+  }, [query, filter]);
 
-    const statusColors: Record<string, string> = {
-        Ongoing: "bg-green-500/10 text-green-600 border-green-500/20",
-        Delivered: "bg-white/5 text-white border-white/10",
-        Upcoming: "bg-blue-500/10 text-blue-600 border-blue-500/20",
-    };
+  // The list height changes with filtering — keep every trigger below it accurate.
+  useEffect(() => {
+    const id = requestAnimationFrame(() => ScrollTrigger.refresh());
+    return () => cancelAnimationFrame(id);
+  }, [filtered]);
 
-    return (
-        <main className="min-h-screen bg-transparent text-white pb-24 grain-overlay">
-            {/* Premium Aesthetic Hero Section */}
-            <section className="relative h-[65vh] w-full mb-16 overflow-hidden flex items-center justify-center bg-noir">
-                <div className="absolute inset-0 z-0">
-                    <motion.div
-                        className="w-full h-full"
-                        initial={{ scale: 1 }}
-                        animate={{ scale: 1.15 }}
-                        transition={{ duration: 30, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
-                    >
-                        {/* Dramatic Lighting Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-stone/80 via-stone/40 to-noir z-10" />
-                        <div className="absolute inset-0 bg-gradient-to-r from-noir/50 via-transparent to-noir/50 z-10" />
-                        
-                        {/* Dynamic Grain Overlay */}
-                        <div className="absolute inset-0 opacity-[0.15] pointer-events-none mix-blend-overlay z-20" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
-                        
-                        <img
-                            src="/regal_empirus/Regal_Empirus_.jpg.jpeg"
-                            alt="GDPL Signature Portfolio"
-                            className="w-full h-full object-cover"
-                        />
-                    </motion.div>
-                </div>
-                
-                <div className="relative z-30 text-center px-4 w-full max-w-5xl mx-auto pt-20">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                        <p className="text-[14px] md:text-[16px] font-normal capitalize tracking-[0.4em] text-gold/80 mb-6 font-serif">
-                            Discover Excellence
-                        </p>
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-normal capitalize tracking-normal leading-[1.1] text-white font-serif drop-shadow-2xl">
-                            Our Signature <span className="text-[#D4AF37] opacity-90 inline-block font-serif">Portfolio</span>
-                        </h1>
-                        <p className="text-white/60 text-lg md:text-xl font-light mt-8 max-w-2xl mx-auto tracking-wide">
-                            Masterpieces of modern living, designed for those who accept nothing but the exceptional.
-                        </p>
-                    </motion.div>
-                </div>
+  return (
+    <main className="bg-bone text-ink">
+      <PageHero
+        eyebrow="Discover Excellence"
+        lines={["Our signature", <em key="p" className="accent-text">portfolio.</em>]}
+        copy="Masterpieces of modern living, designed for those who accept nothing but the exceptional."
+        image={{ src: "/regal_empirus/Regal_Empirus_.jpg.jpeg", alt: "Regal Empirus towers at sunset" }}
+        meta={[
+          { label: "Signature Projects", value: pad(counts.All) },
+          { label: "Ongoing", value: pad(counts.Ongoing) },
+          { label: "Upcoming", value: pad(counts.Upcoming) },
+          { label: "Location", value: "Mohali, Punjab" },
+        ]}
+      />
 
-                {/* Animated Scroll Down Line */}
-                <motion.div 
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.5, duration: 1 }}
+      <section className="tone-light bg-bone text-ink pt-20 md:pt-28">
+        <div className="shell">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10 pb-8 border-b border-ink/15">
+            <div className="flex flex-wrap gap-x-9 gap-y-4" role="tablist" aria-label="Filter projects by status">
+              {FILTERS.map((f) => (
+                <button
+                  key={f}
+                  type="button"
+                  role="tab"
+                  aria-selected={filter === f}
+                  data-active={filter === f}
+                  onClick={() => setFilter(f)}
+                  className={cn(
+                    "link-underline eyebrow transition-colors duration-500",
+                    filter === f ? "text-ink" : "text-muted hover:text-ink/85"
+                  )}
                 >
-                    <div className="w-[1px] h-[80px] bg-white/10 relative overflow-hidden">
-                        <motion.div 
-                            className="absolute top-0 left-0 w-full h-1/2 bg-[#D4AF37]"
-                            animate={{ top: ["-50%", "100%"] }}
-                            transition={{ duration: 2.5, ease: "easeInOut", repeat: Infinity }}
-                        />
-                    </div>
-                </motion.div>
-            </section>
-
-            <div className="container mx-auto px-6">
-                {/* Search & Filters */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    className="flex flex-col md:flex-row gap-6 mb-12 items-center"
-                >
-                    {/* Search */}
-                    <div className="relative flex-1 w-full">
-                        <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
-                        <input
-                            type="text"
-                            placeholder="Search projects by name or location..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full search-premium rounded-full pl-12 pr-6 py-4 text-sm font-light text-white placeholder:text-white/30 outline-none border border-white/5"
-                        />
-                    </div>
-
-                    {/* Filter Pills */}
-                    <div className="flex gap-2 shrink-0">
-                        {filters.map((filter) => (
-                            <button
-                                key={filter}
-                                onClick={() => setActiveFilter(filter)}
-                                className={`px-5 py-3 rounded-full text-[14px] font-black capitalize tracking-[0.2em] transition-all duration-300 border ${activeFilter === filter
-                                    ? "bg-noir text-white border-noir"
-                                    : "bg-transparent text-neutral-400 border-white/5 hover:border-white/20 hover:text-white"
-                                    }`}
-                            >
-                                {filter}
-                            </button>
-                        ))}
-                    </div>
-                </motion.div>
-
-                {/* Project Cards */}
-                <div className="space-y-10">
-                    {filteredProjects.map((project, idx) => (
-                        <motion.div
-                            key={project.slug}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, amount: 0.15 }}
-                            transition={{ duration: 1, delay: idx * 0.1 }}
-                        >
-                            <Link href={`/projects/${project.slug}`} className="group block">
-                                <div className="relative overflow-hidden border border-white/5 group-hover:border-white/20 transition-all duration-700">
-                                    {/* Full-bleed Image with Shutter Reveal */}
-                                    <ShutterReveal className="aspect-[21/9]">
-                                        <Image
-                                            src={project.heroImage}
-                                            alt={project.heroImageAlt}
-                                            fill
-                                            className="object-cover md:grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
-                                            sizes="100vw"
-                                        />
-                                    </ShutterReveal>
-
-                                    {/* Gradient overlay */}
-                                    <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent" />
-
-                                    {/* Content */}
-                                    <div className="absolute inset-0 flex items-center p-8 md:p-16">
-                                        <div className="max-w-xl">
-                                            {/* Status badge */}
-                                            <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[9px] font-black capitalize tracking-[0.3em] border mb-4 ${statusColors[project.status]}`}>
-                                                <span className="w-1 h-1 rounded-full bg-current animate-pulse" />
-                                                {project.status}
-                                            </div>
-
-                                            <div className="flex items-center gap-2 mb-3">
-                                                <MapPin className="w-3 h-3 text-[#D4AF37] font-serif" />
-                                                <span className="text-[14px] font-normal capitalize tracking-[0.3em] text-white/40 font-serif">{project.location}</span>
-                                            </div>
-
-                                            <h2 className="text-3xl md:text-5xl lg:text-6xl font-normal capitalize tracking-normal leading-none mb-3 group-hover:text-white transition-colors font-serif">
-                                                {project.name}
-                                            </h2>
-
-                                            {project.tagline && (
-                                                <p className="text-white/50 text-xs md:text-sm capitalize tracking-[0.2em] font-bold mb-4">{project.tagline}</p>
-                                            )}
-
-                                            <p className="text-white/40 text-sm font-light leading-relaxed hidden md:block max-w-md mb-6">{project.description}</p>
-
-                                            {/* Quick info */}
-                                            <div className="flex flex-wrap gap-6 hidden md:flex">
-                                                {project.priceLabel !== "Coming Soon" && (
-                                                    <div>
-                                                        <p className="text-[9px] capitalize tracking-[0.2em] text-white/40 font-normal font-serif">Price</p>
-                                                        <p className="text-sm font-black">{project.priceLabel}</p>
-                                                    </div>
-                                                )}
-                                                {project.area && project.area !== "TBA" && (
-                                                    <div>
-                                                        <p className="text-[9px] capitalize tracking-[0.2em] text-white/40 font-normal font-serif">Area</p>
-                                                        <p className="text-sm font-black">{project.area}</p>
-                                                    </div>
-                                                )}
-                                                <div>
-                                                    <p className="text-[9px] capitalize tracking-[0.2em] text-white/40 font-normal font-serif">Configs</p>
-                                                    <p className="text-sm font-black">{project.configurations.map(c => c.type).join(", ")}</p>
-                                                </div>
-                                            </div>
-
-                                            <div className="flex items-center gap-3 mt-6 text-[#D4AF37] text-[14px] capitalize tracking-[0.3em] font-normal group-hover:gap-5 transition-all font-serif">
-                                                Explore Project <ArrowRight className="w-4 h-4" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
-                        </motion.div>
-                    ))}
-                </div>
-
-                {/* No results */}
-                {filteredProjects.length === 0 && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="text-center py-20"
-                    >
-                        <p className="text-muted text-xl font-light">No projects match your search.</p>
-                        <button
-                            onClick={() => { setSearchQuery(""); setActiveFilter("All"); }}
-                            className="mt-6 text-white text-sm font-bold capitalize tracking-[0.2em] hover:underline"
-                        >
-                            Clear filters
-                        </button>
-                    </motion.div>
-                )}
+                  {f}
+                  <sup className="ml-1.5 text-[0.6rem] text-ink/50">{pad(counts[f])}</sup>
+                </button>
+              ))}
             </div>
-        </main>
-    );
+
+            <label className="flex items-center gap-4 w-full lg:w-[400px] border-b border-ink/25 focus-within:border-ink transition-colors duration-500 pb-3">
+              <Search className="h-4 w-4 shrink-0 text-ink/60" aria-hidden />
+              <span className="sr-only">Search projects</span>
+              <input
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search by name or location"
+                className="flex-1 bg-transparent outline-none text-ink placeholder:text-ink/45"
+              />
+            </label>
+          </div>
+          <p className="mt-6 eyebrow text-[0.65rem] text-muted" aria-live="polite">
+            Showing {pad(filtered.length)} of {pad(projects.length)}
+          </p>
+        </div>
+      </section>
+
+      <section className="tone-light bg-bone text-ink pt-10 pb-28 md:pb-40">
+        <div className="shell">
+          {filtered.map((project, i) => (
+            <ProjectRow key={project.slug} project={project} number={projects.indexOf(project) + 1} flip={i % 2 === 1} />
+          ))}
+
+          {filtered.length === 0 && (
+            <div className="border-t border-ink/15 py-28 text-center">
+              <p className="font-display text-[clamp(1.75rem,3vw,2.75rem)] tracking-[-0.02em]">No projects match your search.</p>
+              <button
+                type="button"
+                onClick={() => {
+                  setQuery("");
+                  setFilter("All");
+                }}
+                className="link-underline eyebrow mt-8 text-ink/80 hover:text-ink"
+              >
+                Clear filters
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <ContactCTA />
+    </main>
+  );
+}
+
+function ProjectRow({ project, number, flip }: { project: Project; number: number; flip: boolean }) {
+  const ref = useRef<HTMLElement>(null);
+  useSectionTimeline(ref, (el, env) => {
+    createEditorialTimeline(el, env, "top 80%");
+  });
+
+  const details = [
+    project.priceLabel !== "Coming Soon" && { label: "Price", value: project.priceLabel },
+    project.area && project.area !== "TBA" && { label: "Area", value: project.area },
+    { label: "Configurations", value: project.configurations.map((c) => c.type).join(", ") },
+  ].filter(Boolean) as { label: string; value: string }[];
+
+  return (
+    <article ref={ref} className="border-t border-ink/15 py-16 md:py-24">
+      <Link
+        href={`/projects/${project.slug}`}
+        data-cursor="view"
+        data-cursor-label="View Project"
+        className="group grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-10 items-center"
+      >
+        <div className={cn("lg:col-span-7", flip && "lg:col-start-6 lg:row-start-1")}>
+          <div data-frame data-dir={flip ? "right" : "left"} className="media-frame aspect-[4/3] lg:aspect-[16/11]">
+            <div data-parallax="5" className="media-inner">
+              <div data-media className="absolute inset-0">
+                <div className="absolute inset-0 transition-transform duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]">
+                  <Image src={project.heroImage} alt={project.heroImageAlt} fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
+                </div>
+              </div>
+            </div>
+            <span className="absolute top-5 left-5 eyebrow text-[0.62rem] px-3 py-1.5 rounded-full bg-ink/55 backdrop-blur-md text-bone/95">
+              {project.status}
+            </span>
+          </div>
+        </div>
+
+        <div className={cn("lg:col-span-5", flip ? "lg:col-start-1 lg:row-start-1 lg:pr-10" : "lg:pl-10")}>
+          <div data-index className="flex items-center gap-4 eyebrow text-muted">
+            <span className="text-accent">{pad(number)}</span>
+            <span className="h-px w-8 bg-ink/20" />
+            {project.location}
+          </div>
+
+          {/* Hover transform lives on the heading, never on [data-line]: a CSS
+              transform transition on a GSAP target corrupts its reveal. */}
+          <h2 className="mt-8 font-display text-[clamp(2.4rem,4.2vw,4.5rem)] leading-[1.02] tracking-[-0.035em] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2">
+            <span className="line-mask">
+              <span data-line className="line-inner">
+                {project.name}
+              </span>
+            </span>
+          </h2>
+
+          {project.tagline && (
+            <p data-fade className="mt-6 text-ink/85 leading-relaxed max-w-[48ch]">
+              {project.tagline}
+            </p>
+          )}
+          <p data-fade className="mt-4 text-sm text-muted leading-relaxed max-w-[52ch] hidden md:block">
+            {project.description}
+          </p>
+
+          <dl data-fade className="mt-10 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-ink/15 pt-6">
+            {details.map((d) => (
+              <div key={d.label} className={d.label === "Configurations" ? "col-span-2" : ""}>
+                <dt className="eyebrow text-[0.6rem] text-muted">{d.label}</dt>
+                <dd className="mt-1.5 text-ink/90">{d.value}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <span data-cta className="mt-10 inline-flex items-center gap-4 eyebrow text-ink transition-colors duration-500 group-hover:text-accent">
+            <span className="link-underline link-underline--group">Explore Project</span>
+            <Arrow className="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2" />
+          </span>
+        </div>
+      </Link>
+    </article>
+  );
 }

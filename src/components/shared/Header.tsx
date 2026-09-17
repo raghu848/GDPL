@@ -37,7 +37,7 @@ export default function Header() {
                 className={cn(
                     "fixed top-0 left-0 w-full z-50 transition-all duration-700 font-sans",
                     isScrolled
-                        ? "bg-stone/90 backdrop-blur-md py-4 border-b border-white/5"
+                        ? "bg-[#0b152b]/70 backdrop-blur-xl py-4 border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)]"
                         : "bg-transparent py-8"
                 )}
             >
@@ -79,9 +79,9 @@ export default function Header() {
                             <span className="hidden md:block text-[14px] font-bold tracking-[0.3em] capitalize group-hover:text-white transition-colors font-serif">
                                 Menu
                             </span>
-                            <div className="w-8 h-[1px] bg-noir relative">
-                                <div className="absolute top-[-4px] right-0 w-8 h-[1px] bg-noir group-hover:w-6 transition-all" />
-                                <div className="absolute top-[4px] right-0 w-8 h-[1px] bg-noir group-hover:w-4 transition-all" />
+                            <div className="w-8 h-[1px] bg-white/90 relative">
+                                <div className="absolute top-[-4px] right-0 w-8 h-[1px] bg-white/90 group-hover:w-6 transition-all" />
+                                <div className="absolute top-[4px] right-0 w-8 h-[1px] bg-white/90 group-hover:w-4 transition-all" />
                             </div>
                         </button>
                     </div>
@@ -115,7 +115,7 @@ export default function Header() {
                             animate={{ x: 0 }}
                             exit={{ x: "100%" }}
                             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                            className="fixed top-0 right-0 h-full w-full md:w-[400px] lg:w-[30%] z-[60] bg-stone border-l border-white/5 flex flex-col p-12 shadow-2xl"
+                            className="fixed top-0 right-0 h-full w-full md:w-[400px] lg:w-[30%] z-[60] bg-[#0b152b] border-l border-white/10 flex flex-col p-12 shadow-2xl"
                         >
                             <button
                                 onClick={() => setIsMobileMenuOpen(false)}
@@ -137,12 +137,12 @@ export default function Header() {
                                             onClick={() => setIsMobileMenuOpen(false)}
                                             className={cn(
                                                 "text-xl md:text-2xl font-black capitalize tracking-tighter hover:text-white transition-colors block relative",
-                                                pathname === link.path ? "text-white" : "text-neutral-400"
+                                                pathname === link.path ? "text-white" : "text-white/40"
                                             )}
                                         >
                                             <span className="flex items-center gap-4">
                                                 {pathname === link.path && (
-                                                    <span className="w-2 h-2 rounded-full bg-black shrink-0" />
+                                                    <span className="w-2 h-2 rounded-full bg-[#D4AF37] shrink-0" />
                                                 )}
                                                 {link.name}
                                             </span>

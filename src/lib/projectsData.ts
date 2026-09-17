@@ -17,6 +17,16 @@ export interface AmenityCategory {
     items: string[];
 }
 
+/** A studio render shown in the project's render gallery / lightbox. */
+export interface ProjectRender {
+    src: string;
+    alt: string;
+    /** Short name overlaid on the tile. */
+    label: string;
+    /** One line describing what the render shows, used in the lightbox. */
+    caption: string;
+}
+
 export interface Project {
     slug: string;
     name: string;
@@ -39,6 +49,7 @@ export interface Project {
     totalUnits?: string;
     amenityIcons?: Record<string, string>;
     locationAdvantages?: LocationAdvantage[];
+    renders?: ProjectRender[];
 }
 
 export const projects: Project[] = [
@@ -158,15 +169,15 @@ export const projects: Project[] = [
     {
         slug: "regal-heights",
         name: "Regal Heights",
-        tagline: "3 & 4 BHK residences, Sky Villas and Earth Villas in Sector 91, Mohali, set within a 3-side open site with premium amenities.",
+        tagline: "Choose from well-designed 2 & 3 BHK residences that balance space, functionality, and comfort for a better living experience.",
         location: "Sector 91, Mohali",
         status: "Ongoing",
         heroImage: "/regal_heights/Regal_Heights_.jpg.jpeg",
         heroImageAlt: "Panoramic view of Regal Heights luxury high-rise towers in Sector 91, Mohali",
         priceLabel: "₹8,600/sq.ft.",
         area: "5.37 Acres",
-        description: "A flagship high-rise project offering 25+ premium amenities. Spread across 5.37 acres with a massive 2-acre podium park. Sun-facing apartments with world-class club facilities.",
-        longDescription: "Regal Heights stands as Gdpl's flagship luxury high-rise in the heart of Mohali's most sought-after sector. Spread across a sprawling 5.37 acres, this premium project features a massive 2-acre lush green podium park at its center, creating a resort-like atmosphere right at your doorstep. With a 25,000 sq.ft. club house, sun-facing apartments, and configurations ranging from spacious 3+1 BHK to ultra-luxurious Earthvilla's & Skyvilla's of 5000-6000 sq.ft. — Regal Heights is the crown jewel of Mohali's skyline.",
+        description: "Regal Heights is thoughtfully designed to offer a perfect blend of modern living and everyday comfort.",
+        longDescription: "Regal Heights is thoughtfully designed to offer a perfect blend of modern living and everyday comfort. Crafted with attention to detail, the project brings together contemporary architecture, well-planned spaces, and a peaceful environment — creating a lifestyle that feels both elevated and effortless.\n\nWhether it’s the quality of construction, smart layouts, or serene surroundings, Regal Heights is built for those who aspire for more than just a home.",
         galleryImages: [
             "/regal_heights/Regal_Heights_.jpg.jpeg",
             "/regal_heights/img4.jpg",
@@ -178,6 +189,50 @@ export const projects: Project[] = [
             "/regal_heights/img15.jpg",
             "/regal_heights/img19.jpg",
             "/regal_heights/img27.jpg",
+        ],
+        renders: [
+            {
+                src: "/regal_heights/renders/aerial-front.jpg",
+                alt: "Aerial view of the three Regal Heights towers surrounded by landscaped greens",
+                label: "Aerial View",
+                caption: "All three towers set within landscaped greens, with the podium sports deck at the centre.",
+            },
+            {
+                src: "/regal_heights/renders/corner-tower.jpg",
+                alt: "Corner elevation of a Regal Heights tower above the kids' play area",
+                label: "Corner Elevation",
+                caption: "Wrap-around balconies on the corner tower, looking over the children's play zone.",
+            },
+            {
+                src: "/regal_heights/renders/tower-elevation.jpg",
+                alt: "Street-level elevation of the Regal Heights residential blocks",
+                label: "Tower Elevation",
+                caption: "Street-level view of the residential blocks, stilt parking and boundary landscaping.",
+            },
+            {
+                src: "/regal_heights/renders/terrace-aerial.jpg",
+                alt: "Top-down view of the Regal Heights terrace, podium gardens and tennis court",
+                label: "Terrace Bird's Eye",
+                caption: "Top-down view across the private terraces, podium gardens and the tennis court.",
+            },
+            {
+                src: "/regal_heights/renders/pool-terrace.jpg",
+                alt: "Private pool terrace with barbecue counter and outdoor dining at Regal Heights",
+                label: "Pool Terrace",
+                caption: "A private pool terrace with barbecue counter, pergola and outdoor dining.",
+            },
+            {
+                src: "/regal_heights/renders/rooftop-bar.jpg",
+                alt: "Rooftop bar and lounge seating under a bougainvillea pergola at Regal Heights",
+                label: "Rooftop Bar",
+                caption: "Bougainvillea-shaded bar counter and lounge seating, facing the sunset.",
+            },
+            {
+                src: "/regal_heights/renders/sports-arena.jpg",
+                alt: "Badminton and tennis courts at the podium level of Regal Heights",
+                label: "Sports Arena",
+                caption: "Badminton and tennis courts at podium level, framed by the towers.",
+            },
         ],
         galleryImageAlts: [
             "Majestic front entrance of Regal Heights residential tower",
@@ -192,37 +247,35 @@ export const projects: Project[] = [
             "Beautifully landscaped jogging tracks and green walkways"
         ],
         configurations: [
-            { type: "3+1 Bhk", size: "2200 sq.ft.", booking: "₹30L" },
-            { type: "4+1 Bhk", size: "3200 sq.ft.", booking: "₹50L" },
-            { type: "Earthvilla's & Skyvilla's", size: "5000–6000 sq.ft." },
+            { type: "2 BHK Apartments", size: "Well-designed" },
+            { type: "3 BHK Apartments", size: "Well-designed" },
         ],
         amenities: [
             {
-                name: "Sports & Recreation",
-                items: ["25,000 sq.ft Club House", "Sports Arena", "Swimming Pool", "Splash Pool", "Jogging Track", "Basketball Court", "Badminton Court"]
+                name: "Club House",
+                items: ["Terrace Lounge", "Swimming Pool", "Gymnasium", "Party Hall"]
             },
             {
-                name: "Smart Living",
-                items: ["Smart Premium Lifts in Each Tower", "Complete Power Backup", "Sun-facing Layout", "Premium Italian Marble Flooring", "10.5 Feet Internal Height"]
+                name: "Sports Arena",
+                items: ["Badminton Court", "Skating Rink", "Podium Garden", "Open Gym"]
             },
             {
-                name: "Health & Wellness",
-                items: ["Fully Equipped Gymnasium", "Spa & Sauna", "Jacuzzi", "Yoga Room", "24×7 Ambulance Service"]
+                name: "Social Interaction Area (For Elders)",
+                items: ["Separate Sitouts", "Gazebo", "Herbs Garden", "Easy Staircase"]
             },
             {
-                name: "Lifestyle",
-                items: ["2 Acres Podium Park", "Mini Theatre", "Rooftop Lounge", "Library & Café", "Kids' Play Area", "Crèche Facility", "Barbeque Zone"]
+                name: "Additional Feature",
+                items: ["Jogging Track with Lush Green Park"]
             },
         ],
         highlights: [
-            "5.37 Acres Plot",
-            "2-Acre Podium Park",
-            "25,000 sq.ft. Club",
-            "Sun-Facing",
-            "Earthvillas & Skyvillas",
-
+            "Contemporary Architecture",
+            "Smart Layouts",
+            "Serene Surroundings",
+            "Optimal Space Utilization",
+            "Natural Light & Ventilation",
         ],
-        residencesSummary: "3+1, 4+1 BHK & Earthvillas",
+        residencesSummary: "2 & 3 BHK Apartments",
         totalUnits: "125 Units",
         projectType: "Luxury Residential",
     },
@@ -247,6 +300,44 @@ export const projects: Project[] = [
             "/regal_empirus/BOOKET_REGAL%20EMPIRUS%20CTC_page-0011.jpg",
             "/regal_empirus/BOOKET_REGAL%20EMPIRUS%20CTC_page-0012.jpg",
             "/regal_empirus/BOOKET_REGAL%20EMPIRUS%20CTC_page-0013.jpg",
+        ],
+        renders: [
+            {
+                src: "/regal_empirus/renders/grand-entrance.jpg",
+                alt: "Twin Regal Empirus towers framing the sculpted entrance court at dusk",
+                label: "Grand Entrance",
+                caption: "The twin towers framing the sculpted entrance court at dusk.",
+            },
+            {
+                src: "/regal_empirus/renders/tower-portal.jpg",
+                alt: "Low-angle view of the Regal Empirus arrival portal and tower facade",
+                label: "Arrival Portal",
+                caption: "Low-angle view of the arrival portal and the tiered balcony facade above it.",
+            },
+            {
+                src: "/regal_empirus/renders/night-elevation.jpg",
+                alt: "Regal Empirus towers lit up at night beside the Sector 91 arterial road",
+                label: "Night Elevation",
+                caption: "The towers lit against the Sector 91 arterial road after dark.",
+            },
+            {
+                src: "/regal_empirus/renders/clubhouse-pool.jpg",
+                alt: "Fountain-lined pool deck beside the double-height Regal Empirus clubhouse",
+                label: "Clubhouse & Pool",
+                caption: "Fountain-lined pool deck running alongside the double-height clubhouse.",
+            },
+            {
+                src: "/regal_empirus/renders/podium-aerial.jpg",
+                alt: "Aerial view of the landscaped Regal Empirus podium gardens and pool at night",
+                label: "Podium Gardens",
+                caption: "Bird's-eye of the landscaped podium — play zones, walkways and the pool.",
+            },
+            {
+                src: "/regal_empirus/renders/sports-courts.jpg",
+                alt: "Floodlit tennis and badminton courts at Regal Empirus",
+                label: "Sports Courts",
+                caption: "Floodlit tennis and badminton courts set within the podium landscape.",
+            },
         ],
         galleryImageAlts: [
             "Sophisticated facade design of Regal Empirus Sector 91",
