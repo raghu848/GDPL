@@ -115,12 +115,6 @@ html.lenis body {
   h6 {
     @apply font-sans font-normal;
   }
-
-  /* Custom cursor hides the native one only on fine pointers */
-  .has-custom-cursor,
-  .has-custom-cursor * {
-    cursor: none !important;
-  }
 }
 
 /* ═══════════════════════════════════════════════════════════
