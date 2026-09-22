@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import Image from "next/image";
 import { useSectionTimeline } from "@/animations/useSectionTimeline";
 import { createAboutTimeline } from "@/animations/timelines";
 import RevealLines from "@/components/ui/RevealLines";
@@ -12,16 +11,21 @@ export default function About() {
   useSectionTimeline(root, createAboutTimeline);
 
   return (
-    <section ref={root} id="about" className="relative bg-bone text-ink pt-28 md:pt-40 pb-20 md:pb-28">
+    <section
+      ref={root}
+      id="about"
+      className="relative text-ink pt-28 md:pt-40 pb-20 md:pb-28 bg-[#F7F7F6]"
+    >
       <div className="shell grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-14">
-        <div className="lg:col-span-2 lg:pt-4">
-          <span data-index className="eyebrow text-muted">About GDPL</span>
-        </div>
-
-        <div className="lg:col-span-5 flex flex-col">
+        <div className="lg:col-span-6 flex flex-col">
+          <span data-index className="eyebrow text-muted mb-6 block">About GDPL</span>
           <RevealLines
             className="display-lg"
-            lines={["A legacy of trust,", "a standard of", <em key="e" className="italic text-accent">royal living.</em>]}
+            lines={[
+              <span key="l1" className="block whitespace-nowrap">A legacy of trust,</span>,
+              "a standard of",
+              <em key="e" className="italic text-accent">royal living.</em>,
+            ]}
           />
 
           <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-8 max-w-2xl">
@@ -41,22 +45,31 @@ export default function About() {
           </div>
         </div>
 
-        <div className="lg:col-span-5 lg:pl-8 lg:pt-28">
-          <div data-frame data-dir="up" className="media-frame aspect-[4/5] w-full">
+        <div className="lg:col-span-6 lg:pl-8">
+          <div data-frame data-dir="up" className="media-frame aspect-[19/20] w-full bg-transparent">
             <div data-parallax="6" className="media-inner">
-              <div data-media className="absolute inset-0">
-                <Image
-                  src="/office_images/IMG_2361 (1).jpg"
-                  alt="GDPL head office reception with brass logo on marble wall"
-                  fill
-                  sizes="(min-width: 1024px) 38vw, 100vw"
-                  className="object-cover"
-                />
+              <div data-media className="absolute inset-0 bg-transparent">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  disablePictureInPicture
+                  aria-hidden
+                  className="absolute inset-0 h-full w-full object-cover object-[50%_30%]"
+                  style={{
+                    maskImage: "linear-gradient(to bottom, transparent 0%, #000 7%, #000 91%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, #000 7%, #000 91%, transparent 100%)",
+                  }}
+                >
+                  <source src="/videos/about-building.mp4" type="video/mp4" />
+                </video>
               </div>
             </div>
           </div>
           <p data-fade className="mt-5 eyebrow text-[0.65rem] text-muted flex justify-between">
-            <span>GDPL Head Office</span>
+            <span>GDPL Architecture</span>
             <span>Mohali, Punjab</span>
           </p>
         </div>
