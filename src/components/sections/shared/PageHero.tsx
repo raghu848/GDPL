@@ -3,6 +3,7 @@
 import { ReactNode, useRef } from "react";
 import Image from "next/image";
 import { useHeroTimeline } from "@/animations/useHeroTimeline";
+import { useVideoInView } from "@/hooks/useVideoInView";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -24,6 +25,7 @@ export default function PageHero({ eyebrow, lines, copy, image, video, actions, 
   const right = align === "right";
   const root = useRef<HTMLElement>(null);
   useHeroTimeline(root);
+  const videoRef = useVideoInView<HTMLVideoElement>();
 
   return (
     <section
@@ -39,7 +41,7 @@ export default function PageHero({ eyebrow, lines, copy, image, video, actions, 
             <Image src={image.src} alt={image.alt} fill priority sizes="100vw" className={cn("object-cover", image.className)} />
           )}
           {video && (
-            <video autoPlay loop muted playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover">
+            <video ref={videoRef} loop muted playsInline preload="metadata" className="absolute inset-0 h-full w-full object-cover">
               <source src={video} type="video/mp4" />
             </video>
           )}

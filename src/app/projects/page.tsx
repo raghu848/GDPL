@@ -68,7 +68,7 @@ export default function ProjectsPage() {
                   data-active={filter === f}
                   onClick={() => setFilter(f)}
                   className={cn(
-                    "link-underline eyebrow transition-colors duration-500",
+                    "link-underline eyebrow transition-colors duration-500 py-2.5 -my-2.5",
                     filter === f ? "text-ink" : "text-muted hover:text-ink/85"
                   )}
                 >

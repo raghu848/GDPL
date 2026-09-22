@@ -4,6 +4,7 @@ import { ReactNode, useRef } from "react";
 import Image from "next/image";
 import { useSectionTimeline } from "@/animations/useSectionTimeline";
 import { createContactTimeline } from "@/animations/timelines";
+import { useVideoInView } from "@/hooks/useVideoInView";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -21,13 +22,14 @@ type Props = {
 export default function CTASection({ image, video, eyebrow, lines, copy, actions, children, headlineClassName }: Props) {
   const root = useRef<HTMLElement>(null);
   useSectionTimeline(root, createContactTimeline);
+  const videoRef = useVideoInView<HTMLVideoElement>();
 
   return (
     <section ref={root} className="tone-dark relative min-h-[100svh] flex items-end overflow-hidden bg-ink text-bone">
       <div data-media className="absolute inset-0 will-change-transform">
         {image && <Image src={image.src} alt={image.alt} fill sizes="100vw" className="object-cover" />}
         {video && (
-          <video autoPlay loop muted playsInline preload="none" className="absolute inset-0 h-full w-full object-cover">
+          <video ref={videoRef} loop muted playsInline preload="none" className="absolute inset-0 h-full w-full object-cover">
             <source src={video} type="video/mp4" />
           </video>
         )}

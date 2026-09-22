@@ -45,7 +45,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-3">
               {NAV_LINKS.map((l) => (
                 <li key={l.name}>
-                  <Link href={l.href} className="link-underline text-ink/85 hover:text-ink transition-colors">
+                  <Link href={l.href} className="link-underline text-ink/85 hover:text-ink transition-colors inline-block py-1.5 -my-1.5">
                     {l.name}
                   </Link>
                 </li>
@@ -56,8 +56,8 @@ export default function Footer() {
           <div className="md:col-span-3 flex flex-col gap-5" data-fade>
             <span className="eyebrow text-muted">Contact</span>
             <div className="flex flex-col gap-3">
-              <a href="tel:+917789000077" className="link-underline self-start text-ink/85 hover:text-ink">+91 77890 00077</a>
-              <a href="mailto:info@gdplmohali.in" className="link-underline self-start text-ink/85 hover:text-ink">info@gdplmohali.in</a>
+              <a href="tel:+917789000077" className="link-underline self-start text-ink/85 hover:text-ink py-1.5 -my-1.5">+91 77890 00077</a>
+              <a href="mailto:info@gdplmohali.in" className="link-underline self-start text-ink/85 hover:text-ink py-1.5 -my-1.5">info@gdplmohali.in</a>
               <p className="text-muted leading-relaxed mt-2">
                 Regal Heights, GH-11D, Sector 91,
                 <br />
@@ -71,7 +71,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-3">
               {SOCIALS.map((s) => (
                 <li key={s.name}>
-                  <Link href={s.href} className="link-underline text-ink/85 hover:text-ink">{s.name}</Link>
+                  <Link href={s.href} className="link-underline text-ink/85 hover:text-ink inline-block py-1.5 -my-1.5">{s.name}</Link>
                 </li>
               ))}
             </ul>
@@ -92,9 +92,9 @@ export default function Footer() {
         <div className="flex flex-col-reverse md:flex-row md:items-center justify-between gap-6 py-8 text-xs tracking-[0.08em] text-muted">
           <p>&copy; {new Date().getFullYear()} Gdpl Mohali. All Rights Reserved.</p>
           <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
-            <Link href="#" className="link-underline hover:text-ink">Privacy Policy</Link>
-            <Link href="https://growdient.com/" className="link-underline hover:text-ink">Made by Growdient</Link>
-            <button type="button" onClick={toTop} className="link-underline eyebrow text-[0.65rem] text-ink/80 hover:text-ink">
+            <Link href="#" className="link-underline hover:text-ink py-2 -my-2">Privacy Policy</Link>
+            <Link href="https://growdient.com/" className="link-underline hover:text-ink py-2 -my-2">Made by Growdient</Link>
+            <button type="button" onClick={toTop} className="link-underline eyebrow text-[0.65rem] text-ink/80 hover:text-ink py-2 -my-2">
               Back to top ↑
             </button>
           </div>

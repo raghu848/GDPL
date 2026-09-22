@@ -5,13 +5,15 @@ import AnimatedHeading from '../ui/AnimatedHeading';
 import FadeIn from '../ui/FadeIn';
 import { MessageSquare, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { useVideoInView } from '@/hooks/useVideoInView';
 
 const HeroVex: React.FC = () => {
+  const videoRef = useVideoInView<HTMLVideoElement>();
   return (
     <section className="relative h-screen w-full overflow-hidden bg-black font-sans">
       {/* Video Background */}
       <video
-        autoPlay
+        ref={videoRef}
         loop
         muted
         playsInline

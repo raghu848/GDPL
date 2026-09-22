@@ -74,7 +74,7 @@ export default function Testimonials() {
                 key={item.name}
                 type="button"
                 onClick={() => setActive(i)}
-                className={cn("link-underline eyebrow text-[0.62rem] transition-colors duration-500", i === active ? "text-ink" : "text-ink/50 hover:text-ink/80")}
+                className={cn("link-underline eyebrow text-[0.62rem] py-3 -my-3 transition-colors duration-500", i === active ? "text-ink" : "text-ink/50 hover:text-ink/80")}
                 data-active={i === active}
               >
                 {item.name.split(" ")[0]}

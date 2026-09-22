@@ -3,12 +3,14 @@
 import { useRef } from "react";
 import { useSectionTimeline } from "@/animations/useSectionTimeline";
 import { createAboutTimeline } from "@/animations/timelines";
+import { useVideoInView } from "@/hooks/useVideoInView";
 import RevealLines from "@/components/ui/RevealLines";
 import MagneticButton from "@/components/ui/MagneticButton";
 
 export default function About() {
   const root = useRef<HTMLElement>(null);
   useSectionTimeline(root, createAboutTimeline);
+  const videoRef = useVideoInView<HTMLVideoElement>({ pauseOnLeave: false });
 
   return (
     <section
@@ -50,7 +52,7 @@ export default function About() {
             <div data-parallax="6" className="media-inner">
               <div data-media className="absolute inset-0 bg-transparent">
                 <video
-                  autoPlay
+                  ref={videoRef}
                   muted
                   loop
                   playsInline

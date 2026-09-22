@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useHeroTimeline } from "@/animations/useHeroTimeline";
 import { useSite } from "@/components/shared/SiteContext";
+import { useVideoInView } from "@/hooks/useVideoInView";
 import { cn } from "@/lib/utils";
 
 const STATS = [
@@ -24,6 +25,7 @@ export default function Hero() {
   const counted = useRef(false);
   const counters = useRef<(HTMLSpanElement | null)[]>([]);
   const progress = useRef<HTMLSpanElement>(null);
+  const videoRef = useVideoInView<HTMLVideoElement>();
 
   // The rail cycles through the stats on a loop while the video plays behind it.
   useEffect(() => {
@@ -124,7 +126,7 @@ export default function Hero() {
         <div data-hero-media-inner className="absolute inset-0">
           <div data-hero-media-blur className="absolute inset-0 bg-sand">
             <video
-              autoPlay
+              ref={videoRef}
               muted
               loop
               playsInline

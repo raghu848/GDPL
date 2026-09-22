@@ -38,7 +38,7 @@ export default function Visit() {
             <div data-fade>
               <dt className="eyebrow text-[0.62rem] text-muted">Site Visits</dt>
               <dd className="mt-2">
-                <a href="tel:+917789000077" className="link-underline">+91 77890 00077</a>
+                <a href="tel:+917789000077" className="link-underline inline-block py-1.5 -my-1.5">+91 77890 00077</a>
               </dd>
             </div>
           </dl>

@@ -368,7 +368,7 @@ export default function RegalLuxuriaCustomPage() {
             href="https://cdn.sanity.io/files/535lnz3g/production/2a789cf267e2c4032f7fcf76d3a9179cc936939f.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-4 eyebrow text-accent-soft"
+            className="group inline-flex items-center gap-4 eyebrow text-accent-soft py-2 -my-2"
           >
             <span className="link-underline link-underline--group">Download Schema</span>
             <Arrow className="rotate-90 transition-transform duration-500 group-hover:translate-y-1" />
