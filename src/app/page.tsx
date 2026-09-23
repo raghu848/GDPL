@@ -1,6 +1,7 @@
 import Hero from "@/components/sections/home/Hero";
 import About from "@/components/sections/home/About";
 import SelectedProjects from "@/components/sections/home/SelectedProjects";
+import Blueprints from "@/components/sections/home/Blueprints";
 import Workspace from "@/components/sections/home/Workspace";
 import Journey from "@/components/sections/home/Journey";
 import Team from "@/components/sections/home/Team";
@@ -15,6 +16,7 @@ export default function Home() {
       <About />
       <SelectedProjects />
       <Workspace />
+      <Blueprints />
       <Journey />
       <Team />
       <Testimonials />

@@ -272,6 +272,43 @@ export function createImageRevealTimeline(root: HTMLElement, env: MotionEnv) {
   });
 }
 
+/* 07b — BLUEPRINTS (pinned, fanned horizontal deck) ──────────── */
+export function createBlueprintsTimeline(root: HTMLElement, env: MotionEnv) {
+  const head = sectionTimeline(root, "top 75%");
+  fadeUp(head, all(root, "[data-index]"), env, { y: 20 });
+  revealLines(head, all(root, "[data-line]"), env, { position: 0.1 });
+  fadeUp(head, all(root, "[data-fade]"), env, { position: 0.45, stagger: 0.1 });
+
+  const track = one(root, "[data-track]") as HTMLElement | null;
+  const pin = one(root, "[data-pin]") as HTMLElement | null;
+
+  // Pin-and-scrub on every screen size: vertical scroll (finger drag on
+  // mobile, wheel on desktop) drives the horizontal slide — no separate
+  // swipe gesture needed. Only reduced-motion users get the plain fallback.
+  if (!env.reduce && track && pin) {
+    const distance = () => Math.max(0, track.scrollWidth - window.innerWidth);
+    gsap.to(track, {
+      x: () => -distance(),
+      ease: "none",
+      scrollTrigger: {
+        trigger: pin,
+        start: "top top",
+        end: () => `+=${distance() * 1.15}`,
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
+    });
+    return;
+  }
+
+  all(root, "[data-frame]").forEach((frame) => {
+    const tl = sectionTimeline(frame, "top 90%");
+    maskReveal(tl, frame, frame.querySelector("[data-media]"), env, { direction: "up", darken: true, duration: 1.2 });
+  });
+}
+
 /* 08 — JOURNEY (milestones) ─────────────────────────────────── */
 export function createJourneyTimeline(root: HTMLElement, env: MotionEnv) {
   createEditorialTimeline(root, env);

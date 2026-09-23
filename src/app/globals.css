@@ -221,6 +221,19 @@ html.lenis body {
     transform-origin: left center;
   }
 
+  /* Idle nudge: loops on its own, independent of scroll state — used for
+     "scroll to explore" cues so the arrow is visibly alive on first paint. */
+  .cue-nudge {
+    animation: cue-nudge 1.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+  @keyframes cue-nudge {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(10px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cue-nudge { animation: none; }
+  }
+
   /* Animated underline: draws left → right, exits to the right */
   .link-underline {
     position: relative;

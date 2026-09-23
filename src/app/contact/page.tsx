@@ -41,7 +41,10 @@ export default function ContactPage() {
         eyebrow="Get In Touch"
         lines={["Let's", <em key="c" className="accent-text">connect.</em>]}
         copy="Whether you're looking for a new home or a strategic investment, our team is here to guide you."
-        image={{ src: "/images/contact-hero.jpg", alt: "Sunset over the city from a hillside terrace with an infinity pool and lounge" }}
+        image={{
+          src: "/office_images/IMG_2364.jpg",
+          alt: "GDPL sales office with an illuminated architectural model of the residential towers",
+        }}
         actions={
           <>
             <MagneticButton href={WHATSAPP} variant="solid">

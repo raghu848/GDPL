@@ -73,54 +73,8 @@ export default function AboutPage() {
               <div data-parallax="6" className="media-inner">
                 <div data-media className="absolute inset-0">
                   <Image
-                    src="/office_images/IMG_2366.jpg"
-                    alt="GDPL office workspace with the message 'We build life long relationships with our customers'"
-                    fill
-                    sizes="(min-width: 1024px) 30vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </EditorialSection>
-
-      {/* 02 — Journey */}
-      <EditorialSection tone="linen" className="md:py-28">
-        <SectionHeader
-          label="Evolution"
-          lines={["Our", <em key="j" className="accent-text">journey.</em>]}
-          copy="From humble beginnings to a trusted name in real estate."
-          className="md:mb-14"
-        />
-        {/* The photo stretches to the height of the two chapters, so neither column leaves a gap. */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-12">
-          <div className="lg:col-span-6 lg:col-start-3">
-            <ol className="flex flex-col">
-              {[
-                "From our humble beginnings to becoming a trusted name in real estate, Gdpl's journey is a testament to perseverance, innovation, and a customer-centric approach.",
-                "Over the years, we have expanded our horizons, delivering landmark projects and setting new benchmarks in the industry. Our growth is fueled by the trust of our clients and our passion for excellence.",
-              ].map((text, i) => (
-                <li key={i} className="py-8 first:pt-0 last:pb-0">
-                  <div data-rule className="hairline mb-8 first:hidden" />
-                  <span data-fade className="eyebrow text-accent block mb-5">
-                    Chapter 0{i + 1}
-                  </span>
-                  <p data-fade className="font-display text-[clamp(1.35rem,2vw,1.9rem)] leading-[1.45] tracking-[-0.01em] text-ink/90">
-                    {text}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div className="lg:col-span-4 lg:col-start-9">
-            <div data-frame data-dir="up" className="media-frame aspect-[3/4] lg:aspect-auto lg:h-full lg:min-h-[26rem]">
-              <div data-parallax="8" className="media-inner">
-                <div data-media className="absolute inset-0">
-                  <Image
-                    src="/office_images/IMG_2364.jpg"
-                    alt="Minimalist GDPL reception with fluted wood wall accents"
+                    src="/office_images/IMG_2365.jpg"
+                    alt="Glass-partitioned corridor at the GDPL office, lined with department suites"
                     fill
                     sizes="(min-width: 1024px) 30vw, 100vw"
                     className="object-cover"
