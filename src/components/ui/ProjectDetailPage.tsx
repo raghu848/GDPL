@@ -7,7 +7,7 @@ import MagneticButton, { Arrow } from "@/components/ui/MagneticButton";
 import AmenityScroller from "./AmenityScroller";
 import LocationScroller from "./LocationScroller";
 import LocationSplitScroll from "./LocationSplitScroll";
-import EmpirusGallery from "./EmpirusGallery";
+import SignatureGallery from "./SignatureGallery";
 import RenderGallery from "./RenderGallery";
 
 const WHATSAPP = "https://wa.me/917789000077";
@@ -76,7 +76,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
         </div>
       </EditorialSection>
 
-      {isEmpirus && <EmpirusGallery />}
+      {!!project.signatureGallery?.length && <SignatureGallery images={project.signatureGallery} />}
 
       {!!project.renders?.length && <RenderGallery renders={project.renders} projectName={project.name} />}
 

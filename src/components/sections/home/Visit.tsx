@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useSectionTimeline } from "@/animations/useSectionTimeline";
 import { createEditorialTimeline } from "@/animations/timelines";
 import RevealLines from "@/components/ui/RevealLines";
+import LineArt from "@/components/ui/LineArt";
 import MagneticButton from "@/components/ui/MagneticButton";
 
 const ADDRESS = "Regal Heights, PM2H+8GV, GH-11D, Sector 91, Sahibzada Ajit Singh Nagar, Punjab 140307";
@@ -19,7 +20,8 @@ export default function Visit() {
 
   return (
     <section ref={root} className="relative bg-bone text-ink py-28 md:py-40">
-      <div className="shell grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-14 items-end">
+      <LineArt art="balcony" className="hidden lg:block right-[3%] top-16 h-[280px] w-auto" />
+      <div className="shell relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-14 items-end">
         <div className="lg:col-span-4 flex flex-col">
           <div className="flex items-center gap-6 mb-10">
             <span data-index className="eyebrow text-muted">Visit Us</span>

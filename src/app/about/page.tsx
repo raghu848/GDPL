@@ -3,6 +3,7 @@ import PageHero from "@/components/sections/shared/PageHero";
 import EditorialSection from "@/components/sections/shared/EditorialSection";
 import SectionHeader from "@/components/sections/shared/SectionHeader";
 import CTASection from "@/components/sections/shared/CTASection";
+import Workspace from "@/components/sections/home/Workspace";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { WHATSAPP } from "@/components/shared/Navbar";
 
@@ -122,6 +123,9 @@ export default function AboutPage() {
           ))}
         </div>
       </EditorialSection>
+
+      {/* 03b — Workspace */}
+      <Workspace />
 
       {/* 04 — Team */}
       <EditorialSection tone="sand">

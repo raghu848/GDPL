@@ -27,6 +27,13 @@ export interface ProjectRender {
     caption: string;
 }
 
+/** A lifestyle/amenity tile in the project's pinned signature gallery. */
+export interface SignatureImage {
+    src: string;
+    alt: string;
+    label: string;
+}
+
 export interface Project {
     slug: string;
     name: string;
@@ -50,6 +57,7 @@ export interface Project {
     amenityIcons?: Record<string, string>;
     locationAdvantages?: LocationAdvantage[];
     renders?: ProjectRender[];
+    signatureGallery?: SignatureImage[];
 }
 
 export const projects: Project[] = [
@@ -87,6 +95,22 @@ export const projects: Project[] = [
             "Jogging Track": "/regal_rersidencia/icons/gazebo_4590895.svg",
             "Sports Arena": "/regal_rersidencia/icons/game-center_18369956.svg"
         },
+        signatureGallery: [
+            { src: "/regal_rersidencia/amenities/01-mini-golf.jpg", alt: "Rooftop mini golf course on a timber deck", label: "Mini Golf Deck" },
+            { src: "/regal_rersidencia/amenities/02-rooftop-lounge.jpg", alt: "Rooftop lounge with fire pit, outdoor kitchen and string lights", label: "Rooftop Lounge" },
+            { src: "/regal_rersidencia/amenities/03-green-atrium.jpg", alt: "Sunlit atrium lounge with indoor trees under a curved timber ceiling", label: "Green Atrium" },
+            { src: "/regal_rersidencia/amenities/04-kids-play.jpg", alt: "Colourful kids play area with spring stepping stools", label: "Kids Play Zone" },
+            { src: "/regal_rersidencia/amenities/05-spa-suite.jpg", alt: "Warm-lit spa treatment room with a massage bed", label: "Spa Suite" },
+            { src: "/regal_rersidencia/amenities/06-wellness-retreat.jpg", alt: "Curtained relaxation pods with soft cove lighting", label: "Wellness Retreat" },
+            { src: "/regal_rersidencia/amenities/07-fitness-studio.jpg", alt: "Fitness studio with treadmills beside floor-to-ceiling windows", label: "Fitness Studio" },
+            { src: "/regal_rersidencia/amenities/08-golf-simulator.jpg", alt: "Indoor golf simulator lounge with seating", label: "Golf Simulator" },
+            { src: "/regal_rersidencia/amenities/09-private-cinema.jpg", alt: "Private cinema with plush grey sofas", label: "Private Cinema" },
+            { src: "/regal_rersidencia/amenities/10-billiards-lounge.jpg", alt: "Billiards lounge with a glass-edged pool table", label: "Billiards Lounge" },
+            { src: "/regal_rersidencia/amenities/11-banquet-hall.jpg", alt: "Skylit banquet hall set with round dining tables", label: "Banquet Hall" },
+            { src: "/regal_rersidencia/amenities/12-sky-garden.jpg", alt: "Landscaped sky garden terrace with sculpted seating", label: "Sky Garden" },
+            { src: "/regal_rersidencia/amenities/13-cafe-lounge.jpg", alt: "Café lounge with a tree growing from a stone table", label: "Café Lounge" },
+            { src: "/regal_rersidencia/amenities/14-reading-lounge.jpg", alt: "Timber-panelled reading lounge with a book wall", label: "Reading Lounge" },
+        ],
         description: "Thoughtfully designed independent floors combining spacious living with modern architecture. Features an Iconic Sky Walk, resort-style pool, and over 30 premium amenities.",
         longDescription: "Regal Residencia, Sector 114, Mohali is a premium residential–commercial development designed for modern urban living. Featuring spacious 3 & 4 BHK residences and exclusive penthouses, the project blends comfort, luxury, and convenience in one vibrant destination Thoughtfully planned with open green spaces, podium-level amenities, and a lively retail hub, it offers a perfect balance of lifestyle and functionality. Strategically located, it ensures seamless connectivity to Chandigarh, the airport, and key landmarks, making everyday living effortless..",
         galleryImages: [
@@ -283,6 +307,18 @@ export const projects: Project[] = [
         slug: "regal-empirus",
         name: "Regal Empirus",
         tagline: "3+1 & 4+1 BHK ultra-luxury residences in Sector 91, Mohali, featuring sun-facing layouts, iconic skywalk design, and world-class amenities.",
+        signatureGallery: [
+            { src: "/regal_empirus/pictures/1_Five_Star_Club_House.jpg.jpeg", alt: "Five Star Club House", label: "Signature Club" },
+            { src: "/regal_empirus/pictures/2_Swimming_Pool_with_Kids_Splash_Pool.jpg.jpeg", alt: "Swimming Pool", label: "Infinity Pool" },
+            { src: "/regal_empirus/pictures/3_Cafeteria.jpg.jpeg", alt: "Cafeteria", label: "Gourmet Café" },
+            { src: "/regal_empirus/pictures/4_Fully_Equipped_Gym.jpg.jpeg", alt: "Fully Equipped Gym", label: "Fitness Center" },
+            { src: "/regal_empirus/pictures/5_Banquet_Hall.jpg.jpeg", alt: "Banquet Hall", label: "Grand Ballroom" },
+            { src: "/regal_empirus/pictures/6_Kids_Play_Area.jpg.jpeg", alt: "Kids Play Area", label: "Kids Zone" },
+            { src: "/regal_empirus/pictures/7_Library.jpg.jpeg", alt: "Library", label: "Quiet Library" },
+            { src: "/regal_empirus/pictures/8_Basement_Parking.jpg.jpeg", alt: "Basement Parking", label: "Secure Parking" },
+            { src: "/regal_empirus/pictures/9_Stilt_Parking.jpg.jpeg", alt: "Stilt Parking", label: "Stilt Access" },
+            { src: "/regal_empirus/pictures/10_Surface_Parking.jpg.jpeg", alt: "Surface Parking", label: "Surface Parking" },
+        ],
         location: "Sector 91, Mohali",
         status: "Ongoing",
         heroImage: "/regal_empirus/Regal_Empirus_.jpg.jpeg",
