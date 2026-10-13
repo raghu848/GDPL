@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useSectionTimeline } from "@/animations/useSectionTimeline";
 import { createEditorialTimeline } from "@/animations/timelines";
 import RevealLines from "@/components/ui/RevealLines";
+import FloatingBackdrop from "@/components/ui/FloatingBackdrop";
 import LineArt from "@/components/ui/LineArt";
 import MagneticButton from "@/components/ui/MagneticButton";
 
@@ -19,7 +20,8 @@ export default function Visit() {
   });
 
   return (
-    <section ref={root} className="relative bg-bone text-ink py-28 md:py-40">
+    <section ref={root} className="sec-flow relative bg-bone text-ink py-28 md:py-40">
+      <FloatingBackdrop strength={0.7} />
       <LineArt art="balcony" className="hidden lg:block right-[3%] top-16 h-[280px] w-auto" />
       <div className="shell relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-14 items-end">
         <div className="lg:col-span-4 flex flex-col">

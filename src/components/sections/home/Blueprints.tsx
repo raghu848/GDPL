@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useSectionTimeline } from "@/animations/useSectionTimeline";
 import { createBlueprintsTimeline } from "@/animations/timelines";
 import RevealLines from "@/components/ui/RevealLines";
+import FloatingBackdrop from "@/components/ui/FloatingBackdrop";
 import PlanLightbox from "@/components/ui/PlanLightbox";
 import BlueprintsVideo from "./BlueprintsVideo";
 import { blueprints, blueprintCategories } from "@/lib/blueprintsData";
@@ -31,7 +32,8 @@ export default function Blueprints() {
   const plan = blueprints[active];
 
   return (
-    <section ref={root} className="tone-light relative flex h-[100svh] min-h-[560px] flex-col overflow-hidden bg-white pt-20 text-ink md:pt-24">
+    <section ref={root} className="tone-light sec-flow sec-flow--warm relative flex h-[100svh] min-h-[560px] flex-col overflow-hidden bg-[#F6EDDF] pt-20 text-ink md:pt-24">
+      <FloatingBackdrop strength={0.9} />
       <div className="shell flex min-h-0 w-full flex-1 flex-col">
         <div className="hairline mb-4 md:mb-5" />
 

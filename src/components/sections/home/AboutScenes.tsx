@@ -4,6 +4,7 @@ import { useEffect, useRef, type RefObject } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useVideoInView } from "@/hooks/useVideoInView";
+import AboutOrbit from "./AboutOrbit";
 
 /* Soft edge so the video's studio backdrop melts into the section colour. */
 const FEATHER = {
@@ -33,10 +34,13 @@ function Scene({ id, bg, src, eyebrow, lines, body, index, flip, mobileCrop }: S
   return (
     <div
       data-scene={id}
-      className="absolute inset-0 overflow-hidden"
+      className={`about-noise absolute inset-0 isolate overflow-hidden ${flip ? "about-noise--flip" : ""}`}
       style={{ backgroundColor: bg }}
     >
-      <div className="absolute inset-x-0 bottom-0 flex h-[100svh] items-center lg:bottom-auto lg:top-0">
+      <div aria-hidden className={`about-float about-float--scene about-float--${id}`}>
+        <i /><i /><i /><i /><i />
+      </div>
+      <div className="absolute inset-x-0 bottom-0 z-10 flex h-[100svh] items-center lg:bottom-auto lg:top-0">
       <div className="shell grid w-full grid-cols-1 items-center gap-x-10 gap-y-6 lg:grid-cols-12">
         <div data-item-wrap className={`flex flex-col lg:col-span-4 ${flip ? "lg:order-2" : ""}`}>
           <span data-item className="eyebrow text-muted mb-5 block">{eyebrow}</span>
@@ -48,7 +52,8 @@ function Scene({ id, bg, src, eyebrow, lines, body, index, flip, mobileCrop }: S
           <span data-item className="eyebrow mt-8 text-[0.65rem] text-muted">{index}</span>
         </div>
 
-        <div data-item className={`lg:col-span-8 ${flip ? "lg:order-1" : ""}`}>
+        <div data-item className={`relative lg:col-span-8 ${flip ? "lg:order-1" : ""}`}>
+          <AboutOrbit />
           <video
             ref={videoRef}
             muted
@@ -58,7 +63,7 @@ function Scene({ id, bg, src, eyebrow, lines, body, index, flip, mobileCrop }: S
             disablePictureInPicture
             aria-hidden
             className={`w-full object-cover lg:aspect-video ${mobileCrop ? "aspect-[5/4] max-lg:-mx-4 max-lg:w-[calc(100%+2rem)]" : "aspect-video"} lg:-ml-[8%] lg:w-[min(116%,calc(88svh*1.7778))] lg:max-w-none`}
-            style={FEATHER}
+            style={id === "b" ? { ...FEATHER, filter: "sepia(0.2) saturate(1.05)" } : FEATHER}
           >
             <source src={src} type="video/mp4" />
           </video>
@@ -95,7 +100,7 @@ export default function AboutScenes({ sectionRef }: { sectionRef: RefObject<HTML
       gsap.set(el, { display: "block" });
 
       // The About section itself is pinned; its content hands over to the videos on scroll.
-      gsap
+      const tl = gsap
         .timeline({
           defaults: { ease: "none" },
           scrollTrigger: { trigger: section, start: desktop ? "top top" : "bottom bottom", end: "+=320%", pin: true, scrub: 0.6, anticipatePin: 1 },
@@ -109,6 +114,19 @@ export default function AboutScenes({ sectionRef }: { sectionRef: RefObject<HTML
         .to(b, { opacity: 1, duration: 1 }, "<")
         .fromTo(bItems, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: 0.1 }, "<")
         .to({}, { duration: 1 });
+
+      // Orbit accents: spin rings, drift panels and lights at different speeds while their scene is on screen.
+      const orbit = (scope: ParentNode, at: number, len: number) => {
+        const qa = (s: string) => Array.from(scope.querySelectorAll<HTMLElement>(s));
+        tl.fromTo(qa("[data-orbit-scroll]"), { rotationZ: 0 }, { rotationZ: (i: number) => (i % 2 ? -150 : 190), duration: len }, at);
+      };
+      const building = section.querySelector<HTMLElement>("[data-about-building]");
+      if (building) {
+        orbit(building, 0, 1);
+        tl.fromTo(building, { scale: 1, xPercent: 0 }, { scale: 1.05, xPercent: -1.5, transformOrigin: "50% 60%", duration: 1 }, 0);
+      }
+      orbit(a, 1, 2.2);
+      orbit(b, 3, 2);
     });
     return () => mm.revert();
   }, [sectionRef]);
@@ -127,7 +145,7 @@ export default function AboutScenes({ sectionRef }: { sectionRef: RefObject<HTML
       />
       <Scene
         id="b"
-        bg="#DDD8D1"
+        bg="#E9DFCF"
         src="/videos/model-c.mp4"
         eyebrow="Amenities"
         lines={["Resort Living,", "Within Reach."]}

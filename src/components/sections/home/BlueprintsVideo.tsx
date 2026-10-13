@@ -95,7 +95,7 @@ export default function BlueprintsVideo({
   }, [mobile, sectionRef, onActive]);
 
   return (
-    <div ref={stage} className="absolute inset-0 overflow-hidden bg-white">
+    <div ref={stage} className="absolute inset-0 overflow-hidden mix-blend-multiply">
       {mobile !== null && (
       <video
         key={mobile ? "m" : "d"}

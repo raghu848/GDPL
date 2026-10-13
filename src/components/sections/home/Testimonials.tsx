@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useSectionTimeline } from "@/animations/useSectionTimeline";
+import FloatingBackdrop from "@/components/ui/FloatingBackdrop";
 import { createTestimonialTimeline } from "@/animations/timelines";
 import { Arrow } from "@/components/ui/MagneticButton";
 import { cn } from "@/lib/utils";
@@ -33,7 +34,8 @@ export default function Testimonials() {
   const go = (dir: number) => setActive((a) => (a + dir + TESTIMONIALS.length) % TESTIMONIALS.length);
 
   return (
-    <section ref={root} className="tone-light relative bg-sand text-ink py-16 md:py-24 overflow-hidden">
+    <section ref={root} className="tone-light sec-flow relative bg-sand text-ink py-16 md:py-24 overflow-hidden">
+      <FloatingBackdrop strength={0.6} />
       <div className="shell grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-12">
         <div className="lg:col-span-3 flex lg:flex-col justify-between gap-6">
           <span data-index className="eyebrow text-muted lg:pt-4">

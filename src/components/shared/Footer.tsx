@@ -82,7 +82,7 @@ export default function Footer() {
           {/* The mask carries the font size so its em padding scales with the lettering —
               otherwise it pads by ~1px and crops the descender of the "g". */}
           <span className="line-mask font-display text-[clamp(3.25rem,13.5vw,15rem)] pt-[0.17em] pb-[0.19em]">
-            <span data-line className="line-inner leading-[0.9] tracking-[-0.05em] text-ink/[0.14] whitespace-nowrap">
+            <span data-line className="footer-shimmer line-inner leading-[0.9] tracking-[-0.05em] text-ink/[0.14] whitespace-nowrap">
               Building Dreams
             </span>
           </span>

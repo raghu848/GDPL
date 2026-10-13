@@ -7,6 +7,7 @@ import { projects } from "@/lib/projectsData";
 import { useSectionTimeline } from "@/animations/useSectionTimeline";
 import { createProjectsTimeline } from "@/animations/timelines";
 import RevealLines from "@/components/ui/RevealLines";
+import FloatingBackdrop from "@/components/ui/FloatingBackdrop";
 import MagneticButton, { Arrow } from "@/components/ui/MagneticButton";
 import { cn } from "@/lib/utils";
 
@@ -15,7 +16,8 @@ export default function SelectedProjects() {
   useSectionTimeline(root, createProjectsTimeline);
 
   return (
-    <section ref={root} id="projects" className="tone-light relative bg-paper text-ink">
+    <section ref={root} id="projects" className="tone-light sec-flow sec-flow--warm relative bg-[#F6EDDF] text-ink">
+      <FloatingBackdrop strength={0.9} />
       <div className="shell"><div className="hairline" /></div>
 
       <div data-pin className="relative lg:h-screen lg:overflow-hidden lg:flex lg:items-center py-24 md:py-32 lg:py-0">

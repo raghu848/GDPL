@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useSectionTimeline } from "@/animations/useSectionTimeline";
 import { createTeamTimeline } from "@/animations/timelines";
 import RevealLines from "@/components/ui/RevealLines";
+import FloatingBackdrop from "@/components/ui/FloatingBackdrop";
 import LineArt from "@/components/ui/LineArt";
 import { Arrow } from "@/components/ui/MagneticButton";
 import { cn } from "@/lib/utils";
@@ -30,7 +31,8 @@ export default function Team() {
   useSectionTimeline(root, createTeamTimeline);
 
   return (
-    <section ref={root} id="team" className="relative bg-bone text-ink py-28 md:py-44">
+    <section ref={root} id="team" className="sec-flow relative bg-bone text-ink py-28 md:py-44">
+      <FloatingBackdrop strength={0.7} />
       <LineArt art="house" className="hidden lg:block left-[3%] top-16 h-[200px] w-auto" />
       <div className="shell relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-16">
         <div className="lg:col-span-5 flex flex-col">

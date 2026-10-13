@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useSectionTimeline } from "@/animations/useSectionTimeline";
 import { createJourneyTimeline } from "@/animations/timelines";
 import RevealLines from "@/components/ui/RevealLines";
+import FloatingBackdrop from "@/components/ui/FloatingBackdrop";
 import LineArt from "@/components/ui/LineArt";
 import { cn } from "@/lib/utils";
 
@@ -62,7 +63,8 @@ export default function Journey() {
   useSectionTimeline(root, createJourneyTimeline);
 
   return (
-    <section ref={root} className="tone-light relative bg-linen text-ink py-28 md:py-40">
+    <section ref={root} className="tone-light sec-flow relative bg-linen text-ink py-28 md:py-40">
+      <FloatingBackdrop strength={0.7} />
       <LineArt art="tower" className="hidden lg:block right-[4%] top-24 h-[340px] w-auto" />
       <div className="shell relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-8 mb-16 md:mb-24">

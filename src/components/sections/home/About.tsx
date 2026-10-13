@@ -7,8 +7,8 @@ import { createAboutTimeline } from "@/animations/timelines";
 import { useVideoInView } from "@/hooks/useVideoInView";
 import RevealLines from "@/components/ui/RevealLines";
 import MagneticButton from "@/components/ui/MagneticButton";
-import AboutBackdrop from "./AboutBackdrop";
 import AboutScenes from "./AboutScenes";
+import AboutOrbit from "./AboutOrbit";
 
 export default function About() {
   const root = useRef<HTMLElement>(null);
@@ -41,11 +41,15 @@ export default function About() {
     <section
       ref={root}
       id="about"
-      className="relative text-ink pt-28 md:pt-40 lg:pt-28 pb-20 md:pb-28 bg-[#F7F7F6]"
+      className="relative text-ink pt-28 md:pt-40 lg:pt-28 pb-20 md:pb-28 about-atmosphere"
     >
-      <AboutBackdrop buildingSelector="[data-about-building]" />
+      <div aria-hidden className="about-silk">
+        <i /><i /><i /><i /><i /><i />
+        <b /><b /><b />
+        <u />
+      </div>
       <AboutScenes sectionRef={root} />
-      <div ref={shell} className="shell relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-14">
+      <div ref={shell} className="shell relative grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-14">
         <div className="lg:col-span-6 flex flex-col">
           <span data-index className="eyebrow text-muted mb-6 block">About GDPL</span>
           <RevealLines
@@ -74,7 +78,8 @@ export default function About() {
           </div>
         </div>
 
-        <div data-about-building className="lg:col-span-6 lg:pl-8 lg:-mt-20">
+        <div data-about-building className="relative mix-blend-multiply lg:col-span-6 lg:pl-8 lg:-mt-20">
+          <AboutOrbit />
           <div data-about-enter>
           <div data-frame data-dir="up" className="media-frame aspect-[19/20] w-full bg-transparent">
             <div data-parallax="6" className="media-inner">
@@ -89,8 +94,11 @@ export default function About() {
                   aria-hidden
                   className="absolute inset-0 h-full w-full object-cover object-[50%_30%]"
                   style={{
-                    maskImage: "linear-gradient(to bottom, transparent 0%, #000 7%, #000 91%, transparent 100%)",
-                    WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, #000 7%, #000 91%, transparent 100%)",
+                    maskImage: "linear-gradient(to bottom, transparent 0%, #000 7%, #000 91%, transparent 100%), linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, #000 7%, #000 91%, transparent 100%), linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%)",
+                    maskComposite: "intersect",
+                    WebkitMaskComposite: "source-in",
+                    filter: "brightness(1.03)",
                   }}
                 >
                   <source src="/videos/about-building.mp4" type="video/mp4" />
