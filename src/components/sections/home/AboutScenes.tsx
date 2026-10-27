@@ -3,7 +3,6 @@
 import { useEffect, useRef, type RefObject } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useVideoInView } from "@/hooks/useVideoInView";
 import AboutOrbit from "./AboutOrbit";
 
 /* Soft edge so the video's studio backdrop melts into the section colour. */
@@ -30,7 +29,8 @@ type SceneProps = {
 };
 
 function Scene({ id, bg, src, eyebrow, lines, body, index, flip, mobileCrop }: SceneProps) {
-  const videoRef = useVideoInView<HTMLVideoElement>({ pauseOnLeave: true });
+  // Played/paused by the pinned timeline (only the scene on screen decodes video), not by visibility.
+  const videoRef = useRef<HTMLVideoElement>(null);
   return (
     <div
       data-scene={id}
@@ -99,11 +99,25 @@ export default function AboutScenes({ sectionRef }: { sectionRef: RefObject<HTML
       gsap.set([a, b], { opacity: 0 });
       gsap.set(el, { display: "block" });
 
+      // Only the video that is actually on screen plays: building (first beat), then scene A, then scene B.
+      const vA = a.querySelector("video");
+      const vB = b.querySelector("video");
+      const vAbout = section.querySelector<HTMLVideoElement>("[data-about-building] video");
+      const run = (v: HTMLVideoElement | null, on: boolean) => {
+        if (!v) return;
+        if (on) { if (v.paused) v.play().catch(() => {}); } else if (!v.paused) v.pause();
+      };
+      const sync = (t: number) => {
+        run(vAbout, t < 2.2);
+        run(vA, t > 0.9 && t < 3.6);
+        run(vB, t >= 3.4);
+      };
+
       // The About section itself is pinned; its content hands over to the videos on scroll.
       const tl = gsap
         .timeline({
           defaults: { ease: "none" },
-          scrollTrigger: { trigger: section, start: desktop ? "top top" : "bottom bottom", end: "+=320%", pin: true, scrub: 0.6, anticipatePin: 1 },
+          scrollTrigger: { trigger: section, start: desktop ? "top top" : "bottom bottom", end: "+=320%", pin: true, scrub: 0.6, anticipatePin: 1, onUpdate: (self) => sync(self.progress * 5), onLeave: () => { run(vA, false); run(vB, false); run(vAbout, false); }, onLeaveBack: () => { run(vA, false); run(vB, false); } },
         })
         .to({}, { duration: 1 })
         .to(a, { opacity: 1, duration: 1 })

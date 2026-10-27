@@ -6,7 +6,7 @@
  */
 export default function FloatingBackdrop({ strength = 0.7 }: { strength?: number }) {
   return (
-    <div aria-hidden className="about-float" style={{ opacity: strength }}>
+    <div aria-hidden className="about-float" style={{ "--k": strength } as React.CSSProperties}>
       <i />
       <i />
       <i />

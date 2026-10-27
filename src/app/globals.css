@@ -1055,3 +1055,59 @@ section:not(.tone-dark) > .shell > .hairline:first-child {
 
 
 
+
+/* ── Hero image slider ─ slow push-in on the visible render, and a progress bar for the active slide */
+.hero-kb { animation: hero-kb 9s ease-out forwards; }
+@keyframes hero-kb { from { transform: scale(1); } to { transform: scale(1.08); } }
+.hero-bar-fill { transform-origin: left center; animation: hero-bar linear forwards; }
+@keyframes hero-bar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-kb { animation: none; }
+  .hero-bar-fill { animation: none; }
+}
+
+/* ── Performance pass ─────────────────────────────────────────────────────
+   Ambient motion only runs while its section is on screen (LiveSections sets data-live),
+   there are fewer and smaller moving layers, no per-frame masks, and no always-on
+   will-change textures. The look is the same; the page does far less work. */
+.about-atmosphere::before { inset: 0; animation: none; will-change: auto; }
+
+.about-float i { opacity: var(--k, 1); will-change: auto; animation-play-state: paused; }
+.about-silk i, .about-silk b { will-change: auto; animation-play-state: paused; }
+[data-live] .about-float i,
+[data-live] .about-silk i,
+[data-live] .about-silk b,
+[data-live] .footer-shimmer { animation-play-state: running; }
+.footer-shimmer { animation-play-state: paused; }
+
+/* three orbs, not five, and smaller */
+.about-float i:nth-child(n + 4) { display: none; }
+.about-float i:nth-child(1) { --s: 52vmax; }
+.about-float i:nth-child(2) { --s: 44vmax; }
+.about-float i:nth-child(3) { --s: 48vmax; }
+
+/* silk: four ribbons, two streaks, no sparkle layer, no glow shadow */
+.about-silk i:nth-child(n + 5),
+.about-silk b:nth-of-type(n + 3),
+.about-silk u { display: none; }
+.about-silk b { box-shadow: none; }
+
+/* edge fades as a static overlay instead of a mask over animated children */
+.about-silk,
+.about-float:not(.about-float--scene) { -webkit-mask-image: none; mask-image: none; }
+.about-silk::after,
+.about-float:not(.about-float--scene)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, var(--site-base) 0%, transparent 14%, transparent 86%, var(--site-base) 100%);
+}
+
+/* inner pages: static warm wash (the animated gradient-position waves repainted whole sections every frame) */
+section:is(.bg-bone, .bg-paper, .bg-linen, .bg-sand, .bg-white):not(.sec-flow, .about-atmosphere, .tone-dark)::before,
+section:is(.bg-bone, .bg-paper, .bg-linen, .bg-sand, .bg-white):not(.sec-flow, .about-atmosphere, .tone-dark)::after { animation: none; will-change: auto; }
+
+
+/* Tab in the background: freeze every ambient CSS animation (LiveSections sets data-hidden). */
+html[data-hidden] *, html[data-hidden] *::before, html[data-hidden] *::after { animation-play-state: paused !important; }

@@ -46,7 +46,13 @@ export default function ProjectsPage() {
         eyebrow="Discover Excellence"
         lines={["Our signature", <em key="p" className="accent-text">portfolio.</em>]}
         copy="Masterpieces of modern living, designed for those who accept nothing but the exceptional."
-        image={{ src: "/regal_empirus/Regal_Empirus_.jpg.jpeg", alt: "Regal Empirus towers at sunset" }}
+        images={[
+          { src: "/regal_empirus/Regal_Empirus_.jpg.jpeg", alt: "Regal Empirus towers at sunset" },
+          { src: "/regal_heights/Regal_Heights_.jpg.jpeg", alt: "Regal Heights high-rise towers in Sector 91, Mohali" },
+          { src: "/regal_rersidencia/Regal_Residencia_.jpg.jpeg", alt: "Front elevation of Regal Residencia" },
+          { src: "/regal_empirus/renders/tower-portal.jpg", alt: "Tower portal at Regal Empirus" },
+          { src: "/regal_heights/renders/terrace-aerial.jpg", alt: "Terrace aerial view at Regal Heights" },
+        ]}
         meta={[
           { label: "Signature Projects", value: pad(counts.All) },
           { label: "Ongoing", value: pad(counts.Ongoing) },

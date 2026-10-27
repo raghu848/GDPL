@@ -1,16 +1,20 @@
 "use client";
 
-import { ReactNode, useRef } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useHeroTimeline } from "@/animations/useHeroTimeline";
 import { useVideoInView } from "@/hooks/useVideoInView";
 import { cn } from "@/lib/utils";
+
+const SLIDE_MS = 6000;
 
 type Props = {
   eyebrow?: ReactNode;
   lines: ReactNode[];
   copy?: ReactNode;
   image?: { src: string; alt: string; className?: string };
+  /** Several renders: the hero crossfades through them on its own (replaces `image`). */
+  images?: { src: string; alt: string; className?: string }[];
   video?: string;
   actions?: ReactNode;
   meta?: { label: string; value: ReactNode }[];
@@ -21,11 +25,27 @@ type Props = {
 };
 
 /** Cinematic page opener shared by inner pages — same choreography as the home hero. */
-export default function PageHero({ eyebrow, lines, copy, image, video, actions, meta, size = "full", headlineClassName, align = "left" }: Props) {
+export default function PageHero({ eyebrow, lines, copy, image, images, video, actions, meta, size = "full", headlineClassName, align = "left" }: Props) {
   const right = align === "right";
   const root = useRef<HTMLElement>(null);
   useHeroTimeline(root);
   const videoRef = useVideoInView<HTMLVideoElement>();
+  const slides = images && images.length > 1 ? images : null;
+  const [active, setActive] = useState(0);
+  const [prev, setPrev] = useState<number | null>(null);
+
+  // Auto-advance; restarts whenever the slide changes (including a manual pick). No autoplay for reduced motion.
+  useEffect(() => {
+    if (!slides || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setTimeout(() => go((active + 1) % slides.length), SLIDE_MS);
+    return () => window.clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active, slides]);
+  const go = (i: number) => {
+    if (i === active) return;
+    setPrev(active);
+    setActive(i);
+  };
 
   return (
     <section
@@ -37,7 +57,31 @@ export default function PageHero({ eyebrow, lines, copy, image, video, actions, 
     >
       <div data-hero-media className="absolute inset-0 will-change-transform">
         <div data-hero-media-inner className="absolute inset-0">
-          {image && (
+          {slides &&
+            slides.map((im, i) => {
+              // Only the current, outgoing and next image are mounted; the rest download when they are about to be needed.
+              const near = i === active || i === prev || i === (active + 1) % slides.length;
+              return (
+              <div
+                key={im.src}
+                aria-hidden={i !== active}
+                className="absolute inset-0 transition-opacity duration-[1600ms] ease-in-out"
+                style={{ opacity: i === active ? 1 : 0 }}
+              >
+                {near && (
+                  <Image
+                    src={im.src}
+                    alt={im.alt}
+                    fill
+                    priority={i === 0}
+                    sizes="100vw"
+                    className={cn("object-cover", (i === active || i === prev) && "hero-kb", im.className)}
+                  />
+                )}
+              </div>
+              );
+            })}
+          {!slides && image && (
             <Image src={image.src} alt={image.alt} fill priority sizes="100vw" className={cn("object-cover", image.className)} />
           )}
           {video && (
@@ -101,6 +145,30 @@ export default function PageHero({ eyebrow, lines, copy, image, video, actions, 
           </div>
         )}
       </div>
+
+      {slides && (
+        <div className="absolute bottom-6 md:bottom-9 right-[var(--gutter)] z-10 flex items-center gap-2" role="group" aria-label="Hero images">
+          {slides.map((im, i) => (
+            <button
+              key={im.src}
+              type="button"
+              onClick={() => go(i)}
+              aria-label={`Show image ${i + 1} of ${slides.length}`}
+              aria-current={i === active}
+              className="group relative h-6 w-8 md:w-10"
+            >
+              <span className="absolute inset-x-0 top-1/2 block h-px -translate-y-1/2 bg-bone/35" />
+              {i === active && (
+                <span
+                  key={active}
+                  className="hero-bar-fill absolute inset-x-0 top-1/2 block h-px -translate-y-1/2 bg-bone"
+                  style={{ animationDuration: `${SLIDE_MS}ms` }}
+                />
+              )}
+            </button>
+          ))}
+        </div>
+      )}
 
       <div data-hero-cue-wrap className="absolute bottom-5 md:bottom-7 left-1/2 -translate-x-1/2 z-10 hidden md:block">
         <div data-hero-cue className="flex flex-col items-center gap-3 text-bone/80">

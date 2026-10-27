@@ -131,6 +131,7 @@ export default function Hero() {
               loop
               playsInline
               preload="auto"
+              poster="/videos/hero-poster.jpg"
               disablePictureInPicture
               aria-hidden
               className="absolute inset-0 h-full w-full object-cover object-center"

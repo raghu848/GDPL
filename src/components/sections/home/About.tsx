@@ -13,7 +13,7 @@ import AboutOrbit from "./AboutOrbit";
 export default function About() {
   const root = useRef<HTMLElement>(null);
   useSectionTimeline(root, createAboutTimeline);
-  const videoRef = useVideoInView<HTMLVideoElement>({ pauseOnLeave: false });
+  const videoRef = useVideoInView<HTMLVideoElement>({ pauseOnLeave: true });
   const shell = useRef<HTMLDivElement>(null);
 
   // Desktop: shrink the content just enough that the whole section fits the pinned screen.
@@ -98,7 +98,6 @@ export default function About() {
                     WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, #000 7%, #000 91%, transparent 100%), linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%)",
                     maskComposite: "intersect",
                     WebkitMaskComposite: "source-in",
-                    filter: "brightness(1.03)",
                   }}
                 >
                   <source src="/videos/about-building.mp4" type="video/mp4" />

@@ -24,6 +24,20 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
   const isResidencia = project.slug === "regal-residencia";
   const paragraphs = project.longDescription.split("\n\n");
 
+  // Hero slider: the hero plus the project's exterior / aerial renders (interiors and amenities are left to the gallery below).
+  const exterior = (project.renders ?? [])
+    .filter((r) => /aerial|tower|elevation|corner|portal|entrance/i.test(r.src))
+    .map((r) => ({ src: r.src, alt: r.alt }));
+  const extra = isResidencia
+    ? [
+        { src: "/regal_rersidencia/WhatsApp%20Image%202026-03-10%20at%201.09.01%20PM.jpeg", alt: "Regal Residencia towers at dusk" },
+        { src: "/regal_rersidencia/WhatsApp%20Image%202026-03-10%20at%201.09.02%20PM.jpeg", alt: "Regal Residencia towers linked by a sky bridge" },
+      ]
+    : [];
+  const heroSlides = [{ src: project.heroImage, alt: project.heroImageAlt }, ...exterior, ...extra].filter(
+    (img, i, all) => all.findIndex((o) => o.src === img.src) === i
+  );
+
   const meta = [
     project.area && { label: "Development Size", value: project.area },
     project.residencesSummary && { label: "Residences", value: project.residencesSummary },
@@ -37,7 +51,7 @@ export default function ProjectDetailPage({ project }: { project: Project }) {
         eyebrow={`${project.status} — ${project.location}`}
         lines={[project.name]}
         copy={project.tagline}
-        image={{ src: project.heroImage, alt: project.heroImageAlt }}
+        {...(heroSlides.length > 1 ? { images: heroSlides } : { image: { src: project.heroImage, alt: project.heroImageAlt } })}
         meta={meta}
         actions={
           <>

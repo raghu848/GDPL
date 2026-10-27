@@ -7,6 +7,7 @@ import Preloader from "./Preloader";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import PageTransition from "./PageTransition";
+import LiveSections from "./LiveSections";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -17,6 +18,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       <SmoothScroll>
         <Preloader />
         <PageTransition />
+        <LiveSections />
         {!bare && <Navbar />}
         {children}
         {!bare && <Footer />}

@@ -33,7 +33,8 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     instance.on("scroll", ScrollTrigger.update);
     const tick = (time: number) => instance.raf(time * 1000);
     gsap.ticker.add(tick);
-    gsap.ticker.lagSmoothing(0);
+    // Re-enable stall smoothing: after a long frame GSAP advances by at most 33ms instead of jumping.
+    gsap.ticker.lagSmoothing(500, 33);
     // Lenis needs `window`, so it can only be created after mount; expose it to consumers.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setLenis(instance);

@@ -35,10 +35,14 @@ export default function AboutPage() {
         lines={["Shaping skylines,", <em key="t" className="accent-text">building trust.</em>]}
         headlineClassName="space-y-[0.14em]"
         copy="A distinguished name in Mohali real estate."
-        image={{
-          src: "/regal_empirus/renders/night-elevation-wide.jpg",
-          alt: "Regal Empirus towers lit up at dusk beside the Sector 91 road",
-        }}
+        images={[
+          { src: "/regal_empirus/renders/night-elevation-wide.jpg", alt: "Regal Empirus towers lit up at dusk beside the Sector 91 road" },
+          { src: "/regal_heights/renders/aerial-front.jpg", alt: "Aerial view of the Regal Heights towers and podium" },
+          { src: "/regal_empirus/renders/podium-aerial.jpg", alt: "Aerial view of the Regal Empirus podium and towers" },
+          { src: "/regal_heights/renders/tower-elevation.jpg", alt: "Regal Heights tower elevation against the sky" },
+          { src: "/regal_rersidencia/Regal_Residencia_.jpg.jpeg", alt: "Front elevation of Regal Residencia" },
+          { src: "/regal_heights/renders/corner-tower.jpg", alt: "Corner tower of Regal Heights" },
+        ]}
         actions={
           <>
             <MagneticButton href="#leadership" variant="solid">

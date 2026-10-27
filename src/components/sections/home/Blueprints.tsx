@@ -7,7 +7,7 @@ import { createBlueprintsTimeline } from "@/animations/timelines";
 import RevealLines from "@/components/ui/RevealLines";
 import FloatingBackdrop from "@/components/ui/FloatingBackdrop";
 import PlanLightbox from "@/components/ui/PlanLightbox";
-import BlueprintsVideo from "./BlueprintsVideo";
+import BlueprintsSlides from "./BlueprintsSlides";
 import { blueprints, blueprintCategories } from "@/lib/blueprintsData";
 import { cn } from "@/lib/utils";
 
@@ -49,7 +49,7 @@ export default function Blueprints() {
 
           {/* Video (right on desktop) */}
           <div className="relative min-h-0 lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1">
-            <BlueprintsVideo onActive={setActive} sectionRef={root} />
+            <BlueprintsSlides onActive={setActive} sectionRef={root} />
           </div>
 
           {/* Content that follows the plan on screen */}

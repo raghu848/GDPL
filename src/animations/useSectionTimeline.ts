@@ -2,7 +2,16 @@
 
 import { useEffect, useLayoutEffect, RefObject, DependencyList } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { registerGsap, MotionEnv } from "./primitives";
+
+// Sections hydrate in any order (some are code-split), and each pin adds spacer height, so one
+// debounced refresh after the last section builds keeps every trigger position correct.
+let refreshTimer: number | undefined;
+function scheduleRefresh() {
+  window.clearTimeout(refreshTimer);
+  refreshTimer = window.setTimeout(() => ScrollTrigger.refresh(), 220);
+}
 
 const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
@@ -31,6 +40,7 @@ export function useSectionTimeline(
       },
       root
     );
+    scheduleRefresh();
 
     return () => mm.revert();
   }, deps);

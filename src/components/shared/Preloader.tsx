@@ -34,11 +34,18 @@ export default function Preloader() {
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // First visit in this tab gets the full sequence; reloads and returns get a brisk one.
+    let seen = false;
+    try {
+      seen = sessionStorage.getItem("gdpl-preloaded") === "1";
+      sessionStorage.setItem("gdpl-preloaded", "1");
+    } catch {}
+    const k = seen ? 0.45 : 0.6;
     const loaded = new Promise<void>((resolve) => {
       if (document.readyState === "complete") resolve();
       else window.addEventListener("load", () => resolve(), { once: true });
     });
-    const capped = Promise.race([loaded, new Promise<void>((r) => setTimeout(r, 2600))]);
+    const capped = Promise.race([loaded, new Promise<void>((r) => setTimeout(r, seen ? 500 : 1100))]);
 
     const ctx = gsap.context(() => {
       const exit = () => {
@@ -72,21 +79,21 @@ export default function Preloader() {
         .fromTo(
           logo.current,
           { opacity: 0, filter: "blur(16px)", scale: 0.96 },
-          { opacity: 1, filter: "blur(0px)", scale: 1, duration: 1.1, ease: "power3.out" }
+          { opacity: 1, filter: "blur(0px)", scale: 1, duration: 1.1 * k, ease: "power3.out" }
         )
-        .from(meta.current, { opacity: 0, y: 12, duration: 0.8, ease: "power3.out" }, 0.3)
-        .fromTo(bar.current, { scaleX: 0 }, { scaleX: 1, duration: 1.8, ease: "power2.inOut" }, 0.3)
+        .from(meta.current, { opacity: 0, y: 12, duration: 0.8 * k, ease: "power3.out" }, 0.2)
+        .fromTo(bar.current, { scaleX: 0 }, { scaleX: 1, duration: 1.8 * k, ease: "power2.inOut" }, 0.2)
         .to(
           counter,
           {
             v: 100,
-            duration: 1.8,
+            duration: 1.8 * k,
             ease: "power2.inOut",
             onUpdate: () => {
               if (count.current) count.current.textContent = String(Math.round(counter.v)).padStart(3, "0");
             },
           },
-          0.3
+          0.2
         );
     }, root);
 
